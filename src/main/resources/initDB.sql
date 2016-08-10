@@ -11,7 +11,7 @@ CREATE TABLE users (
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
-  registrydate TIMESTAMP DEFAULT now()
+  registred TIMESTAMP DEFAULT now()
 );
 
 CREATE UNIQUE INDEX users_idx ON users(email);
@@ -25,30 +25,28 @@ CREATE TABLE user_roles (
 
 CREATE TABLE restaurants (
   id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
-  admin_id INTEGER NOT NULL,
   name VARCHAR NOT NULL,
   address VARCHAR NOT NULL,
-  registrydate TIMESTAMP DEFAULT now(),
-  FOREIGN KEY (admin_id) REFERENCES users(id) ON DELETE RESTRICT
+  registred TIMESTAMP DEFAULT now()
 );
 
-CREATE UNIQUE INDEX restaurants_idx ON restaurants(address, registrydate);
+CREATE UNIQUE INDEX restaurants_idx ON restaurants(address, name);
 
 CREATE TABLE dishes (
-  id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
   rest_id INTEGER NOT NULL,
   name VARCHAR NOT NULL,
   price INTEGER DEFAULT 10,
+  updated TIMESTAMP DEFAULT now(),
   FOREIGN KEY (rest_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
 
-CREATE UNIQUE INDEX dishes_idx ON dishes (id, price, name);
+CREATE UNIQUE INDEX dishes_idx ON dishes (rest_id, name);
 
 CREATE TABLE votes (
   user_id INTEGER PRIMARY KEY NOT NULL,
   rest_id INTEGER DEFAULT 0,
-  votedate TIMESTAMP DEFAULT now(),
+  voted TIMESTAMP DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE UNIQUE INDEX votes_idx ON votes(user_id, rest_id);
+CREATE UNIQUE INDEX votes_idx ON votes(user_id);
