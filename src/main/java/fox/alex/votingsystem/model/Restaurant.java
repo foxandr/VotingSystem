@@ -34,6 +34,10 @@ public class Restaurant extends BaseEntity{
         return registred;
     }
 
+    public void setRegistred(Date registred) {
+        this.registred = registred;
+    }
+
     @Override
     public String toString() {
         return "Restaurant{" +

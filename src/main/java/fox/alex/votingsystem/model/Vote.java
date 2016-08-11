@@ -8,33 +8,20 @@ import java.util.Date;
 
 public class Vote {
 
-    private Integer user_id;
-
-    private Integer rest_id = 0;
+    private Integer rest_id;
 
     private Date voted = new Date();
 
+    private User user;
+
     public Vote() {}
 
-    public Vote(Integer user_id) {
-        this.user_id = user_id;
-    }
-
-    public Vote(Integer user_id, Integer rest_id) {
-        this.user_id = user_id;
+    public Vote(Integer rest_id) {
         this.rest_id = rest_id;
     }
 
     public Vote (Vote vote){
-        this(vote.getUser_id(), vote.getRest_id());
-    }
-
-    public Integer getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+        this(vote.getRest_id());
     }
 
     public Integer getRest_id() {
@@ -45,15 +32,26 @@ public class Vote {
         this.rest_id = rest_id;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     public Date getVoted() {
         return voted;
+    }
+
+    public void setVoted(Date voted) {
+        this.voted = voted;
     }
 
     @Override
     public String toString() {
         return "Vote{" +
-                "user_id=" + user_id +
-                ", rest_id=" + rest_id +
+                "user_id=" + rest_id +
                 ", voted=" + voted +
                 '}';
     }

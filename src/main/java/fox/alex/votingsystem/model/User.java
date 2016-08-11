@@ -55,6 +55,10 @@ public class User extends BaseEntity {
         return registred;
     }
 
+    public void setRegistred(Date registred) {
+        this.registred = registred;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }

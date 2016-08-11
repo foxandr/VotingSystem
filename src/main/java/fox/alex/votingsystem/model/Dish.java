@@ -13,6 +13,8 @@ public class Dish extends BaseEntity{
 
     private Date updated = new Date();
 
+    private Restaurant restaurant;
+
     public Dish() {}
 
     public Dish(Integer id, Integer rest_id, String name, Integer price) {
@@ -52,6 +54,14 @@ public class Dish extends BaseEntity{
 
     public void setUpdated(Date updated) {
         this.updated = (updated == null) ? new Date() : updated;
+    }
+
+    public Restaurant getRestaurant() {
+        return restaurant;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     @Override
