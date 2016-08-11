@@ -1,8 +1,8 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS user_roles;
-DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS dishes;
 DROP TABLE IF EXISTS votes;
+DROP TABLE IF EXISTS restaurants;
+DROP TABLE IF EXISTS users;
 
 CREATE SEQUENCE start_index START 1;
 
@@ -33,6 +33,7 @@ CREATE TABLE restaurants (
 CREATE UNIQUE INDEX restaurants_idx ON restaurants(address, name);
 
 CREATE TABLE dishes (
+  id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
   rest_id INTEGER NOT NULL,
   name VARCHAR NOT NULL,
   price INTEGER DEFAULT 10,
