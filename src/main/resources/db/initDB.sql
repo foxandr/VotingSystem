@@ -47,7 +47,7 @@ CREATE TABLE votes (
   user_id INTEGER PRIMARY KEY NOT NULL,
   rest_id INTEGER DEFAULT 0,
   voted TIMESTAMP DEFAULT now(),
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE NO ACTION
 );
 
-CREATE UNIQUE INDEX votes_idx ON votes(user_id);
+CREATE UNIQUE INDEX votes_idx ON votes(user_id, voted);

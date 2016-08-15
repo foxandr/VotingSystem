@@ -1,6 +1,6 @@
 package fox.alex.votingsystem.model;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by fox on 11.08.16.
@@ -10,7 +10,7 @@ public class Vote {
 
     private Integer rest_id;
 
-    private Date voted = new Date();
+    private LocalDateTime voted;
 
     private User user;
 
@@ -40,11 +40,11 @@ public class Vote {
         this.user = user;
     }
 
-    public Date getVoted() {
+    public LocalDateTime getVoted() {
         return voted;
     }
 
-    public void setVoted(Date voted) {
+    public void setVoted(LocalDateTime voted) {
         this.voted = voted;
     }
 

@@ -1,12 +1,23 @@
 package fox.alex.votingsystem.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.persistence.*;
+
 /**
  * Created by fox on 11.08.16.
  */
+@MappedSuperclass
+@Access(AccessType.FIELD)
 public class BaseEntity {
 
+    @Id
+    @SequenceGenerator(name = "start_index", sequenceName = "start_index", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "start_index")
     protected Integer id;
 
+    @NotEmpty
+    @Column(name = "name", nullable = false)
     protected String name;
 
     public BaseEntity() {}
