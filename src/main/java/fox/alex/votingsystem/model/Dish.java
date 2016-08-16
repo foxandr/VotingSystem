@@ -1,43 +1,44 @@
 package fox.alex.votingsystem.model;
 
+import org.hibernate.validator.constraints.Range;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
  * Created by fox on 11.08.16.
  */
+@Entity
+@Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"rest_id", "name"}, name = "dishes_idx")})
 public class Dish extends BaseEntity{
 
-    protected Integer rest_id;
-
+    @Column(name = "price", nullable = false)
+    @Range(min = 1, max = 10000)
+    @NotNull
     private Integer price;
 
+    @Column(name = "updated", columnDefinition = "timestamp default now()")
     private Date updated = new Date();
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "rest_id", nullable = false)
     private Restaurant restaurant;
 
     public Dish() {}
 
-    public Dish(Integer id, Integer rest_id, String name, Integer price) {
+    public Dish(Integer id, String name, Integer price) {
         super(id, name);
-        this.rest_id = rest_id;
         this.price = price;
     }
 
-    public Dish(Integer id, Integer rest_id, String name, Integer price, Date updated) {
-        this(id, rest_id, name, price);
+    public Dish(Integer id, String name, Integer price, Date updated) {
+        this(id, name, price);
         setUpdated(updated);
     }
 
     public Dish(Dish dish) {
-        this(dish.getId(), dish.getRest_id(), dish.getName(), dish.getPrice(), dish.getUpdated());
-    }
-
-    public Integer getRest_id() {
-        return rest_id;
-    }
-
-    public void setRest_id(Integer rest_id) {
-        this.rest_id = rest_id;
+        this(dish.getId(), dish.getName(), dish.getPrice(), dish.getUpdated());
     }
 
     public Integer getPrice() {
@@ -65,33 +66,9 @@ public class Dish extends BaseEntity{
     }
 
     @Override
-    public int hashCode() {
-        int result = (this.rest_id == null) ? 0 : this.rest_id;
-        result = 37 * result + this.name.hashCode();
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dish other = (Dish) o;
-        if (this.id == null || other.id == null) return false;
-        if (this.rest_id != null || other.rest_id != null) {
-            if (this.rest_id.equals(other.rest_id)) {
-                if (this.name != null && other.name != null && this.name.equals(other.name)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    @Override
     public String toString() {
         return "Dish{" +
                 "id=" + id +
-                ",rest_id=" + rest_id +
                 ",name=" + name +
                 ", price=" + price +
                 ", updated=" + updated +

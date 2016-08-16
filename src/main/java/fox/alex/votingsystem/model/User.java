@@ -15,8 +15,18 @@ import java.util.*;
  */
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @Entity
-@Table(name = "users",uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_idx")})
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = User.GRAPH_WITH_ROLES, attributeNodes = @NamedAttributeNode("roles")),
+        @NamedEntityGraph(name = User.GRAPH_WITH_ROLES_AND_VOTES, attributeNodes = {
+                @NamedAttributeNode("roles"),
+                @NamedAttributeNode("votes")
+        })
+})
+@Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_idx")})
 public class User extends BaseEntity {
+
+    public static final String GRAPH_WITH_ROLES = "User.withRoles";
+    public static final String GRAPH_WITH_ROLES_AND_VOTES = "User.withRolesAndVotes";
 
     @Column(name = "email", nullable = false, unique = true)
     @Email
@@ -44,16 +54,15 @@ public class User extends BaseEntity {
 
     public User() {}
 
-    public User(Integer id, String name, String email, String password, Set<Role> roles, List<Vote> votes) {
+    public User(Integer id, String name, String email, String password, Set<Role> roles) {
         super(id, name);
         this.email = email;
         this.password = password;
         setRoles(roles);
-        setVotes(votes);
     }
 
     public User(User user) {
-        this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getRoles(), user.getVotes());
+        this(user.getId(), user.getName(), user.getEmail(), user.getPassword(), user.getRoles());
     }
 
     public String getEmail() {

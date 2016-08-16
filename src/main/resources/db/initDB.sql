@@ -44,7 +44,8 @@ CREATE TABLE dishes (
 CREATE UNIQUE INDEX dishes_idx ON dishes (rest_id, name);
 
 CREATE TABLE votes (
-  user_id INTEGER PRIMARY KEY NOT NULL,
+  id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
+  user_id INTEGER NOT NULL,
   rest_id INTEGER DEFAULT 0,
   voted TIMESTAMP DEFAULT now(),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE NO ACTION
