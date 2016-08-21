@@ -3,12 +3,14 @@ package fox.alex.votingsystem.repository.datajpa;
 import fox.alex.votingsystem.model.Restaurant;
 import fox.alex.votingsystem.repository.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 /**
  * Created by fox on 21.08.16.
  */
+@Repository
 public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
 
     @Autowired
