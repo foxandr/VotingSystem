@@ -1,6 +1,6 @@
 package fox.alex.votingsystem.repository.datajpa;
 
-import fox.alex.votingsystem.model.User;
+import fox.alex.votingsystem.model.Restaurant;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -11,32 +11,29 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 /**
- * Created by fox on 17.08.16.
+ * Created by fox on 21.08.16.
  */
 @Transactional(readOnly = true)
-public interface ProxyUserRepository extends JpaRepository<User, Integer> {
+public interface ProxyRestaurantRepository extends JpaRepository<Restaurant, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM User u WHERE u.id = :id")
+    @Query("DELETE FROM Restaurant r WHERE r.id = :id")
     int delete(@Param("id") int id);
 
     @Override
-    @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles, u.votes ORDER BY u.name, u.email")
-    List<User> findAll();
+    @Query("SELECT r FROM Restaurant r ORDER BY r.name")
+    List<Restaurant> findAll();
 
     @Override
     @Transactional
-    User save(User user);
+    Restaurant save(Restaurant restaurant);
 
     @Override
-    @EntityGraph(value = User.GRAPH_WITH_ROLES)
-    User findOne(Integer integer);
+    @EntityGraph(value = Restaurant.GRAPH_WITH_DISHES)
+    Restaurant findOne(Integer integer);
 
-    @EntityGraph(value = User.GRAPH_WITH_ROLES)
-    User getByEmail(String email);
-
-    @EntityGraph(value = User.GRAPH_WITH_ROLES_AND_VOTES)
-    User findById(Integer id);
+    @EntityGraph(value = Restaurant.GRAPH_WITH_DISHES)
+    Restaurant getByName(String name);
 
 }
