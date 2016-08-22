@@ -1,6 +1,7 @@
 package fox.alex.votingsystem.repository;
 
 import fox.alex.votingsystem.model.User;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

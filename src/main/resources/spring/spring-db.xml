@@ -14,11 +14,14 @@
        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
        http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd">
 
+    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
+        <jdbc:script location="classpath:db/initDB.sql"/>
+        <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
+    </jdbc:initialize-database>
+
     <tx:annotation-driven/>
 
     <context:property-placeholder location="classpath:db/voting.properties" system-properties-mode="OVERRIDE"/>
-    <context:component-scan base-package="fox.alex.**.repository.datajpa"/>
-    <jpa:repositories base-package="fox.alex.**.repository.datajpa"/>
 
     <bean id="dataSource"
           class="org.apache.tomcat.jdbc.pool.DataSource"
@@ -50,9 +53,11 @@
         </property>
     </bean>
 
-    <jdbc:initialize-database data-source="dataSource" enabled="${database.init}">
-        <jdbc:script location="classpath:db/initDB.sql"/>
-        <jdbc:script encoding="utf-8" location="classpath:db/populateDB.sql"/>
-    </jdbc:initialize-database>
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
+
+    <bean class="fox.alex.votingsystem.repository.JpaUtil"/>
+
+    <context:component-scan base-package="fox.alex.**.repository.datajpa"/>
+    <jpa:repositories base-package="fox.alex.**.repository"/>
 
 </beans>

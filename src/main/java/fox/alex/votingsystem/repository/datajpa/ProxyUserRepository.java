@@ -22,7 +22,7 @@ public interface ProxyUserRepository extends JpaRepository<User, Integer> {
     int delete(@Param("id") int id);
 
     @Override
-    @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles, u.votes ORDER BY u.name, u.email")
+    @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles LEFT JOIN FETCH u.votes ORDER BY u.name, u.email")
     List<User> findAll();
 
     @Override

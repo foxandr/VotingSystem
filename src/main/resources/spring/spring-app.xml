@@ -7,8 +7,8 @@
 
     <context:annotation-config/>
 
-    <import resource="spring-tools.xml"/>
-
     <context:component-scan base-package="fox.alex.**.service"/>
+
+    <import resource="spring-tools.xml"/>
 
 </beans>

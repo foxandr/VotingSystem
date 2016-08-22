@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS dishes;
 DROP TABLE IF EXISTS votes;
 DROP TABLE IF EXISTS restaurants;
 DROP TABLE IF EXISTS users;
+DROP SEQUENCE start_index;
 
 CREATE SEQUENCE start_index START 1;
 
