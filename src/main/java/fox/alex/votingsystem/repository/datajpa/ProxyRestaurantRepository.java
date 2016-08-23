@@ -30,10 +30,12 @@ public interface ProxyRestaurantRepository extends JpaRepository<Restaurant, Int
     Restaurant save(Restaurant restaurant);
 
     @Override
-    @EntityGraph(value = Restaurant.GRAPH_WITH_DISHES)
     Restaurant findOne(Integer integer);
 
     @EntityGraph(value = Restaurant.GRAPH_WITH_DISHES)
     Restaurant getByName(String name);
+
+    @EntityGraph(value = Restaurant.GRAPH_WITH_DISHES)
+    Restaurant findById(Integer integer);
 
 }

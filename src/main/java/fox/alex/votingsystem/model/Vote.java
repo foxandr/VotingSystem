@@ -80,7 +80,8 @@ public class Vote {
     @Override
     public String toString() {
         return "Vote{" +
-                "user_id=" + rest_id +
+                "id=" + id +
+                ", rest_id=" + rest_id +
                 ", voted=" + voted +
                 '}';
     }

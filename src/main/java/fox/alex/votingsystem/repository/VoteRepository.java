@@ -9,9 +9,9 @@ import java.util.List;
  * Created by fox on 15.08.16.
  */
 public interface VoteRepository {
-    Vote save(Vote vote);
+    Vote save(Vote vote, int user_id);
 
-    boolean delete(int id);
+    boolean delete(int id, int user_id);
 
     List<Vote> getByUser(int user_id);
 

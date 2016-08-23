@@ -17,19 +17,26 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     @Autowired
     private ProxyDishRepository proxyDishRepository;
 
+    @Autowired
+    private ProxyRestaurantRepository proxyRestaurantRepository;
+
     @Override
-    public Dish save(Dish dish) {
+    public Dish save(Dish dish, int rest_id) {
+        if (!dish.isNew() && get(dish.getId(), rest_id) == null){
+            return null;
+        }
+        dish.setRestaurant(proxyRestaurantRepository.findOne(rest_id));
         return proxyDishRepository.save(dish);
     }
 
     @Override
-    public boolean delete(int id) {
-        return proxyDishRepository.delete(id) != 0;
+    public boolean delete(int id, int rest_id) {
+        return proxyDishRepository.delete(id, rest_id) != 0;
     }
 
     @Override
-    public Dish get(int id) {
-        return proxyDishRepository.findOne(id);
+    public Dish get(int id, int rest_id) {
+        return proxyDishRepository.findOne(id, rest_id);
     }
 
     @Override

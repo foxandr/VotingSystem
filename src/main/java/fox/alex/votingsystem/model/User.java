@@ -50,7 +50,7 @@ public class User extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
     @OrderBy("voted DESC")
-    private List<Vote> votes;
+    private Set<Vote> votes;
 
     public User() {}
 
@@ -97,11 +97,11 @@ public class User extends BaseEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
-    public List<Vote> getVotes() {
+    public Set<Vote> getVotes() {
         return votes;
     }
 
-    public void setVotes(List<Vote> votes) {
+    public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 

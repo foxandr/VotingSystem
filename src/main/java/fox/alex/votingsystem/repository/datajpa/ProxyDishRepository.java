@@ -18,8 +18,8 @@ public interface ProxyDishRepository extends JpaRepository<Dish, Integer> {
 
     @Transactional
     @Modifying
-    @Query("DELETE FROM Dish d WHERE d.id = :id")
-    int delete(@Param("id") int id);
+    @Query("DELETE FROM Dish d WHERE d.id = :id AND d.restaurant.id = :rest_id")
+    int delete(@Param("id") int id, @Param("rest_id") int rest_id);
 
     @Override
     @Query("SELECT d FROM Dish d ORDER BY d.updated")
@@ -29,9 +29,8 @@ public interface ProxyDishRepository extends JpaRepository<Dish, Integer> {
     @Transactional
     Dish save(Dish dish);
 
-    @Override
-    @Query("SELECT d FROM Dish d WHERE d.id = :id")
-    Dish findOne(@Param("id") Integer integer);
+    @Query("SELECT d FROM Dish d WHERE d.id = :id AND d.restaurant.id = :rest_id")
+    Dish findOne(@Param("id") Integer integer, @Param("rest_id") Integer rest_id);
 
     @Query("SELECT d FROM Dish d WHERE d.restaurant.id = :rest_id ORDER BY d.price")
     List<Dish> getByRestaurant(@Param("rest_id") int rest_id);

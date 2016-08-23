@@ -17,8 +17,8 @@ import java.util.List;
 public interface ProxyVoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     @Modifying
-    @Query("DELETE FROM Vote v WHERE v.id = :id")
-    int delete(@Param("id") int id);
+    @Query("DELETE FROM Vote v WHERE v.id = :id AND v.user.id = :user_id")
+    int delete(@Param("id") int id, @Param("user_id") int user_id);
 
     @Override
     @Query("SELECT v FROM Vote v ORDER BY v.voted")
@@ -28,9 +28,8 @@ public interface ProxyVoteRepository extends JpaRepository<Vote, Integer> {
     @Transactional
     Vote save(Vote vote);
 
-    @Override
-    @Query("SELECT v FROM Vote v WHERE v.id = :id")
-    Vote findOne(@Param("id") Integer integer);
+    @Query("SELECT v FROM Vote v WHERE v.id = :id AND v.user.id = :user_id")
+    Vote findOne(@Param("id") Integer integer, @Param("user_id") Integer user_id);
 
     @Query("SELECT v FROM Vote v WHERE v.user.id = :user_id ORDER BY v.voted")
     List<Vote> getByUser(@Param("user_id") int user_id);
