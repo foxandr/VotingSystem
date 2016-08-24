@@ -40,4 +40,9 @@ public class DataJpaRestaurantRepositoryImpl implements RestaurantRepository {
     public Restaurant getByName(String name) {
         return proxyRestaurantRepository.getByName(name);
     }
+
+    @Override
+    public Restaurant getWithDishes(int id) {
+        return proxyRestaurantRepository.findById(id);
+    }
 }

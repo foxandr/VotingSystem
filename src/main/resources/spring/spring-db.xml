@@ -58,6 +58,6 @@
     <bean class="fox.alex.votingsystem.repository.JpaUtil"/>
 
     <context:component-scan base-package="fox.alex.**.repository.datajpa"/>
-    <jpa:repositories base-package="fox.alex.**.repository"/>
+    <jpa:repositories base-package="fox.alex.**.repository.datajpa"/>
 
 </beans>

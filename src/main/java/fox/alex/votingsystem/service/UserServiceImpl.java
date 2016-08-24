@@ -64,6 +64,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void evictCache() {
     }
 
+    @Override
+    public User getWithVoices(int id) {
+        return ExceptionUtil.checkNotFoundWithId(repository.getWithVoices(id), id);
+    }
+
     //TODO implement security
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

@@ -21,6 +21,7 @@ import java.util.List;
 public class Restaurant extends BaseEntity{
 
     public static final String GRAPH_WITH_DISHES = "Restaurant.withDishes";
+
     @Column(name = "address", nullable = false)
     @NotEmpty
     @Length(max = 256)

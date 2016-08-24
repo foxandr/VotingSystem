@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,9 +22,9 @@ public class UserTestData {
     public static final int USER_ID = START_INDEX + 1;
     public static final int USER_ID2 = START_INDEX + 2;
 
-    public static final User USER1 = new User(USER_ID, "User1", "user1@votes.by", "simpleuser", new HashSet<Role>(Arrays.asList(Role.ROLE_USER)));
-    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@votes.by", "megaadmin", new HashSet<Role>(Arrays.asList(Role.ROLE_USER, Role.ROLE_ADMIN)));
-    public static final User USER2 = new User(USER_ID2, "User2", "2thUser@votes.by", "user", new HashSet<Role>(Arrays.asList(Role.ROLE_USER)));
+    public static final User USER1 = new User(USER_ID, "User1", "user1@votes.by", "simpleuser", Role.ROLE_USER);
+    public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@votes.by", "megaadmin", Role.ROLE_USER, Role.ROLE_ADMIN);
+    public static final User USER2 = new User(USER_ID2, "User2", "2thUser@votes.by", "user", Role.ROLE_USER);
 
     public static final List<User> USER_LIST = Arrays.asList(ADMIN, USER1, USER2);
 
@@ -39,8 +38,7 @@ public class UserTestData {
                         && Objects.equals(expected.getId(), actual.getId())
                         && Objects.equals(expected.getName(), actual.getName())
                         && Objects.equals(expected.getEmail(), actual.getEmail())
-                        && Objects.equals(expected.getRoles(), actual.getRoles())
-                        && Objects.equals(expected.getVotes(), actual.getVotes());
+                        && Objects.equals(expected.getRoles(), actual.getRoles());
                 return cmp;
             }
     );

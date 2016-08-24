@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 /**
  * Created by fox on 24.08.16.
  */
-public class VoteServiceImplTest {
+public class DishServiceTest {
     @Before
     public void setUp() throws Exception {
 
@@ -36,12 +36,17 @@ public class VoteServiceImplTest {
     }
 
     @Test
-    public void getByUser() throws Exception {
+    public void getAll() throws Exception {
 
     }
 
     @Test
     public void getByDate() throws Exception {
+
+    }
+
+    @Test
+    public void getByRerstaurant() throws Exception {
 
     }
 

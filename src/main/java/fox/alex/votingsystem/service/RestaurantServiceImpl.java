@@ -59,4 +59,9 @@ public class RestaurantServiceImpl implements RestaurantService {
     @CacheEvict(value = "restaurants", allEntries = true)
     @Override
     public void evictCache() {}
+
+    @Override
+    public Restaurant getWithDishes(int id) {
+        return ExceptionUtil.checkNotFoundWithId(repository.getWithDishes(id), id);
+    }
 }

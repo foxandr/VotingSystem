@@ -17,4 +17,6 @@ public interface RestaurantRepository {
     List<Restaurant> getAll();
 
     Restaurant getByName(String name);
+
+    Restaurant getWithDishes(int id);
 }

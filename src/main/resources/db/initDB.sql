@@ -12,7 +12,8 @@ CREATE TABLE users (
   name VARCHAR NOT NULL,
   email VARCHAR NOT NULL,
   password VARCHAR NOT NULL,
-  registred TIMESTAMP DEFAULT now()
+  registred TIMESTAMP DEFAULT now(),
+  active BOOL DEFAULT TRUE
 );
 
 CREATE UNIQUE INDEX users_idx ON users(email);
@@ -37,7 +38,7 @@ CREATE TABLE dishes (
   id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
   rest_id INTEGER NOT NULL,
   name VARCHAR NOT NULL,
-  price INTEGER DEFAULT 10,
+  price DECIMAL DEFAULT 10.5,
   updated TIMESTAMP DEFAULT now(),
   FOREIGN KEY (rest_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );
@@ -49,7 +50,7 @@ CREATE TABLE votes (
   user_id INTEGER NOT NULL,
   rest_id INTEGER DEFAULT 0,
   voted TIMESTAMP DEFAULT now(),
-  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE NO ACTION
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
 CREATE UNIQUE INDEX votes_idx ON votes(user_id, voted);

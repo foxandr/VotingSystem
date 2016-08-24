@@ -3,6 +3,7 @@ package fox.alex.votingsystem.repository.datajpa;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.repository.UserRepository;
+import fox.alex.votingsystem.utils.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -26,12 +27,16 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public boolean delete(int id) {
-        return proxyUserRepository.delete(id) != 0;
+        User activeUser = get(id);
+        if (activeUser == null) throw new NotFoundException("No user");
+        activeUser.setActive(false);
+        User inactiveUser = proxyUserRepository.save(activeUser);
+        return !inactiveUser.isActive();
     }
 
     @Override
     public User get(int id) {
-        return proxyUserRepository.findById(id);
+        return proxyUserRepository.findOne(id);
     }
 
     @Override
@@ -42,5 +47,10 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     @Override
     public User getByEmail(String email) {
         return proxyUserRepository.getByEmail(email);
+    }
+
+    @Override
+    public User getWithVoices(int id) {
+        return proxyUserRepository.findById(id);
     }
 }

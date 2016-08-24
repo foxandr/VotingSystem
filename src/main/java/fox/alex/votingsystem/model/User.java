@@ -41,6 +41,9 @@ public class User extends BaseEntity {
     @Column(name = "registred", columnDefinition = "timestamp default now()")
     private Date registred = new Date();
 
+    @Column(name = "active", nullable = false)
+    private Boolean active = true;
+
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
@@ -59,6 +62,10 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
         setRoles(roles);
+    }
+
+    public User(Integer id, String name, String email, String password, Role role, Role... roles) {
+        this(id, name, email, password, EnumSet.of(role, roles));
     }
 
     public User(User user) {
@@ -89,6 +96,14 @@ public class User extends BaseEntity {
         this.registred = registred;
     }
 
+    public Boolean isActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -97,24 +112,26 @@ public class User extends BaseEntity {
         this.roles = CollectionUtils.isEmpty(roles) ? Collections.emptySet() : EnumSet.copyOf(roles);
     }
 
-    public Set<Vote> getVotes() {
-        return votes;
-    }
-
     public void setVotes(Set<Vote> votes) {
         this.votes = votes;
     }
 
+    public Set<Vote> getVotes() {
+        return votes;
+    }
+
+    /*public void setVotes(Set<Vote> votes) {
+        this.votes = votes;
+    }*/
+
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
+                "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registred=" + registred +
                 ", roles=" + roles +
-                ", vote=" + votes +
+                ", votes=" + votes +
                 '}';
     }
 }

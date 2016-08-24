@@ -22,6 +22,8 @@ public interface RestaurantService {
 
     void evictCache();
 
+    Restaurant getWithDishes(int id);
+
     //TODO restaurant transfer object
     //void update(RestaurantTo restaurant);
 

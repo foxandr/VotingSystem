@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 import java.util.Date;
 
 /**
@@ -13,10 +14,10 @@ import java.util.Date;
 @Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"rest_id", "name"}, name = "dishes_idx")})
 public class Dish extends BaseEntity{
 
-    @Column(name = "price", nullable = false)
+    @Column(name = "price", nullable = false, precision = 6, scale = 1)
     @Range(min = 1, max = 10000)
     @NotNull
-    private Double price;
+    private BigDecimal price;
 
     @Column(name = "updated", columnDefinition = "timestamp default now()")
     private Date updated = new Date();
@@ -27,12 +28,12 @@ public class Dish extends BaseEntity{
 
     public Dish() {}
 
-    public Dish(Integer id, String name, Double price) {
+    public Dish(Integer id, String name, BigDecimal price) {
         super(id, name);
         this.price = price;
     }
 
-    public Dish(Integer id, String name, Double price, Date updated) {
+    public Dish(Integer id, String name, BigDecimal price, Date updated) {
         this(id, name, price);
         setUpdated(updated);
     }
@@ -41,11 +42,11 @@ public class Dish extends BaseEntity{
         this(dish.getId(), dish.getName(), dish.getPrice(), dish.getUpdated());
     }
 
-    public Double getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

@@ -27,4 +27,5 @@ public interface UserService {
 
     void evictCache();
 
+    User getWithVoices(int id);
 }
