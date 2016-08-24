@@ -77,6 +77,10 @@ public class Vote {
         this.id = id;
     }
 
+    public boolean isNew () {
+        return (this.id == null);
+    }
+
     @Override
     public String toString() {
         return "Vote{" +

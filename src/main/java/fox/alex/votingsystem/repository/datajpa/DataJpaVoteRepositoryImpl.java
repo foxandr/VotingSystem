@@ -17,14 +17,26 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     @Autowired
     private ProxyVoteRepository proxyVoteRepository;
 
+    @Autowired
+    private ProxyUserRepository proxyUserRepository;
+
     @Override
-    public Vote save(Vote vote) {
+    public Vote save(Vote vote, int user_id) {
+        if (!vote.isNew() && get(vote.getId(), user_id) == null){
+            return null;
+        }
+        vote.setUser(proxyUserRepository.findOne(user_id));
         return proxyVoteRepository.save(vote);
     }
 
     @Override
-    public boolean delete(int id) {
-        return proxyVoteRepository.delete(id) != 0;
+    public Vote get(int id, int user_id) {
+        return proxyVoteRepository.findOne(id, user_id);
+    }
+
+    @Override
+    public boolean delete(int id, int user_id) {
+        return proxyVoteRepository.delete(id, user_id) != 0;
     }
 
     @Override

@@ -11,6 +11,8 @@ import javax.persistence.*;
 @Access(AccessType.FIELD)
 public class BaseEntity {
 
+    public static final int START_INDEX = 1;
+
     @Id
     @SequenceGenerator(name = "start_index", sequenceName = "start_index", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "start_index")

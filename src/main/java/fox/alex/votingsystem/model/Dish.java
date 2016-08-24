@@ -16,7 +16,7 @@ public class Dish extends BaseEntity{
     @Column(name = "price", nullable = false)
     @Range(min = 1, max = 10000)
     @NotNull
-    private Integer price;
+    private Double price;
 
     @Column(name = "updated", columnDefinition = "timestamp default now()")
     private Date updated = new Date();
@@ -27,12 +27,12 @@ public class Dish extends BaseEntity{
 
     public Dish() {}
 
-    public Dish(Integer id, String name, Integer price) {
+    public Dish(Integer id, String name, Double price) {
         super(id, name);
         this.price = price;
     }
 
-    public Dish(Integer id, String name, Integer price, Date updated) {
+    public Dish(Integer id, String name, Double price, Date updated) {
         this(id, name, price);
         setUpdated(updated);
     }
@@ -41,11 +41,11 @@ public class Dish extends BaseEntity{
         this(dish.getId(), dish.getName(), dish.getPrice(), dish.getUpdated());
     }
 
-    public Integer getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

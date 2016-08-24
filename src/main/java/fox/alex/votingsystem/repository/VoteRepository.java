@@ -13,6 +13,8 @@ public interface VoteRepository {
 
     boolean delete(int id, int user_id);
 
+    Vote get(int id, int user_id);
+
     List<Vote> getByUser(int user_id);
 
     Vote getByDate(int user_id, LocalDateTime voted);
