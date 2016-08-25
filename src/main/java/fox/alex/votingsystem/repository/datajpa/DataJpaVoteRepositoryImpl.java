@@ -5,7 +5,7 @@ import fox.alex.votingsystem.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -34,18 +34,17 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
         return proxyVoteRepository.findOne(id, user_id);
     }
 
+    public List<Vote> getAll(int user_id) {
+        return proxyVoteRepository.findAll(user_id);
+    }
+
     @Override
     public boolean delete(int id, int user_id) {
         return proxyVoteRepository.delete(id, user_id) != 0;
     }
 
     @Override
-    public List<Vote> getByUser(int user_id) {
-        return proxyVoteRepository.getByUser(user_id);
-    }
-
-    @Override
-    public Vote getByDate(int user_id, LocalDateTime voted) {
-        return proxyVoteRepository.getByDate(user_id, voted);
+    public Vote getByDate(int user_id, LocalDate voted) {
+        return proxyVoteRepository.getByDate(user_id, voted, voted.plusDays(1l));
     }
 }

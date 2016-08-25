@@ -6,7 +6,8 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -28,7 +29,7 @@ public class Restaurant extends BaseEntity{
     private String address;
 
     @Column(name = "registred", columnDefinition = "timestamp default now()")
-    private Date registred = new Date();
+    private Date registred = new Date(Calendar.getInstance().getTimeInMillis());
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("price DESC")

@@ -1,5 +1,7 @@
 package fox.alex.votingsystem.service;
 
+import fox.alex.votingsystem.repository.JpaUtil;
+import org.junit.After;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.Stopwatch;
@@ -7,6 +9,7 @@ import org.junit.runner.Description;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlConfig;
@@ -26,6 +29,15 @@ import java.util.concurrent.TimeUnit;
 abstract public class AbstractServiceTest {
 
     protected final Logger log = LoggerFactory.getLogger(getClass());
+
+    @SuppressWarnings("SpringJavaAutowiringInspection")
+    @Autowired
+    protected JpaUtil jpaUtil;
+
+    @After
+    public void tearDown() throws Exception {
+        jpaUtil.clear2ndLevelHibernateCache();
+    }
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();

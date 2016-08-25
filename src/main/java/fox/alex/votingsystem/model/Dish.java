@@ -4,8 +4,7 @@ import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Created by fox on 11.08.16.
@@ -14,13 +13,13 @@ import java.util.Date;
 @Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"rest_id", "name"}, name = "dishes_idx")})
 public class Dish extends BaseEntity{
 
-    @Column(name = "price", nullable = false, precision = 6, scale = 1)
+    @Column(name = "price", nullable = false, precision = 6, scale = 2)
     @Range(min = 1, max = 10000)
     @NotNull
-    private BigDecimal price;
+    private Double price;
 
     @Column(name = "updated", columnDefinition = "timestamp default now()")
-    private Date updated = new Date();
+    private LocalDate updated = LocalDate.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id", nullable = false)
@@ -28,12 +27,12 @@ public class Dish extends BaseEntity{
 
     public Dish() {}
 
-    public Dish(Integer id, String name, BigDecimal price) {
+    public Dish(Integer id, String name, Double price) {
         super(id, name);
         this.price = price;
     }
 
-    public Dish(Integer id, String name, BigDecimal price, Date updated) {
+    public Dish(Integer id, String name, Double price, LocalDate updated) {
         this(id, name, price);
         setUpdated(updated);
     }
@@ -42,20 +41,20 @@ public class Dish extends BaseEntity{
         this(dish.getId(), dish.getName(), dish.getPrice(), dish.getUpdated());
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public Date getUpdated() {
+    public LocalDate getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Date updated) {
-        this.updated = (updated == null) ? new Date() : updated;
+    public void setUpdated(LocalDate updated) {
+        this.updated = (updated == null) ? LocalDate.now() : updated;
     }
 
     public Restaurant getRestaurant() {

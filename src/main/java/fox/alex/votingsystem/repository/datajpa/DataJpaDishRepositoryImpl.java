@@ -40,17 +40,17 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
     }
 
     @Override
-    public List<Dish> getAll() {
-        return proxyDishRepository.findAll();
+    public List<Dish> getAll(int rest_id) {
+        return proxyDishRepository.findAll(rest_id);
     }
 
     @Override
     public List<Dish> getByDate(int rest_id, LocalDate updated) {
-        return proxyDishRepository.getByDate(rest_id, updated);
+        return proxyDishRepository.getByDate(rest_id, updated, updated.plusDays(1l));
     }
 
     @Override
-    public List<Dish> getByRerstaurant(int rest_id) {
-        return proxyDishRepository.getByRestaurant(rest_id);
+    public Dish getWithRerstaurant(int id, int rest_id) {
+        return proxyDishRepository.getWithRestaurant(id, rest_id);
     }
 }

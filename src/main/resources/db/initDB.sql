@@ -38,7 +38,7 @@ CREATE TABLE dishes (
   id INTEGER PRIMARY KEY DEFAULT nextval('start_index'),
   rest_id INTEGER NOT NULL,
   name VARCHAR NOT NULL,
-  price DECIMAL DEFAULT 10.5,
+  price DOUBLE PRECISION DEFAULT 10.50,
   updated TIMESTAMP DEFAULT now(),
   FOREIGN KEY (rest_id) REFERENCES restaurants(id) ON DELETE CASCADE
 );

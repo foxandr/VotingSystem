@@ -25,14 +25,10 @@ public class UserServiceTest extends AbstractServiceTest {
     @Autowired
     private UserService service;
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired
-    private JpaUtil jpaUtil;
-
     @After
     public void tearDown() throws Exception {
         service.evictCache();
-        jpaUtil.clear2ndLevelHibernateCache();
+        super.tearDown();
     }
 
     @Test

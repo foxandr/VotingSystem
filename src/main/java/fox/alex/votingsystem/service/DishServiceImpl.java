@@ -34,8 +34,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getAll() {
-        return repository.getAll();
+    public List<Dish> getAll(int rest_id) {
+        return repository.getAll(rest_id);
     }
 
     @Override
@@ -44,8 +44,8 @@ public class DishServiceImpl implements DishService {
     }
 
     @Override
-    public List<Dish> getByRerstaurant(int rest_id) {
-        return repository.getByRerstaurant(rest_id);
+    public Dish getWithRerstaurant(int id, int rest_id) {
+        return ExceptionUtil.checkNotFoundWithId(repository.getWithRerstaurant(id, rest_id), id);
     }
 
     @Override

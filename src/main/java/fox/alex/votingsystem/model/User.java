@@ -8,7 +8,11 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
-import java.util.*;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.Set;
 
 /**
  * Created by fox on 11.08.16.
@@ -39,7 +43,7 @@ public class User extends BaseEntity {
     private String password;
 
     @Column(name = "registred", columnDefinition = "timestamp default now()")
-    private Date registred = new Date();
+    private Date registred = new Date(Calendar.getInstance().getTimeInMillis());
 
     @Column(name = "active", nullable = false)
     private Boolean active = true;

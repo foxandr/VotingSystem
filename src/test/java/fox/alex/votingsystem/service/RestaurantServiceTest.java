@@ -17,6 +17,7 @@ import static fox.alex.votingsystem.testData.DishTestData.DISH11;
 import static fox.alex.votingsystem.testData.DishTestData.DISH9;
 import static fox.alex.votingsystem.testData.RestaurantTestData.*;
 
+
 /**
  * Created by fox on 24.08.16.
  */
@@ -25,14 +26,10 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Autowired
     private RestaurantService service;
 
-    @SuppressWarnings("SpringJavaAutowiringInspection")
-    @Autowired
-    private JpaUtil jpaUtil;
-
     @After
     public void tearDown() throws Exception {
         service.evictCache();
-        jpaUtil.clear2ndLevelHibernateCache();
+        super.tearDown();
     }
 
     @Test
@@ -93,13 +90,11 @@ public class RestaurantServiceTest extends AbstractServiceTest {
         Restaurant restaurant = service.getWithDishes(REST_ID3);
         REST3.setDishes(Arrays.asList(DISH10, DISH9, DISH11));
         MATCHER.assertEquals(REST3, restaurant);
-        System.out.println(restaurant.getDishes());
-        System.out.println(REST3.getDishes());
         DishTestData.MATCHER.assertCollectionEquals(REST3.getDishes(), restaurant.getDishes());
     }
 
     @Test(expected = NotFoundException.class)
     public void getWithDishesNotFound() {
-
+        service.getWithDishes(99);
     }
 }

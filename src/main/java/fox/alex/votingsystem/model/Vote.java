@@ -1,13 +1,11 @@
 package fox.alex.votingsystem.model;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Created by fox on 11.08.16.
@@ -25,10 +23,8 @@ public class Vote {
     @NotEmpty
     private Integer rest_id;
 
-    @Column(name = "voted", nullable = false)
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate voted;
+    @Column(name = "voted", columnDefinition = "timestamp default now()")
+    private LocalDateTime voted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -61,11 +57,11 @@ public class Vote {
         this.user = user;
     }
 
-    public LocalDate getVoted() {
+    public LocalDateTime getVoted() {
         return voted;
     }
 
-    public void setVoted(LocalDate voted) {
+    public void setVoted(LocalDateTime voted) {
         this.voted = voted;
     }
 

@@ -15,11 +15,14 @@ public interface DishService {
 
     Dish get(int id, int rest_id);
 
-    List<Dish> getAll();
+    List<Dish> getAll(int rest_id);
 
     List<Dish> getByDate(int rest_id, LocalDate updated);
 
-    List<Dish> getByRerstaurant(int rest_id);
+    Dish getWithRerstaurant(int id, int rest_id);
 
     void update(Dish dish, int rest_id);
+
+    //TODO implement DishTo
+    //void update(DishTo dishTo, int rest_id);
 }

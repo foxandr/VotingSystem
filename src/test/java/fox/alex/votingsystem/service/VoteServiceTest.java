@@ -1,24 +1,15 @@
 package fox.alex.votingsystem.service;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created by fox on 24.08.16.
  */
-public class VoteServiceTest {
-    @Before
-    public void setUp() throws Exception {
+public class VoteServiceTest extends AbstractServiceTest {
 
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
-    }
+    @Autowired
+    private VoteService service;
 
     @Test
     public void save() throws Exception {
