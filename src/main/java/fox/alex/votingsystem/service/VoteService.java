@@ -16,9 +16,11 @@ public interface VoteService {
 
     Vote get(int id, int user_id);
 
-    List<Vote> getByUser(int user_id);
+    List<Vote> getAll(int user_id);
 
     Vote getByDate(int user_id, LocalDateTime voted);
 
     void update(Vote vote, int user_id);
+
+    List<Vote> getAllByDate(LocalDateTime voted);
 }

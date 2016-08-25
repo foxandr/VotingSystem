@@ -6,6 +6,7 @@ import fox.alex.votingsystem.utils.exception.ExceptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -34,8 +35,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public List<Vote> getByUser(int user_id) {
-        return repository.getByUser(user_id);
+    public List<Vote> getAll(int user_id) {
+        return repository.getAll(user_id);
     }
 
     @Override
@@ -46,5 +47,10 @@ public class VoteServiceImpl implements VoteService {
     @Override
     public void update(Vote vote, int user_id) {
         repository.save(vote, user_id);
+    }
+
+    @Override
+    public List<Vote> getAllByDate(LocalDateTime voted) {
+        return repository.getAllByDate(voted);
     }
 }

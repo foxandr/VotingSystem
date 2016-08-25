@@ -2,7 +2,7 @@ package fox.alex.votingsystem.repository;
 
 import fox.alex.votingsystem.model.Vote;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -17,6 +17,8 @@ public interface VoteRepository {
 
     List<Vote> getAll(int user_id);
 
-    Vote getByDate(int user_id, LocalDate voted);
+    Vote getByDate(int user_id, LocalDateTime voted);
+
+    List<Vote> getAllByDate(LocalDateTime voted);
 
 }

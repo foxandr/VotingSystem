@@ -4,10 +4,12 @@ import fox.alex.votingsystem.model.Vote;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;;
+import javax.persistence.QueryHint;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -30,7 +32,11 @@ public interface ProxyVoteRepository extends JpaRepository<Vote, Integer> {
     @Query("SELECT v FROM Vote v WHERE v.id = :id AND v.user.id = :user_id")
     Vote findOne(@Param("id") Integer integer, @Param("user_id") Integer user_id);
 
-    //
     @Query("SELECT v FROM Vote v WHERE v.user.id = :user_id AND v.voted >= :votedStart AND v.voted <= :votedFinish")
-    Vote getByDate(@Param("user_id") int user_id, @Param("votedStart") LocalDate votedStart, @Param("votedFinish") LocalDate votedFinish);
+    @QueryHints(@QueryHint(name = "JDBC_MAX_ROWS", value = "1"))
+    Vote getByDate(@Param("user_id") int user_id, @Param("votedStart") LocalDateTime votedStart, @Param("votedFinish") LocalDateTime votedFinish);
+
+    //@Query("SELECT v FROM Vote v JOIN FETCH v.user JOIN FETCH v.user.roles WHERE v.voted >= :votedStart AND v.voted <= :votedFinish")
+    @Query("SELECT v FROM Vote v WHERE v.voted >= :votedStart AND v.voted <= :votedFinish")
+    List<Vote> getAll(@Param("votedStart") LocalDateTime votedStart, @Param("votedFinish") LocalDateTime votedFinish);
 }

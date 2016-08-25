@@ -46,7 +46,7 @@ public class DataJpaDishRepositoryImpl implements DishRepository {
 
     @Override
     public List<Dish> getByDate(int rest_id, LocalDate updated) {
-        return proxyDishRepository.getByDate(rest_id, updated, updated.plusDays(1l));
+        return proxyDishRepository.getByDate(rest_id, updated);
     }
 
     @Override

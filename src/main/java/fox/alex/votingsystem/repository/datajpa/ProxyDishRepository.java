@@ -34,6 +34,6 @@ public interface ProxyDishRepository extends JpaRepository<Dish, Integer> {
     @Query("SELECT d FROM Dish d JOIN FETCH d.restaurant WHERE d.id = :id AND d.restaurant.id = :rest_id")
     Dish getWithRestaurant(@Param("id") int id, @Param("rest_id") int rest_id);
 
-    @Query("SELECT d FROM Dish d WHERE d.restaurant.id = :rest_id AND d.updated >= :updatedStart AND d.updated <= :updatedFinish ORDER BY d.price DESC")
-    List<Dish> getByDate(@Param("rest_id") int rest_id, @Param("updatedStart") LocalDate updatedStart, @Param("updatedFinish") LocalDate updatedFinish);
+    @Query("SELECT d FROM Dish d WHERE d.restaurant.id = :rest_id AND d.updated = :updated ORDER BY d.price DESC")
+    List<Dish> getByDate(@Param("rest_id") int rest_id, @Param("updated") LocalDate updated);
 }

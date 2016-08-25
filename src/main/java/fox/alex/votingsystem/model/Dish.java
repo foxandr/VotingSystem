@@ -18,7 +18,7 @@ public class Dish extends BaseEntity{
     @NotNull
     private Double price;
 
-    @Column(name = "updated", columnDefinition = "timestamp default now()")
+    @Column(name = "updated", columnDefinition = "timestamp default current_date")
     private LocalDate updated = LocalDate.now();
 
     @ManyToOne(fetch = FetchType.LAZY)

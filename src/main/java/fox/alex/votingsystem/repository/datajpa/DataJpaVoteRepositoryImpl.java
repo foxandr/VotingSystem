@@ -5,7 +5,7 @@ import fox.alex.votingsystem.repository.VoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -44,7 +44,12 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     }
 
     @Override
-    public Vote getByDate(int user_id, LocalDate voted) {
+    public Vote getByDate(int user_id, LocalDateTime voted) {
         return proxyVoteRepository.getByDate(user_id, voted, voted.plusDays(1l));
+    }
+
+    @Override
+    public List<Vote> getAllByDate(LocalDateTime voted) {
+        return proxyVoteRepository.getAll(voted, voted.plusDays(1l));
     }
 }

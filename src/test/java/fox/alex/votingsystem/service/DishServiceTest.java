@@ -28,7 +28,7 @@ public class DishServiceTest extends AbstractServiceTest {
     @Test
     public void save() throws Exception {
         Dish newDish = service.save(new Dish(null, "Цукіні", 4.35), REST_ID2);
-        MATCHER.assertCollectionEquals(Arrays.asList(newDish, DISH5, DISH6, DISH7, DISH8), service.getAll(REST_ID2));
+        MATCHER.assertCollectionEquals(Arrays.asList(DISH5, DISH6, DISH7, DISH8, newDish), service.getAll(REST_ID2));
     }
 
     @Test(expected = DataAccessException.class)

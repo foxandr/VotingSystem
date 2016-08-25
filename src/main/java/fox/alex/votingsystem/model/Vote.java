@@ -1,7 +1,5 @@
 package fox.alex.votingsystem.model;
 
-import org.hibernate.validator.constraints.NotEmpty;
-
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -20,7 +18,6 @@ public class Vote {
     private Integer id;
 
     @Column(name = "rest_id", nullable = false)
-    @NotEmpty
     private Integer rest_id;
 
     @Column(name = "voted", columnDefinition = "timestamp default now()")
