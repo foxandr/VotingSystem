@@ -21,7 +21,7 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote save(Vote vote, int user_id) {
-        return repository.save(vote, user_id);
+        return ExceptionUtil.checkVotingTime(repository.save(vote, user_id));
     }
 
     @Override
@@ -46,7 +46,7 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public void update(Vote vote, int user_id) {
-        repository.save(vote, user_id);
+        ExceptionUtil.checkVotingTime(repository.save(vote, user_id));
     }
 
     @Override

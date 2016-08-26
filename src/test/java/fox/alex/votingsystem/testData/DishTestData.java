@@ -31,8 +31,6 @@ public class DishTestData {
     public static final Dish DISH10= new Dish(DISH_ID + 9, "Тигровые креветки", 20.4);
     public static final Dish DISH11= new Dish(DISH_ID + 10, "Картофель с грибами", 6.6);
 
-    public static final List<Dish> DISH_LIST = Arrays.asList(DISH11, DISH10, DISH9, DISH8, DISH7, DISH6, DISH5, DISH4, DISH3, DISH2, DISH1);
-
     public static final ModelMatcher<Dish> MATCHER = new ModelMatcher<>(Dish.class,
             (expected, actual) -> {
                 if (expected == actual) {

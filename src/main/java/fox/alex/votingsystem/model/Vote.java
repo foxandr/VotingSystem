@@ -21,7 +21,7 @@ public class Vote {
     private Integer rest_id;
 
     @Column(name = "voted", columnDefinition = "timestamp default now()")
-    private LocalDateTime voted;
+    private LocalDateTime voted = LocalDateTime.now();
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

@@ -36,7 +36,6 @@ public interface ProxyVoteRepository extends JpaRepository<Vote, Integer> {
     @QueryHints(@QueryHint(name = "JDBC_MAX_ROWS", value = "1"))
     Vote getByDate(@Param("user_id") int user_id, @Param("votedStart") LocalDateTime votedStart, @Param("votedFinish") LocalDateTime votedFinish);
 
-    //@Query("SELECT v FROM Vote v JOIN FETCH v.user JOIN FETCH v.user.roles WHERE v.voted >= :votedStart AND v.voted <= :votedFinish")
-    @Query("SELECT v FROM Vote v WHERE v.voted >= :votedStart AND v.voted <= :votedFinish")
+    @Query("SELECT DISTINCT v FROM Vote v JOIN FETCH v.user JOIN FETCH v.user.roles WHERE v.voted >= :votedStart AND v.voted <= :votedFinish ORDER BY v.voted")
     List<Vote> getAll(@Param("votedStart") LocalDateTime votedStart, @Param("votedFinish") LocalDateTime votedFinish);
 }

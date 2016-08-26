@@ -2,6 +2,7 @@ package fox.alex.votingsystem.repository.datajpa;
 
 import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.repository.VoteRepository;
+import fox.alex.votingsystem.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,8 +26,14 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
         if (!vote.isNew() && get(vote.getId(), user_id) == null){
             return null;
         }
-        vote.setUser(proxyUserRepository.findOne(user_id));
-        return proxyVoteRepository.save(vote);
+        LocalDateTime now = LocalDateTime.now();
+        if (TimeUtil.isChangebleVote(vote.getVoted(), now)) {
+            vote.setUser(proxyUserRepository.findOne(user_id));
+            vote.setVoted(now);
+            return proxyVoteRepository.save(vote);
+        } else {
+            return null;
+        }
     }
 
     @Override
@@ -45,11 +52,13 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
 
     @Override
     public Vote getByDate(int user_id, LocalDateTime voted) {
-        return proxyVoteRepository.getByDate(user_id, voted, voted.plusDays(1l));
+        LocalDateTime ldt = voted.withHour(0).withMinute(0).withSecond(0);
+        return proxyVoteRepository.getByDate(user_id, ldt, ldt.plusDays(1l));
     }
 
     @Override
     public List<Vote> getAllByDate(LocalDateTime voted) {
-        return proxyVoteRepository.getAll(voted, voted.plusDays(1l));
+        LocalDateTime ldt = voted.withHour(0).withMinute(0).withSecond(0);
+        return proxyVoteRepository.getAll(ldt, ldt.plusDays(1l));
     }
 }

@@ -53,4 +53,4 @@ CREATE TABLE votes (
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE UNIQUE INDEX votes_idx ON votes(user_id, voted);
+CREATE UNIQUE INDEX votes_idx ON votes(user_id, date_trunc('day', voted));

@@ -27,4 +27,15 @@ public class ExceptionUtil {
             throw new NotFoundException("Not found entity with " + msg);
         }
     }
+
+    public static <T> T checkVotingTime(T object) {
+        checkVotingTime(object != null);
+        return object;
+    }
+
+    public static void checkVotingTime(boolean time){
+        if (!time) {
+            throw new VotingException("Time for voting expired. Please try tommorow.");
+        }
+    }
 }

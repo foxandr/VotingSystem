@@ -26,7 +26,7 @@ public class RestaurantTestData {
     public static final Restaurant REST2 = new Restaurant(REST_ID2, "Семашко", "Антонова 10");
     public static final Restaurant REST3 = new Restaurant(REST_ID3, "Карчма", "Советская 31");
 
-    public static final List<Restaurant> RESTAURANT_LIST =Arrays.asList(REST3, REST1, REST2);
+    public static final List<Restaurant> RESTAURANT_LIST = Arrays.asList(REST3, REST1, REST2);
 
     public static final ModelMatcher<Restaurant> MATCHER = new ModelMatcher<>(Restaurant.class,
             (expected, actual) -> {

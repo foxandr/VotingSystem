@@ -23,7 +23,7 @@ public class VoteTestData {
     public static final Vote VOTE2 = new Vote(VOTE_ID + 1, 4);
     public static final Vote VOTE3 = new Vote(VOTE_ID + 2, 5);
 
-    public static final List<Vote> VOTE_LIST = Arrays.asList(VOTE3, VOTE2, VOTE1);
+    public static final List<Vote> VOTE_LIST = Arrays.asList(VOTE1, VOTE2, VOTE3);
 
     public static final ModelMatcher<Vote> MATCHER = new ModelMatcher<>(Vote.class,
             (expected, actual) -> {
