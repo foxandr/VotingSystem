@@ -22,11 +22,10 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
     private ProxyUserRepository proxyUserRepository;
 
     @Override
-    public Vote save(Vote vote, int user_id) {
+    public Vote save(Vote vote, int user_id, LocalDateTime now) {
         if (!vote.isNew() && get(vote.getId(), user_id) == null){
             return null;
         }
-        LocalDateTime now = LocalDateTime.now();
         if (TimeUtil.isChangebleVote(vote.getVoted(), now)) {
             vote.setUser(proxyUserRepository.findOne(user_id));
             vote.setVoted(now);

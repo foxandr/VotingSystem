@@ -9,7 +9,7 @@ import java.util.List;
  * Created by fox on 15.08.16.
  */
 public interface VoteRepository {
-    Vote save(Vote vote, int user_id);
+    Vote save(Vote vote, int user_id, LocalDateTime now);
 
     boolean delete(int id, int user_id);
 

@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface VoteService {
 
-    Vote save(Vote vote, int user_id);
+    Vote save(Vote vote, int user_id, LocalDateTime now);
 
     void delete(int id, int user_id);
 
@@ -20,7 +20,7 @@ public interface VoteService {
 
     Vote getByDate(int user_id, LocalDateTime voted);
 
-    void update(Vote vote, int user_id);
+    void update(Vote vote, int user_id, LocalDateTime now);
 
     List<Vote> getAllByDate(LocalDateTime voted);
 }

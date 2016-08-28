@@ -6,7 +6,6 @@ import fox.alex.votingsystem.utils.exception.ExceptionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -20,8 +19,8 @@ public class VoteServiceImpl implements VoteService {
     private VoteRepository repository;
 
     @Override
-    public Vote save(Vote vote, int user_id) {
-        return ExceptionUtil.checkVotingTime(repository.save(vote, user_id));
+    public Vote save(Vote vote, int user_id, LocalDateTime now) {
+        return ExceptionUtil.checkVotingTime(repository.save(vote, user_id, now));
     }
 
     @Override
@@ -45,8 +44,8 @@ public class VoteServiceImpl implements VoteService {
     }
 
     @Override
-    public void update(Vote vote, int user_id) {
-        ExceptionUtil.checkVotingTime(repository.save(vote, user_id));
+    public void update(Vote vote, int user_id, LocalDateTime now) {
+        ExceptionUtil.checkVotingTime(repository.save(vote, user_id, now));
     }
 
     @Override

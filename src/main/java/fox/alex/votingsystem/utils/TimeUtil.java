@@ -39,7 +39,7 @@ public class TimeUtil {
 
     public static boolean isChangebleVote(LocalDateTime voted, LocalDateTime now){
         LocalDateTime border = LocalDateTime.of(LocalDate.now(), CHECKPOINT);
-        if (now.isAfter(voted) && now.isBefore(border)) return true;
+        if (now.compareTo(voted) >= 0 && now.compareTo(border) < 0) return true;
         return false;
     }
 }
