@@ -34,7 +34,7 @@ INSERT INTO dishes (rest_id, name, price, updated) VALUES
   (6, 'Тигровые креветки', 20.4, current_date),
   (6, 'Картофель с грибами', 6.6, current_date);
 
-INSERT INTO votes (user_id, rest_id, voted) VALUES
-  (1, 4, timestamp '2016-08-27 09:00'),
-  (2, 4, timestamp '2016-08-27 09:10'),
-  (3, 5, timestamp '2016-08-27 09:30');
+INSERT INTO votes (user_id, rest_id) VALUES
+  (1, 4),
+  (2, 4),
+  (3, 5);

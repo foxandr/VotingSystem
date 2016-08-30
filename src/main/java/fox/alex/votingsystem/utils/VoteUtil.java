@@ -25,16 +25,23 @@ public class VoteUtil {
 
     //returns restaurant id
     public static Integer getVotingResult(List<Vote> votes){
+        Integer result = null;
         LinkedHashMap<Integer, Long> map = (LinkedHashMap<Integer, Long>) getCompliteResults(votes);
-        ArrayList<Integer> resArray = null;
-        return null;
+        long maxL = (map.isEmpty()) ? 0L : map.entrySet().iterator().next().getValue();
+        List<Integer> resList = map.entrySet().stream()
+                .filter(e -> e.getValue() == maxL)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        if (resList.size() == 1) {
+            result = resList.get(0);
+        } else {
+            result = votes.stream()
+                    .filter(v -> resList.contains(v.getRest_id()))
+                    .sorted((v1, v2) -> v1.getVoted().compareTo(v2.getVoted()))
+                    .map(Vote::getRest_id)
+                    .findFirst()
+                    .get();
+        }
+        return result;
     }
-
-    public static void main(String[] args){
-        System.out.println("Hello!");
-        List<Vote> votes = Arrays.asList(new Vote(1, 1), new Vote(2, 2), new Vote(3, 3), new Vote(4, 3), new Vote(5, 2), new Vote(6, 3));
-        Map<Integer, Long> test = getCompliteResults(votes);
-        System.out.println(test);
-    }
-
 }
