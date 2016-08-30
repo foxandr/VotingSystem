@@ -36,7 +36,7 @@ public class VoteServiceTest extends AbstractServiceTest {
         Vote temp = new Vote(null, 6);
         temp.setVoted(LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
         Vote newVote = service.save(temp, newUser.getId(), LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
-        MATCHER.assertCollectionEquals(Arrays.asList(newVote, VOTE1, VOTE2, VOTE3), service.getAllByDate(LocalDateTime.of(LocalDate.now(), LocalTime.MIN)));
+        MATCHER.assertCollectionEquals(Arrays.asList(VOTE1, VOTE2, VOTE3, newVote), service.getAllByDate(LocalDateTime.of(LocalDate.now(), LocalTime.MIN)));
     }
 
     @Test(expected = DataAccessException.class)

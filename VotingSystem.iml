@@ -16,13 +16,6 @@
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-app.xml</file>
           <file>file://$MODULE_DIR$/src/main/resources/spring/spring-db.xml</file>
         </fileset>
-        <fileset id="fileset2" name="MVC application context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-app.xml</file>
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-db.xml</file>
-        </fileset>
-        <fileset id="fileset3" name="MVC mvc-dispatcher servlet context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/spring/spring-mvc.xml</file>
-        </fileset>
       </configuration>
     </facet>
     <facet type="web" name="Web">
@@ -97,6 +90,7 @@
     <orderEntry type="library" name="Maven: org.hibernate:hibernate-ehcache:5.2.1.Final" level="project" />
     <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache:2.10.2.2.21" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: javax.el:javax.el-api:2.2.5" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: javax.servlet:javax.servlet-api:3.1.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.8.0" level="project" />
