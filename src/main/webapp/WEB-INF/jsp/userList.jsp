@@ -22,7 +22,24 @@
             <hr>
             <h2 class="intro-text text-center"><spring:message code="voting.header"/></h2>
             <hr>
-            <div class="col-lg-12">
+            <div class="col-lg-6">
+                <div class="view-box">
+                    <a class="btn btn-sm btn-info" onclick="add('users.add')"><spring:message code="users.add"/></a>
+                    <table class="table table-striped display" id="datatable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Roles</th>
+                            <th>Registered</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-6 col-lg-offset-6">
                 <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
             </div>
         </div>

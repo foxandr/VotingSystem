@@ -1,6 +1,7 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.User;
+import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
 
 import java.util.List;
@@ -18,8 +19,7 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    //TODO user transfer object
-    //void update(UserTo user);
+    void update(UserTo userTo);
 
     List<User> getAll();
 

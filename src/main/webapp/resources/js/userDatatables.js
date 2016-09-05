@@ -1,0 +1,67 @@
+var ajaxUrl = 'ajax/users/';
+var datatableApi;
+
+function updateTable() {
+    $.get(ajaxUrl, updateTableByData);
+}
+
+$(function () {
+    datatableApi = $('#datatable').DataTable({
+        "ajax": {
+            "url": ajaxUrl,
+            "dataSrc": ""
+        },
+        "paging": false,
+        "info": true,
+        "columns": [
+            {
+                "data": "name"
+            },
+            {
+                "data": "email",
+                "render": function (data, type, row) {
+                    if (type == 'display') {
+                        return '<a href="mailto:' + data + '">' + data + '</a>';
+                    }
+                    return data;
+                }
+            },
+            {
+                "data": "roles"
+            },
+            {
+                "data": "registered",
+                "render": function (date, type, row) {
+                    if (type == 'display') {
+                        return '<span>' + date.substring(0, 10) + '</span>';
+                    }
+                    return date;
+                }
+            },
+            {
+                "orderable": false,
+                "defaultContent": "",
+                "render": function (date, type, row) {
+                    return renderEditBtn(type, row, 'users.edit');
+                }
+            },
+            {
+                "orderable": false,
+                "defaultContent": "",
+                "render": renderDeleteBtn
+            }
+        ],
+        "order": [
+            [
+                0,
+                "asc"
+            ]
+        ],
+        "createdRow": function (row, data, dataIndex) {
+            if (!data.enabled) {
+                $(row).css("text-decoration", "line-through");
+            }
+        },
+        "initComplete": makeEditable
+    });
+});

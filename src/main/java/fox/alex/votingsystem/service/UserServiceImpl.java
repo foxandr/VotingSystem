@@ -2,8 +2,10 @@ package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.repository.UserRepository;
+import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.exception.ExceptionUtil;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
+import fox.alex.votingsystem.utils.transfers.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @CacheEvict(value = "users", allEntries = true)
     @Override
     public User save(User user) {
-        return repository.save(user);
+        return repository.save(UserUtil.prepareToSave(user));
     }
 
     @CacheEvict(value = "users", allEntries = true)
@@ -57,6 +59,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public void update(User user) {
         repository.save(user);
+    }
+
+    @Override
+    public void update(UserTo userTo) {
+        User user = get(userTo.getId());
+        UserUtil.updateFromTo(user, userTo);
+        repository.save(UserUtil.prepareToSave(user));
     }
 
     @CacheEvict(value = "users", allEntries = true)

@@ -1,9 +1,13 @@
 package fox.alex.votingsystem.web.users;
 
 import fox.alex.votingsystem.model.User;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 /**
@@ -15,38 +19,40 @@ public class AdminRestController extends AbstractUserController {
 
     static final String REST_URL = "/rest/users";
 
-    @Override
-    User create(User user) {
-        return super.create(user);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
+        User newUser = super.create(user);
+        URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath().path(REST_URL + "/{id}").buildAndExpand(newUser.getId()).toUri();
+        return ResponseEntity.created(uriOfNewResource).body(newUser);
     }
 
-    @Override
-    void delete(int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable("id") int id) {
         super.delete(id);
     }
 
-    @Override
-    User get(int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User get(@PathVariable("id") int id) {
         return super.get(id);
     }
 
-    @Override
-    User getByEmail(String email) {
+    @RequestMapping(value = "/email", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getByEmail(@RequestParam("email") String email) {
         return super.getByEmail(email);
     }
 
-    @Override
-    List<User> getAll() {
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<User> getAll() {
         return super.getAll();
     }
 
-    @Override
-    void update(User user, int id) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void update(@Valid @RequestBody User user, @PathVariable("id") int id) {
         super.update(user, id);
     }
 
-    @Override
-    User getWithVoices(int id) {
+    @RequestMapping(value = "/{id}/voices", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public User getWithVoices(@PathVariable("id") int id) {
         return super.getWithVoices(id);
     }
 }
