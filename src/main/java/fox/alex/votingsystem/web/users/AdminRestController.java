@@ -26,8 +26,8 @@ public class AdminRestController extends AbstractUserController {
         return ResponseEntity.created(uriOfNewResource).body(newUser);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") int id) {
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public void delete(@RequestParam("id") int id) {
         super.delete(id);
     }
 

@@ -12,7 +12,8 @@ $(function () {
             "dataSrc": ""
         },
         "paging": false,
-        "info": true,
+        "info": false,
+        "filter": false,
         "columns": [
             {
                 "data": "name"
@@ -30,7 +31,7 @@ $(function () {
                 "data": "roles"
             },
             {
-                "data": "registered",
+                "data": "registred",
                 "render": function (date, type, row) {
                     if (type == 'display') {
                         return '<span>' + date.substring(0, 10) + '</span>';
@@ -58,7 +59,7 @@ $(function () {
             ]
         ],
         "createdRow": function (row, data, dataIndex) {
-            if (!data.enabled) {
+            if (!data.active) {
                 $(row).css("text-decoration", "line-through");
             }
         },

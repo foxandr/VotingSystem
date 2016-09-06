@@ -24,7 +24,7 @@ public class UserTestData {
 
     public static final User USER1 = new User(USER_ID, "User1", "user1@votes.by", "simpleuser", Role.ROLE_USER);
     public static final User ADMIN = new User(ADMIN_ID, "Admin", "admin@votes.by", "megaadmin", Role.ROLE_USER, Role.ROLE_ADMIN);
-    public static final User USER2 = new User(USER_ID2, "User2", "2thUser@votes.by", "user", Role.ROLE_USER);
+    public static final User USER2 = new User(USER_ID2, "User2", "2thUser@votes.by", "user123456", Role.ROLE_USER);
 
     public static final ModelMatcher<User> MATCHER = new ModelMatcher<>(User.class,
             (expected, actual) -> {

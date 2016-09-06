@@ -1,23 +1,23 @@
 var form;
 
-function makeEditable() {
-    form = $('#detailsForm');
+ function makeEditable() {
+     form = $('#detailsForm');
 
-    form.submit(function () {
-        save();
-        return false;
-    });
+     form.submit(function () {
+         save();
+         return false;
+     });
 
-    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        failNoty(event, jqXHR, options, jsExc);
-    });
+     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+          failNoty(event, jqXHR, options, jsExc);
+     });
 
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
-    });
-}
+     var token = $("meta[name='_csrf']").attr("content");
+     var header = $("meta[name='_csrf_header']").attr("content");
+     $(document).ajaxSend(function(e, xhr, options) {
+         xhr.setRequestHeader(header, token);
+     });
+ }
 
 function add(key) {
     form.find(":input").val("");
@@ -37,32 +37,30 @@ function updateRow(id, key) {
     });
 }
 
+// function deleteRow(id) {
+//     $.ajax({
+//         url: ajaxUrl + id,
+//         type: 'DELETE',
+//         success: function () {
+//             updateTable();
+//             successNoty('Deleted');
+//         }
+//     });
+// }
+
 function deleteRow(id) {
     $.ajax({
-        url: ajaxUrl + id,
-        type: 'DELETE',
+        url: ajaxUrl + '/delete',
+        type: 'POST',
+        data: 'id=' + id,
         success: function () {
-            updateTable();
             successNoty('Deleted');
         }
     });
 }
 
-function enable(chkbox, id) {
-    var enabled = chkbox.is(":checked");
-    chkbox.closest('tr').css("text-decoration", enabled ? "none" : "line-through");
-    $.ajax({
-        url: ajaxUrl + id,
-        type: 'POST',
-        data: 'enabled=' + enabled,
-        success: function () {
-            successNoty(enabled ? 'Enabled' : 'Disabled');
-        }
-    });
-}
-
 function updateTableByData(data) {
-    datatableApi.clear().rows.add(data).draw();
+     datatableApi.clear().rows.add(data).draw();
 }
 
 function save() {

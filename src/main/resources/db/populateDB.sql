@@ -8,7 +8,7 @@ ALTER SEQUENCE start_index RESTART 1;
 INSERT INTO users (name, email, password) VALUES
   ('Admin', 'admin@votes.by', 'megaadmin'),
   ('User1', 'user1@votes.by', 'simpleuser'),
-  ('User2', '2thUser@votes.by', 'user');
+  ('User2', '2thUser@votes.by', 'user123456');
 
 INSERT INTO user_roles (user_id, role) VALUES
   (1, 'ROLE_USER'),
