@@ -16,11 +16,6 @@ import java.util.List;
 @Transactional(readOnly = true)
 public interface ProxyUserRepository extends JpaRepository<User, Integer> {
 
-    @Transactional
-    @Modifying
-    @Query("DELETE FROM User u WHERE u.id = :id")
-    int delete(@Param("id") int id);
-
     @Override
     @Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.roles ORDER BY u.name, u.email")
     List<User> findAll();

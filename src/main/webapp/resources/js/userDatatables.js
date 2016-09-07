@@ -43,13 +43,21 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": function (date, type, row) {
+                    if (!row.active) {
+                        return "";
+                    }
                     return renderEditBtn(type, row, 'users.edit');
                 }
             },
             {
                 "orderable": false,
                 "defaultContent": "",
-                "render": renderDeleteBtn
+                "render": function (data, type, row) {
+                    if (row.active) {
+                        return renderDeleteBtn(data, type, row);
+                    }
+                    return renderRecoverBtn(data, type, row);
+                }
             }
         ],
         "order": [

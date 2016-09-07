@@ -13,6 +13,8 @@ public interface UserRepository {
 
     boolean delete(int id);
 
+    boolean recover(int id);
+
     User get(int id);
 
     List<User> getAll();

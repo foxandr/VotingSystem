@@ -35,6 +35,15 @@ public class DataJpaUserRepositoryImpl implements UserRepository {
     }
 
     @Override
+    public boolean recover(int id) {
+        User inactiveUser = get(id);
+        if (inactiveUser == null) throw new NotFoundException("No user");
+        inactiveUser.setActive(true);
+        User activeUser = proxyUserRepository.save(inactiveUser);
+        return activeUser.isActive();
+    }
+
+    @Override
     public User get(int id) {
         return proxyUserRepository.findOne(id);
     }

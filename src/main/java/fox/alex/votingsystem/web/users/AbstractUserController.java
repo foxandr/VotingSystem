@@ -30,6 +30,11 @@ public abstract class AbstractUserController {
         service.delete(id);
     };
 
+    public void recover(int id){
+        log.info("recover " + id);
+        service.recover(id);
+    };
+
     public User get(int id){
         log.info("get " + id);
         return service.get(id);

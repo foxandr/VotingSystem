@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
@@ -33,6 +34,7 @@ public class Restaurant extends BaseEntity{
 
     @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.LAZY, mappedBy = "restaurant")
     @OrderBy("price DESC")
+    @JsonManagedReference
     private List<Dish> dishes;
 
     public Restaurant() {}

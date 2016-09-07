@@ -51,6 +51,13 @@ public class UserServiceTest extends AbstractServiceTest {
         MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER1, USER2), service.getAll());
     }
 
+    @Test
+    public void recover() throws Exception {
+        service.delete(USER_ID);
+        service.recover(USER_ID);
+        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, USER1, USER2), service.getAll());
+    }
+
     @Test(expected = NotFoundException.class)
     public void deleteNotFound(){
         service.delete(4);

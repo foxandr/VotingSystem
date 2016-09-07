@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Dish extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id", nullable = false)
+    @JsonBackReference
     private Restaurant restaurant;
 
     public Dish() {}

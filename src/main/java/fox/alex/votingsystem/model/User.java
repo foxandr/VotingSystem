@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
@@ -57,6 +58,7 @@ public class User extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
     @OrderBy("voted DESC")
+    @JsonManagedReference
     private Set<Vote> votes;
 
     public User() {}
@@ -134,6 +136,7 @@ public class User extends BaseEntity {
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", registred=" + registred +
+                ", active=" + active +
                 ", roles=" + roles +
                 ", votes=" + votes +
                 '}';

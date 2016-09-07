@@ -11,12 +11,12 @@ var form;
      $(document).ajaxError(function (event, jqXHR, options, jsExc) {
           failNoty(event, jqXHR, options, jsExc);
      });
-
-     var token = $("meta[name='_csrf']").attr("content");
-     var header = $("meta[name='_csrf_header']").attr("content");
-     $(document).ajaxSend(function(e, xhr, options) {
-         xhr.setRequestHeader(header, token);
-     });
+     //
+     // var token = $("meta[name='_csrf']").attr("content");
+     // var header = $("meta[name='_csrf_header']").attr("content");
+     // $(document).ajaxSend(function(e, xhr, options) {
+     //     xhr.setRequestHeader(header, token);
+     // });
  }
 
 function add(key) {
@@ -37,24 +37,26 @@ function updateRow(id, key) {
     });
 }
 
-// function deleteRow(id) {
-//     $.ajax({
-//         url: ajaxUrl + id,
-//         type: 'DELETE',
-//         success: function () {
-//             updateTable();
-//             successNoty('Deleted');
-//         }
-//     });
-// }
-
 function deleteRow(id) {
     $.ajax({
         url: ajaxUrl + '/delete',
         type: 'POST',
         data: 'id=' + id,
         success: function () {
+            updateTable();
             successNoty('Deleted');
+        }
+    });
+}
+
+function recoverRow(id) {
+    $.ajax({
+        url: ajaxUrl + '/recover',
+        type: 'POST',
+        data: 'id=' + id,
+        success: function () {
+            updateTable();
+            successNoty('Recovered');
         }
     });
 }
@@ -114,5 +116,11 @@ function renderEditBtn(type, row, key) {
 function renderDeleteBtn(data, type, row) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-danger" onclick="deleteRow(' + row.id + ');">' + i18n['common.delete'] + '</a>';
+    }
+}
+
+function renderRecoverBtn(data, type, row) {
+    if (type == 'display') {
+        return '<a class="btn btn-xs btn-warning" onclick="recoverRow(' + row.id + ');">' + i18n['common.recover'] + '</a>';
     }
 }

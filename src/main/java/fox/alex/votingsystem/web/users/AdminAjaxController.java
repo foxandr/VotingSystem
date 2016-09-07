@@ -41,6 +41,11 @@ public class AdminAjaxController extends AbstractUserController {
         super.delete(id);
     }
 
+    @RequestMapping(value = "/recover", method = RequestMethod.POST)
+    public void recover(@RequestParam("id") int id) {
+        super.recover(id);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") int id) {
         return super.get(id);
