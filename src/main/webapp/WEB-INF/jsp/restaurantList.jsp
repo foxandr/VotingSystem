@@ -30,7 +30,7 @@
                         <tr>
                             <th><spring:message code="restaurants.name"/></th>
                             <th><spring:message code="restaurants.address"/></th>
-                            <th><spring:message code="users.registered"/></th>
+                            <th><spring:message code="restaurants.registered"/></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -40,6 +40,44 @@
             </div>
             <div class="col-sm-3 col-md-3 col-lg-offset-6">
                 <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <form:form class="form-horizontal" method="post" id="detailsForm">
+                    <input type="text" hidden="hidden" id="id" name="id">
+
+                    <div class="form-group">
+                        <label for="name" class="control-label col-xs-3"><spring:message code="restaurants.name"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="control-label col-xs-3"><spring:message code="restaurants.address"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="address">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form:form>
             </div>
         </div>
     </div>

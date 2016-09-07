@@ -57,7 +57,7 @@
                     <input type="text" hidden="hidden" id="id" name="id">
 
                     <div class="form-group">
-                        <label for="name" class="control-label col-xs-3">Name</label>
+                        <label for="name" class="control-label col-xs-3"><spring:message code="users.name"/></label>
 
                         <div class="col-xs-9">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="email" class="control-label col-xs-3">Email</label>
+                        <label for="email" class="control-label col-xs-3"><spring:message code="users.email"/></label>
 
                         <div class="col-xs-9">
                             <input type="email" class="form-control" id="email" name="email" placeholder="email">
@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="password" class="control-label col-xs-3">Password</label>
+                        <label for="password" class="control-label col-xs-3"><spring:message code="users.pass"/></label>
 
                         <div class="col-xs-9">
                             <input type="password" class="form-control" id="password" name="password" placeholder="">

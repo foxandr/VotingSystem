@@ -103,11 +103,10 @@ public class AdminRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGetWithVoices() throws Exception {
         mockMvc.perform(get(REST_URL + ADMIN_ID + "/voices"))
-                .andExpect(status().isOk());
-//                .andDo(print())
-//                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-//                .andExpect(MATCHER.contentMatcher(ADMIN));
-        System.out.println(userService.getWithVoices(ADMIN_ID));
+                .andExpect(status().isOk())
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(MATCHER.contentMatcher(ADMIN));
     }
 
     @Test
