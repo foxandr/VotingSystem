@@ -1,6 +1,8 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Restaurant;
+import fox.alex.votingsystem.to.RestaurantTo;
+import fox.alex.votingsystem.utils.exception.NotFoundException;
 
 import java.util.List;
 
@@ -10,21 +12,20 @@ import java.util.List;
 public interface RestaurantService {
     Restaurant save(Restaurant restaurant);
 
-    void delete(int id);
+    void delete(int id) throws NotFoundException;
 
-    Restaurant get(int id);
+    Restaurant get(int id) throws NotFoundException;
 
     List<Restaurant> getAll();
 
-    Restaurant getByName(String name);
+    Restaurant getByName(String name) throws NotFoundException;
 
     void update(Restaurant restaurant);
 
     void evictCache();
 
-    Restaurant getWithDishes(int id);
+    Restaurant getWithDishes(int id) throws NotFoundException;
 
-    //TODO restaurant transfer object
-    //void update(RestaurantTo restaurant);
+    void update(RestaurantTo restaurantTo);
 
 }

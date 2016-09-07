@@ -2,8 +2,10 @@ package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Restaurant;
 import fox.alex.votingsystem.repository.RestaurantRepository;
+import fox.alex.votingsystem.to.RestaurantTo;
 import fox.alex.votingsystem.utils.exception.ExceptionUtil;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
+import fox.alex.votingsystem.utils.transfers.RestaurantUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -58,10 +60,18 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @CacheEvict(value = "restaurants", allEntries = true)
     @Override
+    public void update(RestaurantTo restaurantTo) {
+        Restaurant restaurant = get(restaurantTo.getId());
+        RestaurantUtil.updateFromTo(restaurant, restaurantTo);
+        repository.save(restaurant);
+    }
+
+    @CacheEvict(value = "restaurants", allEntries = true)
+    @Override
     public void evictCache() {}
 
     @Override
-    public Restaurant getWithDishes(int id) {
+    public Restaurant getWithDishes(int id) throws NotFoundException {
         return ExceptionUtil.checkNotFoundWithId(repository.getWithDishes(id), id);
     }
 }

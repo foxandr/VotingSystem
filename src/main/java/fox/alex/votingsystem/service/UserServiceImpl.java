@@ -68,6 +68,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         repository.save(user);
     }
 
+    @CacheEvict(value = "users", allEntries = true)
     @Override
     public void update(UserTo userTo) {
         User user = get(userTo.getId());
@@ -81,7 +82,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getWithVoices(int id) {
+    public User getWithVoices(int id) throws NotFoundException {
         return ExceptionUtil.checkNotFoundWithId(repository.getWithVoices(id), id);
     }
 

@@ -4,18 +4,11 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 
 /**
  * Created by fox on 05.09.16.
  */
-public class UserTo implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    private Integer id;
-
-    @NotEmpty
-    private String name;
+public class UserTo extends BaseTo {
 
     @NotEmpty
     @Size(min = 6, max = 64, message = "must between 6 and 64 symbols")
@@ -29,26 +22,9 @@ public class UserTo implements Serializable {
     }
 
     public UserTo(Integer id, String name, String password, String email) {
-        this.id = id;
-        this.name = name;
+        super(id, name);
         this.password = password;
         this.email = email;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getPassword() {
@@ -67,10 +43,6 @@ public class UserTo implements Serializable {
         this.email = email;
     }
 
-    public boolean isNew () {
-        return (this.id == null);
-    }
-
     @Override
     public String toString() {
         return "UserTo{" +
@@ -80,4 +52,5 @@ public class UserTo implements Serializable {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }

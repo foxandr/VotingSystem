@@ -29,5 +29,5 @@ public interface UserService {
 
     void evictCache();
 
-    User getWithVoices(int id);
+    User getWithVoices(int id) throws NotFoundException;
 }

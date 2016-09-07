@@ -39,6 +39,17 @@ function updateRow(id, key) {
 
 function deleteRow(id) {
     $.ajax({
+        url: ajaxUrl + id,
+        type: 'DELETE',
+        success: function () {
+            updateTable();
+            successNoty('Deleted');
+        }
+    });
+}
+
+function deleteRowUser(id) {
+    $.ajax({
         url: ajaxUrl + '/delete',
         type: 'POST',
         data: 'id=' + id,
@@ -110,6 +121,12 @@ function failNoty(event, jqXHR, options, jsExc) {
 function renderEditBtn(type, row, key) {
     if (type == 'display') {
         return '<a class="btn btn-xs btn-primary" onclick="updateRow(' + row.id + ',\'' + key + '\');">' + i18n['common.edit'] + '</a>';
+    }
+}
+
+function renderDeleteUserBtn(data, type, row) {
+    if (type == 'display') {
+        return '<a class="btn btn-xs btn-danger" onclick="deleteRowUser(' + row.id + ');">' + i18n['common.delete'] + '</a>';
     }
 }
 

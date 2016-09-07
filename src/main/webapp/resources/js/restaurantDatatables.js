@@ -1,4 +1,4 @@
-var ajaxUrl = 'ajax/users/';
+var ajaxUrl = 'ajax/restaurants/';
 var datatableApi;
 
 function updateTable() {
@@ -19,16 +19,7 @@ $(function () {
                 "data": "name"
             },
             {
-                "data": "email",
-                "render": function (data, type, row) {
-                    if (type == 'display') {
-                        return '<a href="mailto:' + data + '">' + data + '</a>';
-                    }
-                    return data;
-                }
-            },
-            {
-                "data": "roles"
+                "data": "address"
             },
             {
                 "data": "registred",
@@ -43,21 +34,13 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": function (date, type, row) {
-                    if (!row.active) {
-                        return "";
-                    }
-                    return renderEditBtn(type, row, 'users.edit');
+                    return renderEditBtn(type, row, 'restaurants.edit');
                 }
             },
             {
                 "orderable": false,
                 "defaultContent": "",
-                "render": function (data, type, row) {
-                    if (row.active) {
-                        return renderDeleteUserBtn(data, type, row);
-                    }
-                    return renderRecoverBtn(data, type, row);
-                }
+                "render": renderDeleteBtn
             }
         ],
         "order": [
@@ -66,11 +49,6 @@ $(function () {
                 "asc"
             ]
         ],
-        "createdRow": function (row, data, dataIndex) {
-            if (!data.active) {
-                $(row).css("text-decoration", "line-through");
-            }
-        },
         "initComplete": makeEditable
     });
 });
