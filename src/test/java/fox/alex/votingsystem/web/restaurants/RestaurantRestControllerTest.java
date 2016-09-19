@@ -3,6 +3,7 @@ package fox.alex.votingsystem.web.restaurants;
 import fox.alex.votingsystem.TestUtil;
 import fox.alex.votingsystem.model.Restaurant;
 import fox.alex.votingsystem.service.RestaurantService;
+import fox.alex.votingsystem.testData.DishTestData;
 import fox.alex.votingsystem.utils.JsonUtil;
 import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
@@ -26,7 +27,13 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
     private static final String REST_URL = RestaurantRestController.REST_URL + "/";
 
     @Autowired
-    RestaurantService restaurantService;
+    private RestaurantService restaurantService;
+
+    @Override
+    public void setUp() {
+        restaurantService.evictCache();
+        super.setUp();
+    }
 
     @Test
     public void testCreate() throws Exception {
@@ -101,10 +108,12 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetWithDishes() throws Exception {
-        mockMvc.perform(get(REST_URL + REST_ID1 + "/dishes"))
+        ResultActions action = mockMvc.perform(get(REST_URL + REST_ID1 + "/dishes"))
                 .andExpect(status().isOk())
                 .andDo(print())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(MATCHER.contentMatcher(REST1));
+        Restaurant restaurant = MATCHER.fromJsonAction(action);
+        DishTestData.MATCHER.assertCollectionEquals(Arrays.asList(DishTestData.DISH1, DishTestData.DISH2, DishTestData.DISH3, DishTestData.DISH4), restaurant.getDishes());
     }
 }

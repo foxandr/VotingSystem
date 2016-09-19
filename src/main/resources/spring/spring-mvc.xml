@@ -31,7 +31,13 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService"/>
+    <bean class="org.springframework.format.support.FormattingConversionServiceFactoryBean" id="conversionService">
+        <property name="formatters">
+            <set>
+                <bean class="fox.alex.votingsystem.utils.formatter.LocalDateFormatter" />
+            </set>
+        </property>
+    </bean>
 
     <context:component-scan base-package="fox.alex.votingsystem.**.web"/>
 
