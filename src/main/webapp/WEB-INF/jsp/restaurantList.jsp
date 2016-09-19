@@ -16,7 +16,7 @@
 <body>
 <jsp:include page="fragments/bodyPart.jsp"/>
 
-<<div class="container">
+<div class="container">
     <div class="box">
         <div class="row2">
             <hr>

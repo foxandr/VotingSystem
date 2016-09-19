@@ -21,7 +21,7 @@ import java.util.List;
 public class AdminAjaxController extends AbstractUserController {
 
     @Autowired
-    MessageSource messageSource;
+    private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.POST)
     public void createOrUpdate(@Valid UserTo userTo) {

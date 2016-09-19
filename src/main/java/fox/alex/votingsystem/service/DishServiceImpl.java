@@ -2,7 +2,9 @@ package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Dish;
 import fox.alex.votingsystem.repository.DishRepository;
+import fox.alex.votingsystem.to.DishTo;
 import fox.alex.votingsystem.utils.exception.ExceptionUtil;
+import fox.alex.votingsystem.utils.transfers.DishUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,13 @@ public class DishServiceImpl implements DishService {
     @Override
     public Dish getWithRerstaurant(int id, int rest_id) {
         return ExceptionUtil.checkNotFoundWithId(repository.getWithRerstaurant(id, rest_id), id);
+    }
+
+    @Override
+    public void update(DishTo dishTo, int rest_id) {
+        Dish dish = get(dishTo.getId(), rest_id);
+        DishUtil.updateFromTo(dish, dishTo);
+        repository.save(dish, rest_id);
     }
 
     @Override

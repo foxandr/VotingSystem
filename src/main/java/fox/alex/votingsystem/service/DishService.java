@@ -1,6 +1,7 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Dish;
+import fox.alex.votingsystem.to.DishTo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -23,6 +24,5 @@ public interface DishService {
 
     void update(Dish dish, int rest_id);
 
-    //TODO implement DishTo
-    //void update(DishTo dishTo, int rest_id);
+    void update(DishTo dishTo, int rest_id);
 }

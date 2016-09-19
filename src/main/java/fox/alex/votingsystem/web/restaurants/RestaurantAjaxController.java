@@ -21,7 +21,7 @@ import java.util.List;
 public class RestaurantAjaxController extends AbstractRestaurantConroller {
 
     @Autowired
-    MessageSource messageSource;
+    private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.POST)
     public void createOrUpdate(@Valid RestaurantTo restaurantTo) {

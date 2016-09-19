@@ -12,11 +12,11 @@ import java.util.List;
 /**
  * Created by fox on 07.09.16.
  */
-public class AbstractRestaurantConroller {
+public abstract class AbstractRestaurantConroller {
     protected final Logger log = LoggerFactory.getLogger(getClass());
 
     @Autowired
-    RestaurantService service;
+    private RestaurantService service;
 
     public Restaurant create(Restaurant restaurant){
         restaurant.setId(null);

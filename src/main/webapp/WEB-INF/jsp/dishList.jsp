@@ -17,13 +17,29 @@
 <jsp:include page="fragments/bodyPart.jsp"/>
 
 <div class="container">
-    <div class="row">
-        <div class="box">
+    <div class="box">
+        <div class="row2">
             <hr>
-            <h2 class="intro-text text-center"><spring:message code="voting.header"/></h2>
+            <h2 class="intro-text text-center"><spring:message code="dishes.header"/></h2>
             <hr>
-            <div class="col-lg-12">
-                <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
+            <div class="col-sm-3 col-md-3">
+                <div class="view-box">
+                    <%--<a class="btn btn-sm btn-info" onclick="add('restaurants.add')"><spring:message code="restaurants.add"/></a>--%>
+                    <%--<table class="table table-striped display" id="datatable">--%>
+                        <%--<thead>--%>
+                        <%--<tr>--%>
+                            <%--<th><spring:message code="restaurants.name"/></th>--%>
+                            <%--<th><spring:message code="restaurants.address"/></th>--%>
+                            <%--<th><spring:message code="restaurants.registered"/></th>--%>
+                            <%--<th></th>--%>
+                            <%--<th></th>--%>
+                        <%--</tr>--%>
+                        <%--</thead>--%>
+                    <%--</table>--%>
+                </div>
+            </div>
+            <div class="col-sm-3 col-md-3 col-lg-offset-6">
+                <img class="img-responsive img-full" src="resources/img/slide-3.jpg" alt="">
             </div>
         </div>
     </div>
