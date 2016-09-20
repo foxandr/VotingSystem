@@ -1,6 +1,7 @@
 package fox.alex.votingsystem.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.*;
@@ -12,6 +13,9 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "dishes", uniqueConstraints = {@UniqueConstraint(columnNames = {"rest_id", "name"}, name = "dishes_idx")})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Dish extends BaseEntity{
 
     @Column(name = "price", nullable = false, precision = 6, scale = 2)
@@ -24,7 +28,6 @@ public class Dish extends BaseEntity{
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rest_id", nullable = false)
-    @JsonBackReference
     private Restaurant restaurant;
 
     public Dish() {}

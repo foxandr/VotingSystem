@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <jsp:include page="fragments/header.jsp"/>
@@ -24,6 +24,15 @@
             <hr>
             <div class="col-sm-3 col-md-3">
                 <div class="view-box">
+                    <div class="form-group">
+                        <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message>:</label>
+                        <%
+
+                        %>
+                        <select class="form-group" id="rest_id">
+                        </select>
+                        <a class="btn btn-xs btn-primary" onclick=""><spring:message code="common.choose"></spring:message></a>
+                    </div>
                     <%--<a class="btn btn-sm btn-info" onclick="add('restaurants.add')"><spring:message code="restaurants.add"/></a>--%>
                     <%--<table class="table table-striped display" id="datatable">--%>
                         <%--<thead>--%>

@@ -18,6 +18,8 @@ public interface RestaurantService {
 
     List<Restaurant> getAll();
 
+    List<String> getAllNames();
+
     Restaurant getByName(String name) throws NotFoundException;
 
     void update(Restaurant restaurant);

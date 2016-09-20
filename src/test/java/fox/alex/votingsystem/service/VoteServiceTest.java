@@ -34,21 +34,21 @@ public class VoteServiceTest extends AbstractServiceTest {
     public void save() throws Exception {
         User newUser = userService.save(new User(null, "Duplicate", "user3@votes.by", "newPass", Role.ROLE_USER));
         Vote temp = new Vote(null, 6);
-        temp.setVoted(LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
-        Vote newVote = service.save(temp, newUser.getId(), LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
-        MATCHER.assertCollectionEquals(Arrays.asList(VOTE1, VOTE2, VOTE3, newVote), service.getAllByDate(LocalDateTime.of(LocalDate.now(), LocalTime.MIN)));
+        temp.setVoted(LocalDateTime.of(LocalDate.now(), LocalTime.of(0,1,0)));
+        Vote newVote = service.save(temp, newUser.getId(), LocalDateTime.of(LocalDate.now(), LocalTime.of(0,1,0)));
+        MATCHER.assertCollectionEquals(Arrays.asList(newVote, VOTE1, VOTE2, VOTE3), service.getAllByDate(LocalDateTime.of(LocalDate.now(), LocalTime.MIN)));
     }
 
     @Test(expected = DataAccessException.class)
     public void saveWrongData(){
         Vote temp = new Vote(null, 6);
-        temp.setVoted(LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
-        service.save(temp, ADMIN_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(10,59,0)));
+        temp.setVoted(LocalDateTime.of(LocalDate.now(), LocalTime.of(0,1,0)));
+        service.save(temp, ADMIN_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(0,1,0)));
     }
 
     @Test(expected = VotingException.class)
     public void saveWrongTime(){
-        service.save(VOTE1, ADMIN_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(13,59,0)));
+        service.save(VOTE1, ADMIN_ID, LocalDateTime.of(LocalDate.now(), LocalTime.of(23,59,0)));
     }
 
     @Test

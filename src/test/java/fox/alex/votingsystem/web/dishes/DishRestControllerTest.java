@@ -2,6 +2,7 @@ package fox.alex.votingsystem.web.dishes;
 
 import fox.alex.votingsystem.model.Dish;
 import fox.alex.votingsystem.service.DishService;
+import fox.alex.votingsystem.testData.RestaurantTestData;
 import fox.alex.votingsystem.utils.JsonUtil;
 import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
@@ -19,6 +20,7 @@ import static fox.alex.votingsystem.testData.RestaurantTestData.REST_ID2;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -92,11 +94,12 @@ public class DishRestControllerTest extends AbstractControllerTest {
         ResultActions action = mockMvc.perform(get(REST_URL + "getWithRest")
                 .param("id", DISH5.getId().toString())
                 .param("rest_id", String.valueOf(REST_ID2)))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(MATCHER.contentMatcher(DISH5));
         Dish returned = MATCHER.fromJsonAction(action);
-        fox.alex.votingsystem.testData.RestaurantTestData.MATCHER.assertEquals(REST2, returned.getRestaurant());
+        RestaurantTestData.MATCHER.assertEquals(REST2, returned.getRestaurant());
     }
 
     @Test

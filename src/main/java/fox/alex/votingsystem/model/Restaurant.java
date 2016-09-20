@@ -1,5 +1,7 @@
 package fox.alex.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Length;
@@ -19,6 +21,9 @@ import java.util.List;
     @NamedEntityGraph(name = Restaurant.GRAPH_WITH_DISHES, attributeNodes = @NamedAttributeNode("dishes"))
 })
 @Table(name = "restaurants", uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "address"}, name = "restaurants_idx")})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Restaurant extends BaseEntity{
 
     public static final String GRAPH_WITH_DISHES = "Restaurant.withDishes";

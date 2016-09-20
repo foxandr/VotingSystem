@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Created by fox on 21.08.16.
@@ -44,6 +45,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     @Override
     public List<Restaurant> getAll() {
         return repository.getAll();
+    }
+
+    @Override
+    public List<String> getAllNames() {
+        return getAll().stream().map(Restaurant::getName).sorted().collect(Collectors.toList());
     }
 
     @Override

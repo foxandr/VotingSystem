@@ -5,12 +5,14 @@ import fox.alex.votingsystem.repository.JpaUtil;
 import fox.alex.votingsystem.testData.DishTestData;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 import static fox.alex.votingsystem.testData.DishTestData.DISH10;
 import static fox.alex.votingsystem.testData.DishTestData.DISH11;
@@ -96,5 +98,12 @@ public class RestaurantServiceTest extends AbstractServiceTest {
     @Test(expected = NotFoundException.class)
     public void getWithDishesNotFound() {
         service.getWithDishes(99);
+    }
+
+    @Test
+    public void getAllNames(){
+        List<String> expected = Arrays.asList(REST3.getName(), REST1.getName(), REST2.getName());
+        List<String> result = service.getAllNames();
+        Assert.assertTrue(expected.equals(result));
     }
 }

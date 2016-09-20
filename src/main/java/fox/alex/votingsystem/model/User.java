@@ -1,6 +1,8 @@
 package fox.alex.votingsystem.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.validator.constraints.Email;
@@ -28,6 +30,9 @@ import java.util.Set;
         })
 })
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_idx")})
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class User extends BaseEntity {
 
     public static final String GRAPH_WITH_ROLES = "User.withRoles";
@@ -58,7 +63,6 @@ public class User extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, mappedBy = "user")
     @OrderBy("voted DESC")
-    @JsonManagedReference
     private Set<Vote> votes;
 
     public User() {}
