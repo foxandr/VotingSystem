@@ -26,10 +26,10 @@
                 <div class="view-box">
                     <div class="form-group">
                         <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message>:</label>
-                        <%
-
-                        %>
                         <select class="form-group" id="rest_id">
+                            <c:forEach items="${restNames}" var="rest">
+                                <option value="${rest.id}">${rest.name}</option>
+                            </c:forEach>
                         </select>
                         <a class="btn btn-xs btn-primary" onclick=""><spring:message code="common.choose"></spring:message></a>
                     </div>

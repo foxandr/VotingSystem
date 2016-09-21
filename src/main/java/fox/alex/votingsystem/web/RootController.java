@@ -1,7 +1,10 @@
 package fox.alex.votingsystem.web;
 
+import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.web.users.AbstractUserController;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -10,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class RootController extends AbstractUserController {
+
+    @Autowired
+    private RestaurantService restaurantService;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String root(){
@@ -32,7 +38,8 @@ public class RootController extends AbstractUserController {
     }
 
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
-    public String dishList(){
+    public String dishList(Model model){
+        model.addAttribute("restNames", restaurantService.getAll());
         return "dishList";
     }
 
