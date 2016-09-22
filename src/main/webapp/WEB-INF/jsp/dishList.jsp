@@ -53,7 +53,8 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="fragments/footer.jsp"/>
+<script type="text/javascript" src="resources/js/datatablesUtil.js"></script>
+<script type="text/javascript" src="resources/js/dishDatatables.js"></script>
 </body>
 </html>
