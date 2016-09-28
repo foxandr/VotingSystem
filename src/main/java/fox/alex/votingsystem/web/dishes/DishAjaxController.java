@@ -52,8 +52,8 @@ public class DishAjaxController extends AbstractDishController {
         return super.getAll(rest_id);
     }
 
-    @RequestMapping(path = "/{rest_id}/date", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Dish> getByDate(@PathVariable("rest_id") int rest_id, @RequestParam("updated") LocalDate updated) {
+    @RequestMapping(path = "/getByDate", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Dish> getByDate(@RequestParam("rest_id") int rest_id, @RequestParam("updated") LocalDate updated) {
         return super.getByDate(rest_id, updated);
     }
 

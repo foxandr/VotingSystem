@@ -82,8 +82,9 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetByDate() throws Exception {
-        mockMvc.perform(get(REST_URL + REST_ID1 + "/date")
-                .param("updated", LocalDate.now().toString()))
+        mockMvc.perform(post(REST_URL + "getByDate")
+                .param("updated", LocalDate.now().toString())
+                .param("rest_id", String.valueOf(REST_ID1)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(MATCHER.contentListMatcher(DISH1, DISH2, DISH3, DISH4));

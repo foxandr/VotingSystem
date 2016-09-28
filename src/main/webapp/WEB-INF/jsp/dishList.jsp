@@ -25,26 +25,31 @@
             <div class="col-sm-3 col-md-3">
                 <div class="view-box">
                     <div class="form-group">
-                        <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message>:</label>
+                        <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message></label>
                         <select class="form-group" id="rest_id">
                             <c:forEach items="${restNames}" var="rest">
                                 <option value="${rest.id}">${rest.name}</option>
                             </c:forEach>
                         </select>
-                        <a class="btn btn-xs btn-primary" onclick=""><spring:message code="common.choose"></spring:message></a>
+                        <label class="control-label" for="updated"><spring:message code="dishes.date"></spring:message></label>
+                        <input type='text' class="form-control" id="updated" />
+                        </div>
+                        <a class="btn btn-xs btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
                     </div>
-                    <%--<a class="btn btn-sm btn-info" onclick="add('restaurants.add')"><spring:message code="restaurants.add"/></a>--%>
-                    <%--<table class="table table-striped display" id="datatable">--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th><spring:message code="restaurants.name"/></th>--%>
-                            <%--<th><spring:message code="restaurants.address"/></th>--%>
-                            <%--<th><spring:message code="restaurants.registered"/></th>--%>
-                            <%--<th></th>--%>
-                            <%--<th></th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                    <%--</table>--%>
+                    <div class="form-group">
+                        <a class="btn btn-sm btn-info" onclick="add('dishes.add')"><spring:message code="dishes.add"/></a>
+                        <table class="table table-striped display" id="datatable">
+                            <thead>
+                            <tr>
+                                <th><spring:message code="dishes.name"/></th>
+                                <th><spring:message code="dishes.price"/></th>
+                                <th><spring:message code="dishes.updated"/></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-offset-6">
@@ -54,7 +59,11 @@
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
+<script type="text/javascript">
+    <jsp:include page="fragments/i18n.jsp"/>
+</script>
 <script type="text/javascript" src="resources/js/datatablesUtil.js"></script>
 <script type="text/javascript" src="resources/js/dishDatatables.js"></script>
+<script type="text/javascript" src="resources/js/dishUtils.js"></script>
 </body>
 </html>

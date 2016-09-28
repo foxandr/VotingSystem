@@ -1,14 +1,15 @@
 var ajaxUrl = 'ajax/dishes/';
 var datatableApi;
 
-function updateTable() {
-    $.get(ajaxUrl, updateTableByData);
-}
-
 $(function () {
     datatableApi = $('#datatable').DataTable({
         "ajax": {
-            "url": ajaxUrl,
+            "url": ajaxUrl + 'getByDate',
+            "type": "POST",
+            "data": {
+                "rest_id": $('#rest_id').val(),
+                "updated": $('#updated').val()
+            },
             "dataSrc": ""
         },
         "paging": false,
