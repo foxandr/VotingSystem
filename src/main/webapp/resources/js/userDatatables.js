@@ -1,7 +1,7 @@
 var ajaxUrl = 'ajax/users/';
 var datatableApi;
 
-function updateTable() {
+function updateUserTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 
@@ -46,7 +46,7 @@ $(function () {
                     if (!row.active) {
                         return "";
                     }
-                    return renderEditBtn(type, row, 'users.edit');
+                    return renderEditUserBtn(type, row, 'users.edit');
                 }
             },
             {
@@ -56,7 +56,7 @@ $(function () {
                     if (row.active) {
                         return renderDeleteUserBtn(data, type, row);
                     }
-                    return renderRecoverBtn(data, type, row);
+                    return renderRecoverUserBtn(data, type, row);
                 }
             }
         ],
@@ -71,6 +71,6 @@ $(function () {
                 $(row).css("text-decoration", "line-through");
             }
         },
-        "initComplete": makeEditable
+        "initComplete": makeEditableUser
     });
 });

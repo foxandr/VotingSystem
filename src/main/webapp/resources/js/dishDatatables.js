@@ -35,13 +35,13 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": function (date, type, row) {
-                    return renderEditBtn(type, row, 'dishes.edit');
+                    return renderEditDishBtn(type, row, 'dishes.edit');
                 }
             },
             {
                 "orderable": false,
                 "defaultContent": "",
-                "render": renderDeleteBtn
+                "render": renderDeleteDishBtn
             }
         ],
         "order": [
@@ -50,6 +50,6 @@ $(function () {
                 "asc"
             ]
         ],
-        "initComplete": makeEditable
+        "initComplete": makeDishEditable
     });
 });

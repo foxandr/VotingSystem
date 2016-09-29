@@ -24,7 +24,7 @@
             <hr>
             <div class="col-sm-3 col-md-3">
                 <div class="view-box">
-                    <a class="btn btn-sm btn-info" onclick="add('restaurants.add')"><spring:message code="restaurants.add"/></a>
+                    <a class="btn btn-sm btn-info" onclick="addRestaurant('restaurants.add')"><spring:message code="restaurants.add"/></a>
                     <table class="table table-striped display" id="datatable">
                         <thead>
                         <tr>
@@ -53,7 +53,7 @@
                 <h2 class="modal-title" id="modalTitle"></h2>
             </div>
             <div class="modal-body">
-                <form:form class="form-horizontal" method="post" id="detailsForm">
+                <form:form class="form-horizontal" method="post" id="detailsRestForm">
                     <input type="text" hidden="hidden" id="id" name="id">
 
                     <div class="form-group">
@@ -87,7 +87,7 @@
 <script type="text/javascript">
     <jsp:include page="fragments/i18n.jsp"/>
 </script>
-<script type="text/javascript" src="resources/js/datatablesUtil.js"></script>
+<script type="text/javascript" src="resources/js/restaurantUtils.js"></script>
 <script type="text/javascript" src="resources/js/restaurantDatatables.js"></script>
 </body>
 </html>

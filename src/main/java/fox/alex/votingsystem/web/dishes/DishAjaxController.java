@@ -25,12 +25,12 @@ public class DishAjaxController extends AbstractDishController {
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createOrUpdate(@Valid DishTo dishTo, int id, int rest_id) {
+    public void createOrUpdate(@Valid DishTo dishTo, @RequestParam("rest_id_upd") int rest_id) {
         try {
             if (dishTo.isNew()){
                 super.create(DishUtil.createNewFromTo(dishTo), rest_id);
             } else {
-                super.update(dishTo, id, rest_id);
+                super.update(dishTo, dishTo.getId(), rest_id);
             }
         } catch (DataIntegrityViolationException e){
             throw new DataIntegrityViolationException(messageSource.getMessage("exception.ddish", null, LocaleContextHolder.getLocale()));

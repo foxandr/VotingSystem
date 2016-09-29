@@ -37,7 +37,7 @@
                         <a class="btn btn-xs btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
                     </div>
                     <div class="form-group">
-                        <a class="btn btn-sm btn-info" onclick="add('dishes.add')"><spring:message code="dishes.add"/></a>
+                        <a class="btn btn-sm btn-info" onclick="addDish('dishes.add')"><spring:message code="dishes.add"/></a>
                         <table class="table table-striped display" id="datatable">
                             <thead>
                             <tr>
@@ -58,11 +58,50 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="editRow">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2 class="modal-title" id="modalTitle"></h2>
+            </div>
+            <div class="modal-body">
+                <form:form class="form-horizontal" method="post" id="detailsDishForm">
+                    <input type="text" hidden="hidden" id="id" name="id">
+                    <input type="text" hidden="hidden" id="rest_id_upd" name="rest_id_upd">
+                    <div class="form-group">
+                        <label for="name" class="control-label col-xs-3"><spring:message code="dishes.name"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="price" class="control-label col-xs-3"><spring:message code="dishes.price"/></label>
+
+                        <div class="col-xs-9">
+                            <input type="text" class="form-control" id="price" name="price" placeholder="price">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-xs-offset-3 col-xs-9">
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="fragments/footer.jsp"/>
 <script type="text/javascript">
     <jsp:include page="fragments/i18n.jsp"/>
 </script>
-<script type="text/javascript" src="resources/js/datatablesUtil.js"></script>
+
 <script type="text/javascript" src="resources/js/dishDatatables.js"></script>
 <script type="text/javascript" src="resources/js/dishUtils.js"></script>
 </body>

@@ -1,7 +1,7 @@
 var ajaxUrl = 'ajax/restaurants/';
 var datatableApi;
 
-function updateTable() {
+function updateRestaurantTable() {
     $.get(ajaxUrl, updateTableByData);
 }
 
@@ -34,13 +34,13 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": function (date, type, row) {
-                    return renderEditBtn(type, row, 'restaurants.edit');
+                    return renderEditRestaurantBtn(type, row, 'restaurants.edit');
                 }
             },
             {
                 "orderable": false,
                 "defaultContent": "",
-                "render": renderDeleteBtn
+                "render": renderDeleteRestaurantBtn
             }
         ],
         "order": [
@@ -49,6 +49,6 @@ $(function () {
                 "asc"
             ]
         ],
-        "initComplete": makeEditable
+        "initComplete": makeEditableRestaurant
     });
 });
