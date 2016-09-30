@@ -27,12 +27,13 @@ public class VoteRestController extends AbstractVoteController {
         return ResponseEntity.created(uriOfNewResponse).body(newVote);
     }
 
+    //TODO make for admins only
     @RequestMapping(path = "/delete", method = RequestMethod.POST)
     public void delete(@RequestParam("id") int id, @RequestParam("user_id") int user_id) {
         super.delete(id, user_id);
     }
 
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
+    @RequestMapping(path = "/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Vote get(@RequestParam("id") int id, @RequestParam("user_id") int user_id) {
         return super.get(id, user_id);
     }

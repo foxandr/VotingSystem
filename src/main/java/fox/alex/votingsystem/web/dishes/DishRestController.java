@@ -32,7 +32,7 @@ public class DishRestController extends AbstractDishController {
         super.delete(id, rest_id);
     }
 
-    @RequestMapping(path = "/get", method = RequestMethod.GET)
+    @RequestMapping(path = "/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Dish get(@RequestParam("id") int id, @RequestParam("rest_id") int rest_id) {
         return super.get(id, rest_id);
     }
@@ -47,7 +47,7 @@ public class DishRestController extends AbstractDishController {
         return super.getByDate(rest_id, updated);
     }
 
-    @RequestMapping(path = "/getWithRest", method = RequestMethod.GET)
+    @RequestMapping(path = "/getWithRest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Dish getWithRerstaurant(@RequestParam("id") int id, @RequestParam("rest_id") int rest_id) {
         return super.getWithRerstaurant(id, rest_id);
     }

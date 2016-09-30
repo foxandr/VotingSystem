@@ -35,6 +35,7 @@
         <property name="formatters">
             <set>
                 <bean class="fox.alex.votingsystem.utils.formatter.LocalDateFormatter" />
+                <bean class="fox.alex.votingsystem.utils.formatter.LocalDateTimeFormatter" />
             </set>
         </property>
     </bean>

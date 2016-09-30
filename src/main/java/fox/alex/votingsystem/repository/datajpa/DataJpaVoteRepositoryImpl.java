@@ -26,7 +26,7 @@ public class DataJpaVoteRepositoryImpl implements VoteRepository {
         if (!vote.isNew() && get(vote.getId(), user_id) == null){
             return null;
         }
-        if (TimeUtil.isChangebleVote(vote.getVoted(), now)) {
+        if (TimeUtil.isChangebleVote(now)) {
             vote.setUser(proxyUserRepository.findOne(user_id));
             vote.setVoted(now);
             return proxyVoteRepository.save(vote);
