@@ -50,11 +50,10 @@
                             </thead>
                         </table>
                     </div>
-                </div>
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-offset-6">
-                <img class="img-responsive img-full" src="resources/img/slide-3.jpg" alt="">
-            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 col-lg-offset-6">
+            <img class="img-responsive img-full" src="resources/img/slide-3.jpg" alt="">
         </div>
     </div>
 </div>
