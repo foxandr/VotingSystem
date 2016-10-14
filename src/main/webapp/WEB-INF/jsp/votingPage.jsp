@@ -25,8 +25,8 @@
             <div class="col-sm-3 col-md-3">
                 <div class="view-box">
                     <div class="form-group">
-                        <label class="control-label" for="results"><spring:message code="voting.results"></spring:message></label>
-                        <table class="table table-stripped display" id="results">
+                        <label class="control-label" for="datatable"><spring:message code="voting.results"></spring:message></label>
+                        <table class="table table-stripped display" id="datatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="voting.rank"></spring:message></th>
@@ -34,21 +34,6 @@
                                 <th><spring:message code="voting.numbervotes"></spring:message></th>
                             </tr>
                             </thead>
-                            <c:set var="count" value="1"/>
-                            <c:forEach items="${votingResults}" var="entry">
-                                <tr>
-                                    <td>
-                                        ${count}
-                                    </td>
-                                    <td>
-                                        ${restNames.get(entry.key)}
-                                    </td>
-                                    <td>
-                                        ${entry.value}
-                                    </td>
-                                </tr>
-                                <c:set var="count" value="${count + 1}"/>
-                            </c:forEach>
                         </table>
                     </div>
                 </div>
@@ -86,7 +71,7 @@
     </div>
 </div>
 <jsp:include page="fragments/footer.jsp"/>
-
+<script type="text/javascript" src="resources/js/voteDatatables.js"></script>
 <script type="text/javascript" src="resources/js/voteUtils.js"></script>
 </body>
 </html>

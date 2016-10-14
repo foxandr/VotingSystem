@@ -64,4 +64,9 @@ public class VoteAjaxController extends AbstractVoteController {
     public List<Vote> getAllByDate(@RequestParam("voted") LocalDateTime voted) {
         return super.getAllByDate(voted);
     }
+
+    @RequestMapping(path = "/getVoteResults", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<List<String>> getVoteResults() {
+        return super.getVoteResults();
+    }
 }
