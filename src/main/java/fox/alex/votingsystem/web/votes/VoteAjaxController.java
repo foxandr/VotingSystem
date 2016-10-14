@@ -23,7 +23,11 @@ public class VoteAjaxController extends AbstractVoteController {
     private MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.POST)
-    public void createOrUpdate(@Valid @RequestBody Vote vote, @RequestParam("user_id") int user_id) {
+    public void createOrUpdate(@RequestParam("rest_id") int rest_id) {
+        int user_id = 1; //TODO authorization
+        Vote vote = getByDate(user_id, LocalDateTime.now());
+        if (vote == null) vote = new Vote();
+        vote.setRest_id(rest_id);
         try {
             if (vote.isNew()) {
                 super.create(vote, user_id);

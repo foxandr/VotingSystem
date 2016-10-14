@@ -82,7 +82,7 @@
 
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
-                            <button type="submit" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary"><spring:message code="common.save"/></button>
                         </div>
                     </div>
                 </form:form>

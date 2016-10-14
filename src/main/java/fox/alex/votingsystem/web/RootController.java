@@ -35,8 +35,13 @@ public class RootController extends AbstractUserController {
     @RequestMapping(value = "/voting", method = RequestMethod.GET)
     public String votingPage(Model model){
         List<Vote> votes = voteService.getAllByDate(LocalDateTime.now());
+        Vote currentVote = voteService.getByDate(1, LocalDateTime.now()); //TODO auth user
+        int rest_id = 0;
+        if (currentVote != null) rest_id = currentVote.getRest_id();
         model.addAttribute("votingResults", VoteUtil.getCompliteResults(votes));
         model.addAttribute("restNames", RestaurantUtil.getRestsWithIdsNames(restaurantService.getAll()));
+        model.addAttribute("restaurants", restaurantService.getAll());
+        model.addAttribute("votingRest", rest_id);
         return "votingPage";
     }
 

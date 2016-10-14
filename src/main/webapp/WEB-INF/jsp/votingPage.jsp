@@ -33,6 +33,7 @@
                                 <th><spring:message code="restaurants.name"></spring:message></th>
                                 <th><spring:message code="voting.numbervotes"></spring:message></th>
                             </tr>
+                            </thead>
                             <c:set var="count" value="1"/>
                             <c:forEach items="${votingResults}" var="entry">
                                 <tr>
@@ -48,25 +49,35 @@
                                 </tr>
                                 <c:set var="count" value="${count + 1}"/>
                             </c:forEach>
-                            </thead>
                         </table>
                     </div>
-                    <%--<a class="btn btn-xs btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>--%>
                 </div>
-                <%--<div class="form-group">--%>
-                    <%--<a class="btn btn-sm btn-info" onclick="addDish('dishes.add')"><spring:message code="dishes.add"/></a>--%>
-                    <%--<table class="table table-striped display" id="datatable">--%>
-                        <%--<thead>--%>
-                        <%--<tr>--%>
-                            <%--<th><spring:message code="dishes.name"/></th>--%>
-                            <%--<th><spring:message code="dishes.price"/></th>--%>
-                            <%--<th><spring:message code="dishes.updated"/></th>--%>
-                            <%--<th></th>--%>
-                            <%--<th></th>--%>
-                        <%--</tr>--%>
-                        <%--</thead>--%>
-                    <%--</table>--%>
-                <%--</div>--%>
+                <div class="form-group">
+                    <label class="control-label" for="voting"><spring:message code="voting.process"></spring:message></label>
+                    <table class="table display" id="voting">
+                        <thead>
+                        <tr>
+                            <th><spring:message code="restaurants.name"/></th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <c:forEach items="${restaurants}" var="restaurants">
+                        <c:if test="${votingRest == restaurants.id}">
+                            <tr class="bg-success" id="votedRest_${restaurants.id}">
+                        </c:if>
+                        <c:if test="${votingRest != restaurants.id}">
+                            <tr id="votedRest_${restaurants.id}">
+                        </c:if>
+                                <td>
+                                    ${restaurants.name}
+                                </td>
+                                <td>
+                                    <a class="btn btn-xs btn-danger" onclick="makeVote(${restaurants.id});"><spring:message code="voting.process"></spring:message></a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="col-sm-3 col-md-3 col-lg-offset-6">
@@ -74,7 +85,8 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="fragments/footer.jsp"/>
+
+<script type="text/javascript" src="resources/js/voteUtils.js"></script>
 </body>
 </html>

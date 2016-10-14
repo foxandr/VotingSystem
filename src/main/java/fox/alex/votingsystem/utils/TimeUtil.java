@@ -13,7 +13,8 @@ import java.time.format.DateTimeFormatter;
 public class TimeUtil {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final LocalTime CHECKPOINT = LocalTime.of(11, 0, 0, 0);
+    //private static final LocalTime CHECKPOINT = LocalTime.of(11, 0, 0, 0);
+    private static final LocalTime CHECKPOINT = LocalTime.of(23, 0, 0, 0);
 
     private TimeUtil(){}
 
