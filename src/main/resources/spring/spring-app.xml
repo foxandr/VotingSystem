@@ -10,5 +10,6 @@
     <context:component-scan base-package="fox.alex.**.service"/>
 
     <import resource="spring-tools.xml"/>
+    <import resource="spring-security.xml"/>
 
 </beans>

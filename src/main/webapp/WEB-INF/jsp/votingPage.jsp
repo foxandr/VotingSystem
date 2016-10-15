@@ -38,6 +38,7 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <c:if test="${canVote}">
                     <label class="control-label" for="voting"><spring:message code="voting.process"></spring:message></label>
                     <table class="table display" id="voting">
                         <thead>
@@ -62,6 +63,7 @@
                             </tr>
                         </c:forEach>
                     </table>
+                    </c:if>
                 </div>
             </div>
         </div>
