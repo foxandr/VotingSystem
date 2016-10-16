@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.service;
 
+import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.repository.UserRepository;
 import fox.alex.votingsystem.to.UserTo;
@@ -86,9 +87,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return ExceptionUtil.checkNotFoundWithId(repository.getWithVoices(id), id);
     }
 
-    //TODO implement security
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = repository.getByEmail(email.toLowerCase());
+        if (user == null) throw new UsernameNotFoundException("User with " + email + " not found.");
+        return new AuthorizedUser(user);
     }
 }

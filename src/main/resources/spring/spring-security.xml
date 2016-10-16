@@ -22,14 +22,15 @@
         <intercept-url pattern="/register" access="permitAll"/>
         <intercept-url pattern="**/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
-
-        <form-login login-page="/login" default-target-url="/voting" authentication-failure-url="/login?error=true" login-processing-url="spring_security_check"/>
+        <csrf disabled="true"/>
+        <form-login login-page="/login" default-target-url="/voting" authentication-failure-url="/login?error=true" login-processing-url="/spring_security_check"/>
         <logout logout-success-url="/login"/>
     </http>
 
+    <beans:bean class="fox.alex.votingsystem.utils.PasswordUtil" id="passwordUtil" factory-method="getPasswordEncoder"/>
     <authentication-manager>
         <authentication-provider user-service-ref="userService">
-
+            <password-encoder ref="passwordUtil"/>
         </authentication-provider>
     </authentication-manager>
 

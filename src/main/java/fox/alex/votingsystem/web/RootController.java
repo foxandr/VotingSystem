@@ -8,6 +8,7 @@ import fox.alex.votingsystem.utils.VoteUtil;
 import fox.alex.votingsystem.utils.transfers.RestaurantUtil;
 import fox.alex.votingsystem.web.users.AbstractUserController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -47,16 +48,19 @@ public class RootController extends AbstractUserController {
         return "votingPage";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String userList(){
         return "userList";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/restaurants", method = RequestMethod.GET)
     public String restaurantList(){
         return "restaurantList";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
     public String dishList(Model model){
         model.addAttribute("restNames", restaurantService.getAll());
