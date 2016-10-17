@@ -3,6 +3,7 @@ package fox.alex.votingsystem.utils.transfers;
 import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
+import fox.alex.votingsystem.utils.PasswordUtil;
 
 /**
  * Created by fox on 05.09.16.
@@ -23,9 +24,7 @@ public class UserUtil {
     }
 
     public static User prepareToSave(User user) {
-        //TODO implemet encoding
-        //user.setPassword(PasswordUtil.encode(user.getPassword()));
-        user.setPassword(user.getPassword());
+        user.setPassword(PasswordUtil.encode(user.getPassword()));
         user.setEmail(user.getEmail().toLowerCase());
         return user;
     }

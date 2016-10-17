@@ -17,7 +17,7 @@ import java.util.List;
  * Created by fox on 07.09.16.
  */
 @RestController
-@RequestMapping("/ajax/restaurants")
+@RequestMapping("/ajax/admin/restaurants")
 public class RestaurantAjaxController extends AbstractRestaurantConroller {
 
     @Autowired

@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping(RestaurantRestController.REST_URL)
 public class RestaurantRestController extends AbstractRestaurantConroller {
 
-    static final String REST_URL = "/rest/restaurants";
+    static final String REST_URL = "/rest/admin/restaurants";
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody Restaurant restaurant) {

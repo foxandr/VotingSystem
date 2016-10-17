@@ -3,6 +3,7 @@ package fox.alex.votingsystem.testData;
 import fox.alex.votingsystem.matcher.ModelMatcher;
 import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
+import fox.alex.votingsystem.utils.PasswordUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,8 +32,7 @@ public class UserTestData {
                 if (expected == actual) {
                     return true;
                 }
-                boolean cmp = //comparePassword(expected.getPassword(), actual.getPassword())
-                        Objects.equals(expected.getPassword(), actual.getPassword())
+                boolean cmp = comparePassword(expected.getPassword(), actual.getPassword())
                         && Objects.equals(expected.getId(), actual.getId())
                         && Objects.equals(expected.getName(), actual.getName())
                         && Objects.equals(expected.getEmail(), actual.getEmail())
@@ -42,13 +42,13 @@ public class UserTestData {
     );
 
 
-//    private static boolean comparePassword(String rawOrEncodedPassword, String password) {
-//        if (PasswordUtil.isEncoded(rawOrEncodedPassword)) {
-//            return rawOrEncodedPassword.equals(password);
-//        } else if (!PasswordUtil.isMatch(rawOrEncodedPassword, password)) {
-//            LOG.error("Password " + password + " doesn't match encoded " + password);
-//            return false;
-//        }
-//        return true;
-//    }
+    private static boolean comparePassword(String rawOrEncodedPassword, String password) {
+        if (PasswordUtil.isEncoded(rawOrEncodedPassword)) {
+            return rawOrEncodedPassword.equals(password);
+        } else if (!PasswordUtil.isMatch(rawOrEncodedPassword, password)) {
+            LOG.error("Password " + password + " doesn't match encoded " + password);
+            return false;
+        }
+        return true;
+    }
 }

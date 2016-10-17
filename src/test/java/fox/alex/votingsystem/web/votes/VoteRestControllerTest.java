@@ -17,7 +17,10 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import static fox.alex.votingsystem.TestUtil.userHttpBasic;
+import static fox.alex.votingsystem.testData.UserTestData.ADMIN;
 import static fox.alex.votingsystem.testData.UserTestData.ADMIN_ID;
+import static fox.alex.votingsystem.testData.UserTestData.USER1;
 import static fox.alex.votingsystem.testData.VoteTestData.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -56,9 +59,9 @@ public class VoteRestControllerTest extends AbstractControllerTest {
     public void testCreate() throws Exception {
         Vote expected = new Vote(null, 6);
         ResultActions actions = mockMvc.perform(post(REST_URL)
+                .with(userHttpBasic(USER1))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(expected))
-                .param("user_id", String.valueOf(ADMIN_ID)));
+                .content(JsonUtil.writeValue(expected)));
         Vote returned = MATCHER.fromJsonAction(actions);
         expected.setId(returned.getId());
         MATCHER.assertEquals(expected, returned);
@@ -66,37 +69,46 @@ public class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testDelete() throws Exception {
-        mockMvc.perform(post(REST_URL + "delete")
-                .param("id", String.valueOf(VOTE1.getId()))
-                .param("user_id", String.valueOf(ADMIN_ID)))
+        mockMvc.perform(post(REST_URL + "admin/delete")
+                .with(userHttpBasic(ADMIN))
+                .param("id", String.valueOf(VOTE1.getId())))
                 .andExpect(status().isOk());
         MATCHER.assertCollectionEquals(Arrays.asList(VOTE2, VOTE3), voteService.getAllByDate(LocalDateTime.now()));
     }
 
     @Test
+    public void testDeleteNotAllowed() throws Exception {
+        mockMvc.perform(post(REST_URL + "admin/delete")
+                .with(userHttpBasic(USER1))
+                .param("id", String.valueOf(VOTE2.getId())))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     public void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + "get")
-                .param("id", String.valueOf(VOTE1.getId()))
-                .param("user_id", String.valueOf(ADMIN_ID)))
+                .with(userHttpBasic(USER1))
+                .param("id", String.valueOf(VOTE2.getId())))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MATCHER.contentMatcher(VOTE1));
+                .andExpect(MATCHER.contentMatcher(VOTE2));
     }
 
     @Test
     public void testGetNotFound() throws Exception {
         mockMvc.perform(get(REST_URL + "get")
-                .param("id", "50")
-                .param("user_id", String.valueOf(ADMIN_ID)))
+                .with(userHttpBasic(USER1))
+                .param("id", "50"))
                 .andExpect(status().isNotFound());
     }
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get(REST_URL + ADMIN_ID + "/get"))
+        mockMvc.perform(get(REST_URL + "/getAll")
+                .with(userHttpBasic(USER1)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MATCHER.contentListMatcher(VOTE1));
+                .andExpect(MATCHER.contentListMatcher(VOTE2));
     }
 
     @Test
@@ -104,18 +116,19 @@ public class VoteRestControllerTest extends AbstractControllerTest {
         LocalDateTime now = LocalDateTime.now();
         String date = now.format(DATE_TIME_FORMATTER);
         mockMvc.perform(post(REST_URL + "getByDate")
-                .param("user_id", String.valueOf(ADMIN_ID))
+                .with(userHttpBasic(USER1))
                 .param("voted", date))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(MATCHER.contentListMatcher(VOTE1));
+                .andExpect(MATCHER.contentListMatcher(VOTE2));
     }
 
     @Test
     public void testUpdate() throws Exception {
         Vote updated = voteService.get(VOTE1.getId(), ADMIN_ID);
         updated.setRest_id(6);
-        mockMvc.perform(put(REST_URL + ADMIN_ID + "/" + VOTE1.getId())
+        mockMvc.perform(put(REST_URL + VOTE1.getId())
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
@@ -126,11 +139,18 @@ public class VoteRestControllerTest extends AbstractControllerTest {
     public void testGetAllByDate() throws Exception {
         LocalDateTime now = LocalDateTime.now();
         String date = now.format(DATE_TIME_FORMATTER);
-        mockMvc.perform(get(REST_URL + "getAll")
+        mockMvc.perform(get(REST_URL + "getAllByDate")
+                .with(userHttpBasic(USER1))
                 .param("voted", date))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(MATCHER.contentListMatcher(VOTE1, VOTE2, VOTE3));
+    }
+
+    @Test
+    public void testGetUnAuth() throws Exception {
+        mockMvc.perform(get(REST_URL + "get"))
+                .andExpect(status().isUnauthorized());
     }
 
 }

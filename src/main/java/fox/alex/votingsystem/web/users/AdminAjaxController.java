@@ -17,7 +17,7 @@ import java.util.List;
  * Created by fox on 05.09.16.
  */
 @RestController
-@RequestMapping("/ajax/users")
+@RequestMapping("/ajax/admin/users")
 public class AdminAjaxController extends AbstractUserController {
 
     @Autowired

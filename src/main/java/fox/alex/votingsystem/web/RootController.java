@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.web;
 
+import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.service.VoteService;
@@ -38,7 +39,7 @@ public class RootController extends AbstractUserController {
 
     @RequestMapping(value = "/voting", method = RequestMethod.GET)
     public String votingPage(Model model){
-        Vote currentVote = voteService.getByDate(1, LocalDateTime.now()); //TODO auth user
+        Vote currentVote = voteService.getByDate(AuthorizedUser.id(), LocalDateTime.now());
         int rest_id = 0;
         if (currentVote != null) rest_id = currentVote.getRest_id();
         boolean canVote = TimeUtil.isChangebleVote(LocalDateTime.now());

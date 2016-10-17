@@ -18,7 +18,7 @@ import java.util.List;
  * Created by fox on 19.09.16.
  */
 @RestController
-@RequestMapping("/ajax/dishes")
+@RequestMapping("/ajax/admin/dishes")
 public class DishAjaxController extends AbstractDishController {
 
     @Autowired

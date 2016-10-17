@@ -13,10 +13,13 @@ import org.springframework.test.web.servlet.ResultActions;
 import java.time.LocalDate;
 import java.util.Arrays;
 
+import static fox.alex.votingsystem.TestUtil.userHttpBasic;
 import static fox.alex.votingsystem.testData.DishTestData.*;
 import static fox.alex.votingsystem.testData.RestaurantTestData.REST2;
 import static fox.alex.votingsystem.testData.RestaurantTestData.REST_ID1;
 import static fox.alex.votingsystem.testData.RestaurantTestData.REST_ID2;
+import static fox.alex.votingsystem.testData.UserTestData.ADMIN;
+import static fox.alex.votingsystem.testData.UserTestData.USER1;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -38,6 +41,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     public void testCreate() throws Exception {
         Dish expected = new Dish(null, "Cake", 14.54);
         ResultActions action = mockMvc.perform(post(REST_URL)
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON).content(JsonUtil.writeValue(expected))
                 .param("rest_id", String.valueOf(REST_ID1)));
         Dish returned = MATCHER.fromJsonAction(action);
@@ -48,6 +52,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testDelete() throws Exception {
         mockMvc.perform(post(REST_URL + "delete")
+                .with(userHttpBasic(ADMIN))
                 .param("id", String.valueOf(DISH_ID))
                 .param("rest_id", String.valueOf(REST_ID1)))
                 .andExpect(status().isOk());
@@ -57,6 +62,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGet() throws Exception {
         mockMvc.perform(get(REST_URL + "get")
+                .with(userHttpBasic(ADMIN))
                 .param("id", String.valueOf(DISH_ID))
                 .param("rest_id", String.valueOf(REST_ID1)))
                 .andExpect(status().isOk())
@@ -67,6 +73,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGetNotFound() throws Exception {
         mockMvc.perform(get(REST_URL + "get")
+                .with(userHttpBasic(ADMIN))
                 .param("id", String.valueOf(DISH_ID + 7))
                 .param("rest_id", String.valueOf(REST_ID1)))
                 .andExpect(status().isNotFound());
@@ -74,7 +81,8 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testGetAll() throws Exception {
-        mockMvc.perform(get(REST_URL + REST_ID1 + "/get"))
+        mockMvc.perform(get(REST_URL + REST_ID1 + "/get")
+                .with(userHttpBasic(ADMIN)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(MATCHER.contentListMatcher(DISH1, DISH2, DISH3, DISH4));
@@ -83,6 +91,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGetByDate() throws Exception {
         mockMvc.perform(post(REST_URL + "getByDate")
+                .with(userHttpBasic(ADMIN))
                 .param("updated", LocalDate.now().toString())
                 .param("rest_id", String.valueOf(REST_ID1)))
                 .andExpect(status().isOk())
@@ -93,6 +102,7 @@ public class DishRestControllerTest extends AbstractControllerTest {
     @Test
     public void testGetWithRerstaurant() throws Exception {
         ResultActions action = mockMvc.perform(get(REST_URL + "getWithRest")
+                .with(userHttpBasic(ADMIN))
                 .param("id", DISH5.getId().toString())
                 .param("rest_id", String.valueOf(REST_ID2)))
                 .andDo(print())
@@ -108,10 +118,18 @@ public class DishRestControllerTest extends AbstractControllerTest {
         Dish updated = dishService.get(DISH1.getId(), REST_ID1);
         updated.setPrice(33.33);
         mockMvc.perform(put(REST_URL + REST_ID1 + "/" + DISH1.getId())
+                .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(updated)))
                 .andExpect(status().isOk());
         MATCHER.assertEquals(updated, dishService.get(DISH1.getId(), REST_ID1));
+    }
+
+    @Test
+    public void testGetForbidden() throws Exception {
+        mockMvc.perform(get(REST_URL + "get")
+                .with(userHttpBasic(USER1)))
+                .andExpect(status().isForbidden());
     }
 
 }

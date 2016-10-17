@@ -8,7 +8,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -24,43 +23,41 @@ public class VoteAjaxController extends AbstractVoteController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void createOrUpdate(@RequestParam("rest_id") int rest_id) {
-        int user_id = 1; //TODO authorization
-        Vote vote = getByDate(user_id, LocalDateTime.now());
+        Vote vote = getByDate(LocalDateTime.now());
         if (vote == null) vote = new Vote();
         vote.setRest_id(rest_id);
         try {
             if (vote.isNew()) {
-                super.create(vote, user_id);
+                super.create(vote);
             } else {
-                super.update(vote, vote.getId(), user_id);
+                super.update(vote, vote.getId());
             }
         } catch (DataIntegrityViolationException e){
             throw new DataIntegrityViolationException(messageSource.getMessage("exception.dvotes", null, LocaleContextHolder.getLocale()));
         }
     }
 
-    //TODO make for admins only
-    @RequestMapping(path = "/delete", method = RequestMethod.POST)
-    public void delete(@RequestParam("id") int id, @RequestParam("user_id") int user_id) {
-        super.delete(id, user_id);
+    @RequestMapping(path = "/admin/delete", method = RequestMethod.POST)
+    public void delete(@RequestParam("id") int id) {
+        super.delete(id);
     }
 
     @RequestMapping(path = "/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Vote get(@RequestParam("id") int id, @RequestParam("user_id") int user_id) {
-        return super.get(id, user_id);
-    }
-
-    @RequestMapping(path = "/{user_id}/getAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Vote> getAll(@PathVariable("user_id") int user_id) {
-        return super.getAll(user_id);
-    }
-
-    @RequestMapping(path = "/{user_id}/get", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Vote getByDate(@PathVariable("user_id") int user_id, @RequestParam("voted") LocalDateTime voted) {
-        return super.getByDate(user_id, voted);
+    public Vote get(@RequestParam("id") int id) {
+        return super.get(id);
     }
 
     @RequestMapping(path = "/getAll", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Vote> getAll() {
+        return super.getAll();
+    }
+
+    @RequestMapping(path = "/getByDate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Vote getByDate(@RequestParam("voted") LocalDateTime voted) {
+        return super.getByDate(voted);
+    }
+
+    @RequestMapping(path = "/getAllByDate", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Vote> getAllByDate(@RequestParam("voted") LocalDateTime voted) {
         return super.getAllByDate(voted);
     }

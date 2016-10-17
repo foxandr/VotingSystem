@@ -1,5 +1,6 @@
 package fox.alex.votingsystem.web.votes;
 
+import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.service.VoteService;
@@ -25,34 +26,40 @@ public abstract class AbstractVoteController {
     @Autowired
     private RestaurantService restaurantService;
 
-    public Vote create(Vote vote, int user_id) {
+    public Vote create(Vote vote) {
         vote.setId(null);
+        int user_id = AuthorizedUser.id();
         log.info("create " + vote);
         return voteService.save(vote, user_id, LocalDateTime.now());
     }
 
-    public void delete(int id, int user_id) {
+    public void delete(int id) {
+        int user_id = AuthorizedUser.id();
         log.info("delete " + id);
         voteService.delete(id, user_id);
     }
 
-    public Vote get(int id, int user_id) {
+    public Vote get(int id) {
+        int user_id = AuthorizedUser.id();
         log.info("get " + id);
         return voteService.get(id, user_id);
     }
 
-    public List<Vote> getAll(int user_id) {
+    public List<Vote> getAll() {
+        int user_id = AuthorizedUser.id();
         log.info("createAllUserVotes");
         return voteService.getAll(user_id);
     }
 
-    public Vote getByDate(int user_id, LocalDateTime voted) {
+    public Vote getByDate(LocalDateTime voted) {
+        int user_id = AuthorizedUser.id();
         log.info("get votes of user with id=" + user_id);
         return voteService.getByDate(user_id, voted);
     }
 
-    public void update(Vote vote, int id, int user_id) {
+    public void update(Vote vote, int id) {
         vote.setId(id);
+        int user_id = AuthorizedUser.id();
         log.info("update " + vote);
         voteService.update(vote, user_id, LocalDateTime.now());
     }

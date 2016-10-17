@@ -1,4 +1,4 @@
-var ajaxUrl = 'ajax/restaurants/';
+var ajaxUrl = 'ajax/admin/restaurants/';
 var datatableApi;
 
 function updateRestaurantTable() {
