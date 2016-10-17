@@ -6,15 +6,5 @@ import fox.alex.votingsystem.utils.PasswordUtil;
 public class Main {
     public static void main(String[] args){
         System.out.println("Hello!");
-        String pass = "megaadmin";
-        String code = PasswordUtil.encode(pass);
-        System.out.println(code);
-        pass = "simpleuser";
-        code = PasswordUtil.encode(pass);
-        System.out.println(code);
-        pass = "user123456";
-        code = PasswordUtil.encode(pass);
-        System.out.println(code);
-
     }
 }
