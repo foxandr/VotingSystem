@@ -71,7 +71,9 @@ public class RootController extends AbstractUserController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(){
+    public String profile(ModelMap model){
+        UserTo userTo = UserUtil.asTo(get(AuthorizedUser.id()));
+        model.addAttribute("userTo", new UserTo());
         return "profile";
     }
 
@@ -83,6 +85,7 @@ public class RootController extends AbstractUserController {
                 super.update(userTo);
                 AuthorizedUser.get().setUserTo(userTo);
                 sessionStatus.setComplete();
+                return "redirect:voting";
             } catch (DataIntegrityViolationException e){
                 bindingResult.rejectValue("email", "exception.demail");
             }
