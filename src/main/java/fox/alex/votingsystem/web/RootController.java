@@ -4,21 +4,23 @@ import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.service.VoteService;
+import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.TimeUtil;
-import fox.alex.votingsystem.utils.VoteUtil;
-import fox.alex.votingsystem.utils.transfers.RestaurantUtil;
+import fox.alex.votingsystem.utils.transfers.UserUtil;
 import fox.alex.votingsystem.web.users.AbstractUserController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * Created by fox on 30.08.16.
@@ -38,7 +40,7 @@ public class RootController extends AbstractUserController {
     }
 
     @RequestMapping(value = "/voting", method = RequestMethod.GET)
-    public String votingPage(Model model){
+    public String votingPage(ModelMap model){
         Vote currentVote = voteService.getByDate(AuthorizedUser.id(), LocalDateTime.now());
         int rest_id = 0;
         if (currentVote != null) rest_id = currentVote.getRest_id();
@@ -63,13 +65,50 @@ public class RootController extends AbstractUserController {
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
-    public String dishList(Model model){
+    public String dishList(ModelMap model){
         model.addAttribute("restNames", restaurantService.getAll());
         return "dishList";
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profile(){
+        return "profile";
+    }
+
+    @RequestMapping(value = "/profile", method = RequestMethod.POST)
+    public String updateProfile(@Valid UserTo userTo, BindingResult bindingResult, SessionStatus sessionStatus){
+        if (!bindingResult.hasErrors()){
+            try {
+                userTo.setId(AuthorizedUser.id());
+                super.update(userTo);
+                AuthorizedUser.get().setUserTo(userTo);
+                sessionStatus.setComplete();
+            } catch (DataIntegrityViolationException e){
+                bindingResult.rejectValue("email", "exception.demail");
+            }
+        }
+        return "profile";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public String register(ModelMap model){
+        model.addAttribute("userTo", new UserTo());
+        model.addAttribute("reg", true);
+        return "profile";
+    }
+
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public String endRegister(@Valid UserTo userTo, BindingResult bindingResult, SessionStatus sessionStatus, ModelMap model){
+        if (!bindingResult.hasErrors()){
+            try {
+                super.create(UserUtil.createNewFromTo(userTo));
+                sessionStatus.setComplete();
+                return "redirect:login?message=app.reg";
+            } catch (DataIntegrityViolationException e){
+                bindingResult.rejectValue("email", "exception.demail");
+            }
+        }
+        model.addAttribute("reg", true);
         return "profile";
     }
 

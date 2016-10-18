@@ -32,6 +32,7 @@
                         <button type="submit" class="btn btn-success"><spring:message code="app.login"/></button>
                     </form:form>
                 </div>
+                <a class="btn btn-primary btn-lg" role="button" href="register"><spring:message code="app.register"/></a>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-offset-6">
                 <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
