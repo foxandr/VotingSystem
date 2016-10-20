@@ -71,9 +71,7 @@ public class RootController extends AbstractUserController {
     }
 
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profile(ModelMap model){
-        UserTo userTo = UserUtil.asTo(get(AuthorizedUser.id()));
-        model.addAttribute("userTo", new UserTo());
+    public String profile(){
         return "profile";
     }
 
@@ -95,7 +93,6 @@ public class RootController extends AbstractUserController {
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register(ModelMap model){
-        model.addAttribute("userTo", new UserTo());
         model.addAttribute("reg", true);
         return "profile";
     }

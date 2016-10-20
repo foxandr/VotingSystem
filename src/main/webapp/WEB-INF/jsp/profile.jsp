@@ -65,7 +65,7 @@
                                         <spring:message code="app.register"/>
                                     </c:if>
                                     <c:if test="${!reg}">
-                                        ${userTo.name}<spring:message code="common.update"/>
+                                        <spring:message code="common.update"/>
                                     </c:if>
                                 </button>
                             </div>
@@ -81,5 +81,6 @@
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
+<script type="text/javascript" src="resources/js/profileUtils.js"></script>
 </body>
 </html>
