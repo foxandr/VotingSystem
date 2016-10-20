@@ -60,7 +60,7 @@
 
                         <div class="form-group">
                             <div class="col-xs-offset-3 col-xs-9">
-                                <button type="button" class="btn btn-primary" onclick="sendData(${reg})">
+                                <button type="submit" class="btn btn-primary" onclick="sendData(${reg})">
                                     <c:if test="${reg}">
                                         <spring:message code="app.register"/>
                                     </c:if>

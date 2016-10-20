@@ -40,7 +40,7 @@ public class VoteServiceImpl implements VoteService {
 
     @Override
     public Vote getByDate(int user_id, LocalDateTime voted) {
-        return ExceptionUtil.checkNotFound(repository.getByDate(user_id, voted), "voted=" + voted);
+        return repository.getByDate(user_id, voted);
     }
 
     @Override

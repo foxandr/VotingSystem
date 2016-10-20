@@ -103,13 +103,13 @@ public class RootController extends AbstractUserController {
             try {
                 super.create(UserUtil.createNewFromTo(userTo));
                 sessionStatus.setComplete();
-                return "redirect:login?message=app.reg";
+                return "redirect:login";
             } catch (DataIntegrityViolationException e){
                 bindingResult.rejectValue("email", "exception.demail");
             }
         }
         model.addAttribute("reg", true);
-        return "profile";
+        return "register";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)

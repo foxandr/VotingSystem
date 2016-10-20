@@ -33,24 +33,22 @@
                     </form:form>
                 </div>
                 <a class="btn btn-primary btn-lg" role="button" href="register"><spring:message code="app.register"/></a>
+                <c:if test="${error}">
+                    <div class="error">
+                            ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                    </div>
+                </c:if>
+                <c:if test="${not empty message}">
+                    <div class="message">
+                        <spring:message code="${message}"/>
+                    </div>
+                </c:if>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-offset-6">
                 <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <c:if test="${error}">
-        <div class="error">
-                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-        </div>
-    </c:if>
-    <c:if test="${not empty message}">
-        <div class="message">
-            <spring:message code="${message}"/>
-        </div>
-    </c:if>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
