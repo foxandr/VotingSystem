@@ -56,4 +56,9 @@ public class VoteRestController extends AbstractVoteController {
     public List<Vote> getAllByDate(@RequestParam("voted") LocalDateTime voted) {
         return super.getAllByDate(voted);
     }
+
+    @RequestMapping(path = "/getVoteResults", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<List<String>> getVoteResults() {
+        return super.getVoteResults();
+    }
 }

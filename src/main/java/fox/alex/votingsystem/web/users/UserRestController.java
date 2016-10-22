@@ -3,6 +3,7 @@ package fox.alex.votingsystem.web.users;
 import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
+import fox.alex.votingsystem.utils.transfers.UserUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,8 +28,10 @@ public class UserRestController extends AbstractUserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get() {
-        return super.get(AuthorizedUser.id());
+    public UserTo get() {
+        UserTo userTo = UserUtil.asTo(super.get(AuthorizedUser.id()));
+        userTo.setPassword(null);
+        return userTo;
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
