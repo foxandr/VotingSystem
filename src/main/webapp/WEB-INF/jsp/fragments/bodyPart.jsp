@@ -13,37 +13,33 @@
 
 <div class="brand"><spring:message code="app.title"/></div>
 
-<!-- Navigation -->
 <nav class="navbar navbar-default" role="navigation">
     <div class="container">
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <sec:authorize access="isAuthenticated()">
                 <li>
-                    <a href="/voting"><spring:message code="voting.title"/> </a>
+                    <a href="/voting"><h5><spring:message code="voting.title"/></h5></a>
                 </li>
                     <sec:authorize access="hasRole('ROLE_ADMIN')">
                     <li>
-                        <a href="/users"><spring:message code="users.title"/></a>
+                        <a href="/users"><h5><spring:message code="users.title"/></h5></a>
                     </li>
                     <li>
-                        <a href="/restaurants"><spring:message code="restaurants.title"/></a>
+                        <a href="/restaurants"><h5><spring:message code="restaurants.title"/></h5></a>
                     </li>
                     <li>
-                        <a href="/dishes"><spring:message code="dishes.title"/></a>
+                        <a href="/dishes"><h5><spring:message code="dishes.title"/></h5></a>
                     </li>
                     </sec:authorize>
                 <li>
-                    <a href="/profile"><spring:message code="profile.title"/></a>
+                    <a href="/profile"><h5><spring:message code="profile.title"/></h5></a>
                 </li>
                 <li>
-                    <a href="/logout"><spring:message code="app.logout"/></a>
+                    <a href="/logout"><h5><spring:message code="app.logout"/></h5></a>
                 </li>
                 </sec:authorize>
             </ul>
         </div>
-        <!-- /.navbar-collapse -->
     </div>
-    <!-- /.container -->
 </nav>

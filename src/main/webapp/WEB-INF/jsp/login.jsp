@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class="row col-md-offset-0 col-sm-offset-0">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-5 col-md-5">
                         <form:form role="form" action="spring_security_check" method="post">
                             <div class="form-group">
                                 <label for="username"><spring:message code="app.email"/></label>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="row col-md-offset-0 col-sm-offset-0">
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-5 col-md-5">
                         <c:if test="${error}">
                             <div class="error">
                                 ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
@@ -55,7 +55,7 @@
                 <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
             </div>
         </div>
-    </div>
+
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

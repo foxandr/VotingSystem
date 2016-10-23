@@ -18,15 +18,17 @@
 
 <div class="container">
     <div class="box">
-        <div class="row2">
+        <div class="row">
             <hr>
             <h2 class="intro-text text-center"><spring:message code="voting.header"/></h2>
             <hr>
-            <div class="col-sm-3 col-md-3">
-                <div class="view-box">
-                    <div class="form-group">
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-md-7">
+                <div class="row col-md-offset-0 col-sm-offset-0">
+                    <div class="col-sm-6 col-md-6">
                         <label class="control-label" for="datatable"><spring:message code="voting.results"></spring:message></label>
-                        <table class="table table-stripped display" id="datatable">
+                        <table class="table table-stripped table-condensed table-hover display" id="datatable">
                             <thead>
                             <tr>
                                 <th><spring:message code="voting.rank"></spring:message></th>
@@ -36,39 +38,39 @@
                             </thead>
                         </table>
                     </div>
-                </div>
-                <div class="form-group">
-                    <c:if test="${canVote}">
-                    <label class="control-label" for="voting"><spring:message code="voting.process"></spring:message></label>
-                    <table class="table display" id="voting">
-                        <thead>
-                        <tr>
-                            <th><spring:message code="restaurants.name"/></th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <c:forEach items="${restaurants}" var="restaurants">
-                        <c:if test="${votingRest == restaurants.id}">
-                            <tr class="bg-success" id="votedRest_${restaurants.id}">
+                    <div class="col-sm-6 col-md-6">
+                        <c:if test="${canVote}">
+                            <label class="control-label" for="voting"><spring:message code="voting.process"></spring:message></label>
+                            <table class="table table-stripped table-condensed table-hover display" id="voting">
+                                <thead>
+                                <tr>
+                                    <th><spring:message code="restaurants.name"/></th>
+                                    <th></th>
+                                </tr>
+                                </thead>
+                                <c:forEach items="${restaurants}" var="restaurants">
+                                    <c:if test="${votingRest == restaurants.id}">
+                                        <tr class="bg-success" id="votedRest_${restaurants.id}">
+                                    </c:if>
+                                    <c:if test="${votingRest != restaurants.id}">
+                                        <tr id="votedRest_${restaurants.id}">
+                                    </c:if>
+                                            <td>
+                                                ${restaurants.name}
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-xs btn-danger" onclick="makeVote(${restaurants.id});"><spring:message code="voting.process"></spring:message></a>
+                                            </td>
+                                        </tr>
+                                </c:forEach>
+                            </table>
                         </c:if>
-                        <c:if test="${votingRest != restaurants.id}">
-                            <tr id="votedRest_${restaurants.id}">
-                        </c:if>
-                                <td>
-                                    ${restaurants.name}
-                                </td>
-                                <td>
-                                    <a class="btn btn-xs btn-danger" onclick="makeVote(${restaurants.id});"><spring:message code="voting.process"></spring:message></a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                    </c:if>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-sm-3 col-md-3 col-lg-offset-6">
-            <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
+            <div class="col-sm-5 col-md-5">
+                <img class="img-responsive img-full" src="resources/img/slide-3.jpg" alt="">
+            </div>
         </div>
     </div>
 </div>

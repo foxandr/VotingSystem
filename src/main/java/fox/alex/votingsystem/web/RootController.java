@@ -75,6 +75,7 @@ public class RootController extends AbstractUserController {
         return "profile";
     }
 
+    //todo change update logic
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
     public String updateProfile(@Valid UserTo userTo, BindingResult bindingResult, SessionStatus sessionStatus){
         if (!bindingResult.hasErrors()){
@@ -108,7 +109,6 @@ public class RootController extends AbstractUserController {
                 bindingResult.rejectValue("email", "exception.demail");
             }
         }
-        model.addAttribute("reg", true);
         return "register";
     }
 

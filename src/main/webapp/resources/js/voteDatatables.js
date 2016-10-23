@@ -11,6 +11,7 @@ $(function () {
         "paging": false,
         "info": false,
         "filter": false,
+        "order": false,
         "initComplete": makeVoteEditable
     });
 });
