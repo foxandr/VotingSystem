@@ -17,63 +17,50 @@
 <jsp:include page="fragments/bodyPart.jsp"/>
 
 <div class="container">
-    <div class="row">
-        <div class="box">
+    <div class="box">
+        <div class="row">
             <hr>
             <h2 class="intro-text text-center">
-            <c:if test="${reg}">
-                <spring:message code="app.regnew"/>
-            </c:if>
-            <c:if test="${!reg}">
-                ${userTo.name}<spring:message code="app.profile"/>
-            </c:if>
+                <c:if test="${reg}">
+                    <spring:message code="app.regnew"/>
+                </c:if>
+                <c:if test="${!reg}">
+                    ${userTo.name}<spring:message code="app.profile"/>
+                </c:if>
             </h2>
             <hr>
-            <div class="col-sm-3 col-md-3">
-                <div class="view-box">
-                    <form:form class="form-horizontal" method="post" id="detailsUserForm">
-                        <input type="text" hidden="hidden" id="id" name="id">
-
-                        <div class="form-group">
-                            <label for="name" class="control-label col-xs-3"><spring:message code="users.name"/></label>
-
-                            <div class="col-xs-9">
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="row col-md-offset-0 col-sm-offset-0">
+                    <div class="col-sm-6 col-md-6">
+                        <form:form role="form" method="post" id="detailsUserForm">
+                            <input type="text" hidden="hidden" id="id" name="id">
+                            <div class="form-group">
+                                <label for="name"><spring:message code="users.name"/></label>
                                 <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email" class="control-label col-xs-3"><spring:message code="users.email"/></label>
-
-                            <div class="col-xs-9">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="email">
+                            <div class="form-group">
+                                <label for="email"><spring:message code="users.email"/></label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password" class="control-label col-xs-3"><spring:message code="users.pass"/></label>
-
-                            <div class="col-xs-9">
+                            <div class="form-group">
+                                <label for="password"><spring:message code="users.pass"/></label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="">
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-xs-offset-3 col-xs-9">
-                                <button type="submit" class="btn btn-primary" onclick="sendData(${reg})">
-                                    <c:if test="${reg}">
-                                        <spring:message code="app.register"/>
-                                    </c:if>
-                                    <c:if test="${!reg}">
-                                        <spring:message code="common.update"/>
-                                    </c:if>
-                                </button>
-                            </div>
-                        </div>
-                    </form:form>
+                            <button type="submit" class="btn btn-primary" onclick="sendData(${reg})">
+                                <c:if test="${reg}">
+                                    <spring:message code="app.register"/>
+                                </c:if>
+                                <c:if test="${!reg}">
+                                    <spring:message code="common.update"/>
+                                </c:if>
+                            </button>
+                        </form:form>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-offset-6">
+            <div class="col-sm-6 col-md-6">
                 <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
             </div>
         </div>
