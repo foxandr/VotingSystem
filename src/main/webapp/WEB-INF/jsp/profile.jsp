@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="col-sm-3 col-md-3 col-lg-offset-6">
-                <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
+                <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
             </div>
         </div>
     </div>
