@@ -8,11 +8,11 @@ ALTER SEQUENCE start_index RESTART 1;
 INSERT INTO users (name, email, password) VALUES
   /*('Admin', 'admin@votes.by', 'megaadmin'),
   ('User1', 'user1@votes.by', 'simpleuser'),
-  ('User2', '2thUser@votes.by', 'user123456');*/
+  ('User2', '2thuser@votes.by', 'user123456');*/
 
   ('Admin', 'admin@votes.by', '$2a$10$U4dNqS8lhsr3uPuDkNC03u/5C8TBnPbb0iIuP9DAeJo/RvP5T5/7C'),
   ('User1', 'user1@votes.by', '$2a$10$UAqQzdPTyLOllSiC3CPPu.XL5xW9.qE2bBvDb93kAI94aJtPpyuP.'),
-  ('User2', '2thUser@votes.by', '$2a$10$KqUE1.fpwdhLFB2kYf/jQ.TJq9Eoz8ho853nF5z6scSrqenSUL3wm');
+  ('User2', '2thuser@votes.by', '$2a$10$KqUE1.fpwdhLFB2kYf/jQ.TJq9Eoz8ho853nF5z6scSrqenSUL3wm');
 
 INSERT INTO user_roles (user_id, role) VALUES
 (1, 'ROLE_USER'),

@@ -23,9 +23,12 @@ function makeVote(rest_id) {
 }
 
 function changeVoteColor(rest_id) {
-    $('#voting tr').removeClass("bg-success");
+    $('#voting tr').removeClass("success");
+    $('#voting a').removeClass("hidden");
     var name = 'votedRest_' + rest_id;
-    $('#'+ name).addClass("bg-success");
+    var linkname = 'votedLink_' + rest_id;
+    $('#'+ name).addClass("success");
+    $('#'+ linkname).addClass("hidden");
 }
 
 function updateTable() {

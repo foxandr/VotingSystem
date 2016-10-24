@@ -37,7 +37,9 @@ public abstract class AbstractUserController {
 
     public User get(int id){
         log.info("get " + id);
-        return service.get(id);
+        User user = service.get(id);
+        user.setPassword(null);
+        return user;
     };
 
     public User getByEmail(String email){
@@ -47,7 +49,9 @@ public abstract class AbstractUserController {
 
     public List<User> getAll(){
         log.info("getAll users");
-        return service.getAll();
+        List<User> users = service.getAll();
+        for (User u: users) u.setPassword(null);
+        return users;
     };
 
     public void update(User user, int id){

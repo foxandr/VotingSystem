@@ -18,13 +18,17 @@
 
 <div class="container">
     <div class="box">
-        <div class="row2">
+        <div class="row">
             <hr>
             <h2 class="intro-text text-center"><spring:message code="restaurants.header"/></h2>
             <hr>
-            <div class="col-sm-3 col-md-3">
-                <div class="view-box">
+        </div>
+        <div class="row">
+            <div class="col-sm-7 col-md-7">
+                <div class="row col-md-offset-0 col-sm-offset-0">
                     <a class="btn btn-sm btn-info" onclick="addRestaurant('restaurants.add')"><spring:message code="restaurants.add"/></a>
+                </div>
+                <div class="row col-md-offset-0 col-sm-offset-0">
                     <table class="table table-striped display" id="datatable">
                         <thead>
                         <tr>
@@ -38,7 +42,7 @@
                     </table>
                 </div>
             </div>
-            <div class="col-sm-3 col-md-3 col-lg-offset-6">
+            <div class="col-sm-5 col-md-5">
                 <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
             </div>
         </div>
@@ -55,23 +59,18 @@
             <div class="modal-body">
                 <form:form class="form-horizontal" method="post" id="detailsRestForm">
                     <input type="text" hidden="hidden" id="id" name="id">
-
                     <div class="form-group">
                         <label for="name" class="control-label col-xs-3"><spring:message code="restaurants.name"/></label>
-
                         <div class="col-xs-9">
                             <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="address" class="control-label col-xs-3"><spring:message code="restaurants.address"/></label>
-
                         <div class="col-xs-9">
                             <input type="text" class="form-control" id="address" name="address" placeholder="address">
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-xs-offset-3 col-xs-9">
                             <button type="submit" class="btn btn-primary"><spring:message code="common.save"/></button>
@@ -84,9 +83,7 @@
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
-<script type="text/javascript">
-    <jsp:include page="fragments/i18n.jsp"/>
-</script>
+<script type="text/javascript"><jsp:include page="fragments/i18n.jsp"/></script>
 <script type="text/javascript" src="resources/js/restaurantUtils.js"></script>
 <script type="text/javascript" src="resources/js/restaurantDatatables.js"></script>
 </body>

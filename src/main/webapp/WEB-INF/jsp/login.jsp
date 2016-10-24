@@ -19,6 +19,11 @@
 <div class="container">
     <div class="box">
         <div class="row">
+            <hr>
+            <h2 class="intro-text text-center"><spring:message code="app.welcome"/></h2>
+            <hr>
+        </div>
+        <div class="row">
             <div class="col-sm-6 col-md-6">
                 <div class="row col-md-offset-0 col-sm-offset-0">
                     <div class="col-sm-5 col-md-5">
