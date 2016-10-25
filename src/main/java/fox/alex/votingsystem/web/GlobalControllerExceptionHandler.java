@@ -20,6 +20,7 @@ public class GlobalControllerExceptionHandler {
     ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
         LOG.error("Exception at request " + req.getRequestURL(), e);
         ModelAndView mav = new ModelAndView("exception/exception");
+        System.out.println("Exception fox");
         mav.addObject("exception", e);
 
         // Interceptor is not invoked, put userTo

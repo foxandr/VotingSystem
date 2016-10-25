@@ -25,7 +25,7 @@
                     <spring:message code="app.regnew"/>
                 </c:if>
                 <c:if test="${!reg}">
-                    ${userTo.name}<spring:message code="app.profile"/>
+                    <spring:message code="app.profile"/>
                 </c:if>
             </h2>
             <hr>

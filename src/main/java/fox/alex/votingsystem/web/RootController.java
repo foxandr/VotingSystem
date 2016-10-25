@@ -109,7 +109,8 @@ public class RootController extends AbstractUserController {
                 bindingResult.rejectValue("email", "exception.demail");
             }
         }
-        return "register";
+        model.addAttribute("reg", true);
+        return "profile";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
