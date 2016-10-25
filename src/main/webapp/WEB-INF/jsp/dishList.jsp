@@ -1,4 +1,4 @@
-<%--
+<%@ page import="sun.util.calendar.BaseCalendar" %><%--
   Created by IntelliJ IDEA.
   User: fox
   Date: 30.08.16
@@ -36,10 +36,10 @@
                     </div>
                     <div class="col-sm-5 col-md-5">
                         <label class="control-label" for="updated"><spring:message code="dishes.date"></spring:message></label><br>
-                        <input type='text' id="updated" />
+                        <input type='text' id="updated"/>
                     </div>
                     <div class="col-sm-4 col-md-4">
-                        <br><a class="btn btn-sm btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
+                       <br><a class="btn btn-sm btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
                     </div>
                 </div>
                 <div class="row col-md-offset-0 col-sm-offset-0">
