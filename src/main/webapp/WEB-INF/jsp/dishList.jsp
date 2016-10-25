@@ -26,19 +26,24 @@
         <div class="row">
             <div class="col-sm-7 col-md-7">
                 <div class="row col-md-offset-0 col-sm-offset-0">
-                    <div class="form-group">
-                        <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message></label>
-                        <select class="form-group" id="rest_id">
+                    <div class="col-sm-3 col-md-3">
+                        <label class="control-label" for="rest_id"><spring:message code="dishes.rest"></spring:message></label><br>
+                        <select id="rest_id">
                             <c:forEach items="${restNames}" var="rest">
                                 <option value="${rest.id}">${rest.name}</option>
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label" for="updated"><spring:message code="dishes.date"></spring:message></label>
-                        <input type='text' class="form-control" id="updated" />
+                    <div class="col-sm-5 col-md-5">
+                        <label class="control-label" for="updated"><spring:message code="dishes.date"></spring:message></label><br>
+                        <input type='text' id="updated" />
                     </div>
-                    <a class="btn btn-xs btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
+                    <div class="col-sm-4 col-md-4">
+                        <br><a class="btn btn-sm btn-primary" onclick="getByDate();"><spring:message code="common.choose"></spring:message></a>
+                    </div>
+                </div>
+                <div class="row col-md-offset-0 col-sm-offset-0">
+                    <hr>
                 </div>
                 <div class="row col-md-offset-0 col-sm-offset-0">
                         <a class="btn btn-sm btn-info" onclick="addDish('dishes.add')"><spring:message code="dishes.add"/></a>
