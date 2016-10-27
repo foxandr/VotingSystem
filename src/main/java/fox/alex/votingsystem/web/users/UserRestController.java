@@ -28,10 +28,10 @@ public class UserRestController extends AbstractUserController {
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public UserTo get() {
-        UserTo userTo = UserUtil.asTo(super.get(AuthorizedUser.id()));
-        userTo.setPassword(null);
-        return userTo;
+    public User get() {
+        User user = super.get(AuthorizedUser.id());
+        user.setPassword(null);
+        return user;
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

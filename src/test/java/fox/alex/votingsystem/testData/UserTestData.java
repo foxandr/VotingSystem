@@ -32,8 +32,8 @@ public class UserTestData {
                 if (expected == actual) {
                     return true;
                 }
-                boolean cmp = comparePassword(expected.getPassword(), actual.getPassword())
-                        && Objects.equals(expected.getId(), actual.getId())
+                boolean cmp = //comparePassword(expected.getPassword(), actual.getPassword())
+                        Objects.equals(expected.getId(), actual.getId())
                         && Objects.equals(expected.getName(), actual.getName())
                         && Objects.equals(expected.getEmail(), actual.getEmail())
                         && Objects.equals(expected.getRoles(), actual.getRoles());

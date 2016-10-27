@@ -3,7 +3,9 @@ package fox.alex.votingsystem.web.users;
 import fox.alex.votingsystem.TestUtil;
 import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
+import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.JsonUtil;
+import fox.alex.votingsystem.utils.transfers.UserUtil;
 import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
 import org.springframework.http.MediaType;
@@ -29,15 +31,16 @@ public class AdminRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        User expected = new User(null, "New", "new@gmail.com", "newPass", Role.ROLE_USER);
+        UserTo expected = new UserTo(null, "New", "newPass", "new@gmail.com");
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(JsonUtil.writeValue(expected))).andExpect(status().isCreated());
         User returned = MATCHER.fromJsonAction(action);
-        expected.setId(returned.getId());
-        MATCHER.assertEquals(expected, returned);
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, expected, USER1, USER2), userService.getAll());
+        User expectedUser = UserUtil.createNewFromTo(expected);
+        expectedUser.setId(returned.getId());
+        MATCHER.assertEquals(expectedUser, returned);
+        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, expectedUser, USER1, USER2), userService.getAll());
     }
 
     @Test
