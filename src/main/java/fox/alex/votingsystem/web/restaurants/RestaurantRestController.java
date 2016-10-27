@@ -1,6 +1,8 @@
 package fox.alex.votingsystem.web.restaurants;
 
 import fox.alex.votingsystem.model.Restaurant;
+import fox.alex.votingsystem.to.RestaurantTo;
+import fox.alex.votingsystem.utils.transfers.RestaurantUtil;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,8 @@ public class RestaurantRestController extends AbstractRestaurantConroller {
     static final String REST_URL = "/rest/admin/restaurants";
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody Restaurant restaurant) {
-        Restaurant newRestaurant = super.create(restaurant);
+    public ResponseEntity<Restaurant> createWithLocation(@Valid @RequestBody RestaurantTo restaurantTo) {
+        Restaurant newRestaurant = super.create(RestaurantUtil.createNewFromTo(restaurantTo));
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath().path(REST_URL + "/{id}").buildAndExpand(newRestaurant.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(newRestaurant);
     }

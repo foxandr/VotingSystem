@@ -1,6 +1,8 @@
 package fox.alex.votingsystem.web.dishes;
 
 import fox.alex.votingsystem.model.Dish;
+import fox.alex.votingsystem.to.DishTo;
+import fox.alex.votingsystem.utils.transfers.DishUtil;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,9 +22,9 @@ public class DishRestController extends AbstractDishController {
 
     static final String REST_URL = "/rest/admin/dishes";
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dish> createWithLocation(@Valid @RequestBody Dish dish, @RequestParam("rest_id") int rest_id) {
-        Dish newDish = super.create(dish, rest_id);
+    @RequestMapping(path = "/{rest_id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dish> createWithLocation(@Valid @RequestBody DishTo dishTo, @PathVariable("rest_id") int rest_id) {
+        Dish newDish = super.create(DishUtil.createNewFromTo(dishTo), rest_id);
         URI uriOfNewResponse = ServletUriComponentsBuilder.fromCurrentContextPath().path(REST_URL + "/get").build().toUri();
         return ResponseEntity.created(uriOfNewResponse).body(newDish);
     }

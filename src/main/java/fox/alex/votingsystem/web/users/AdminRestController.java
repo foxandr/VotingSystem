@@ -1,6 +1,8 @@
 package fox.alex.votingsystem.web.users;
 
 import fox.alex.votingsystem.model.User;
+import fox.alex.votingsystem.to.UserTo;
+import fox.alex.votingsystem.utils.transfers.UserUtil;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +22,9 @@ public class AdminRestController extends AbstractUserController {
     static final String REST_URL = "/rest/admin/users";
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<User> createWithLocation(@Valid @RequestBody User user) {
-        User newUser = super.create(user);
+    public ResponseEntity<User> createWithLocation(@Valid @RequestBody UserTo userTo) {
+        User newUser = super.create(UserUtil.createNewFromTo(userTo));
+        newUser.setPassword(null);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath().path(REST_URL + "/{id}").buildAndExpand(newUser.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(newUser);
     }
