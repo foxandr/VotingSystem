@@ -4,7 +4,9 @@ import fox.alex.votingsystem.TestUtil;
 import fox.alex.votingsystem.model.Restaurant;
 import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.testData.DishTestData;
+import fox.alex.votingsystem.to.RestaurantTo;
 import fox.alex.votingsystem.utils.JsonUtil;
+import fox.alex.votingsystem.utils.transfers.RestaurantUtil;
 import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,12 +42,13 @@ public class RestaurantRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        Restaurant expected = new Restaurant(null, "ПагоняЎ", "Дзяржынскага 88");
+        RestaurantTo expectedTo = new RestaurantTo(null, "ПагоняЎ", "Дзяржынскага 88");
         ResultActions action = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(ADMIN))
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(expected))).andExpect(status().isCreated());
+                .content(JsonUtil.writeValue(expectedTo))).andExpect(status().isCreated());
         Restaurant returned = MATCHER.fromJsonAction(action);
+        Restaurant expected = RestaurantUtil.createNewFromTo(expectedTo);
         expected.setId(returned.getId());
         MATCHER.assertEquals(expected, returned);
         MATCHER.assertCollectionEquals(Arrays.asList(REST3, REST1, expected, REST2), restaurantService.getAll());

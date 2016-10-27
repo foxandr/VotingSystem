@@ -24,7 +24,6 @@ public class AdminRestController extends AbstractUserController {
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@Valid @RequestBody UserTo userTo) {
         User newUser = super.create(UserUtil.createNewFromTo(userTo));
-        newUser.setPassword(null);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath().path(REST_URL + "/{id}").buildAndExpand(newUser.getId()).toUri();
         return ResponseEntity.created(uriOfNewResource).body(newUser);
     }

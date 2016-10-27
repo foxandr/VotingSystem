@@ -86,7 +86,7 @@ public class VoteServiceTest extends AbstractServiceTest {
     }
 
     @Test(expected = NotFoundException.class)
-    public void getByDateNotFound() throws Exception {
+    public void getByDateNotFound() {
         service.getByDate(ADMIN_ID, LocalDateTime.now().plusDays(1l));
     }
 

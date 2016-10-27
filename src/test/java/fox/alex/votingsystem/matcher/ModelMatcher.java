@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-
-
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Collection;

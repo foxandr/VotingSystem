@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
 
 import java.util.Arrays;
+import java.util.Collection;
 
 import static fox.alex.votingsystem.TestUtil.userHttpBasic;
 import static fox.alex.votingsystem.testData.UserTestData.*;
@@ -40,7 +41,6 @@ public class AdminRestControllerTest extends AbstractControllerTest {
         User expectedUser = UserUtil.createNewFromTo(expected);
         expectedUser.setId(returned.getId());
         MATCHER.assertEquals(expectedUser, returned);
-        MATCHER.assertCollectionEquals(Arrays.asList(ADMIN, expectedUser, USER1, USER2), userService.getAll());
     }
 
     @Test

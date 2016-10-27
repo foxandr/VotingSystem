@@ -3,7 +3,9 @@ package fox.alex.votingsystem.web.dishes;
 import fox.alex.votingsystem.model.Dish;
 import fox.alex.votingsystem.service.DishService;
 import fox.alex.votingsystem.testData.RestaurantTestData;
+import fox.alex.votingsystem.to.DishTo;
 import fox.alex.votingsystem.utils.JsonUtil;
+import fox.alex.votingsystem.utils.transfers.DishUtil;
 import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +41,12 @@ public class DishRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        Dish expected = new Dish(null, "Cake", 14.54);
-        ResultActions action = mockMvc.perform(post(REST_URL)
+        DishTo expectedTo = new DishTo(null, "Cake", 14.54);
+        ResultActions action = mockMvc.perform(post(REST_URL + String.valueOf(REST_ID1))
                 .with(userHttpBasic(ADMIN))
-                .contentType(MediaType.APPLICATION_JSON).content(JsonUtil.writeValue(expected))
-                .param("rest_id", String.valueOf(REST_ID1)));
+                .contentType(MediaType.APPLICATION_JSON).content(JsonUtil.writeValue(expectedTo)));
         Dish returned = MATCHER.fromJsonAction(action);
+        Dish expected = DishUtil.createNewFromTo(expectedTo);
         expected.setId(returned.getId());
         MATCHER.assertEquals(expected, returned);
     }

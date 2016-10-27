@@ -57,12 +57,12 @@ public class VoteRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testCreate() throws Exception {
-        Vote expected = new Vote(null, 6);
+        int rest_id = 6;
         ResultActions actions = mockMvc.perform(post(REST_URL)
                 .with(userHttpBasic(USER1))
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(JsonUtil.writeValue(expected)));
+                .param("rest_id", String.valueOf(rest_id)));
         Vote returned = MATCHER.fromJsonAction(actions);
+        Vote expected = new Vote(null, rest_id);
         expected.setId(returned.getId());
         MATCHER.assertEquals(expected, returned);
     }

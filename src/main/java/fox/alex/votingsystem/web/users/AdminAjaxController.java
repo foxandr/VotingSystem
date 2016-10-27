@@ -48,7 +48,9 @@ public class AdminAjaxController extends AbstractUserController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User get(@PathVariable("id") int id) {
-        return super.get(id);
+        User user = super.get(id);
+        user.setPassword(null);
+        return user;
     }
 
     @RequestMapping(value = "/email", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,7 +60,9 @@ public class AdminAjaxController extends AbstractUserController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<User> getAll() {
-        return super.getAll();
+        List<User> users = super.getAll();
+        for (User u : users) u.setPassword(null);
+        return users;
     }
 
     @RequestMapping(value = "/{id}/voices",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
