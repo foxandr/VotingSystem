@@ -48,7 +48,15 @@
                                 <label for="password"><spring:message code="users.pass"/></label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="">
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="sendData(${reg})">
+                            <div class="form-group">
+                                <label for="newpass"><spring:message code="users.newpass"/></label>
+                                <input type="password" class="form-control" id="newpass" name="newpass" placeholder="">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmpass"><spring:message code="users.confirm"/></label>
+                                <input type="password" class="form-control" id="confirmpass" name="confirmpass" placeholder="">
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="sendData(${reg})">
                                 <c:if test="${reg}">
                                     <spring:message code="app.register"/>
                                 </c:if>
@@ -68,6 +76,7 @@
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>
+<script type="text/javascript"><jsp:include page="fragments/i18n.jsp"/></script>
 <script type="text/javascript" src="resources/js/profileUtils.js"></script>
 </body>
 </html>

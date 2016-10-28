@@ -11,7 +11,8 @@
     <div class="box">
         <div class="row col-md-offset-0 col-sm-offset-0">
         <br>
-        <h4>Application error: </h4>
+        <h6><span class="alert-link"><spring:message code="exception.message"/></span></h6>
+<!--        <h4>Application error: </h4>
         <h2>${exception.message}</h2>
 <!--
 <c:forEach items="${exception.stackTrace}" var="stackTrace">
