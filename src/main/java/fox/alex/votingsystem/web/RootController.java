@@ -6,6 +6,7 @@ import fox.alex.votingsystem.service.RestaurantService;
 import fox.alex.votingsystem.service.VoteService;
 import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.TimeUtil;
+import fox.alex.votingsystem.utils.exception.WrongPasswordException;
 import fox.alex.votingsystem.utils.transfers.UserUtil;
 import fox.alex.votingsystem.web.users.AbstractUserController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,9 +76,8 @@ public class RootController extends AbstractUserController {
         return "profile";
     }
 
-    //todo change update logic
     @RequestMapping(value = "/profile", method = RequestMethod.POST)
-    public String updateProfile(@Valid UserTo userTo, BindingResult bindingResult, SessionStatus sessionStatus){
+    public String updateProfile(@Valid UserTo userTo, BindingResult bindingResult, SessionStatus sessionStatus, ModelMap model){
         if (!bindingResult.hasErrors()){
             try {
                 userTo.setId(AuthorizedUser.id());
@@ -87,8 +87,13 @@ public class RootController extends AbstractUserController {
                 return "redirect:voting";
             } catch (DataIntegrityViolationException e){
                 bindingResult.rejectValue("email", "exception.demail");
+                model.addAttribute("errmail", "exception.demail");
+            } catch (WrongPasswordException e){
+                bindingResult.rejectValue("password", "exception.dpass");
+                model.addAttribute("errpass", "exception.dpass");
             }
         }
+        model.addAttribute("result", bindingResult.getAllErrors());
         return "profile";
     }
 

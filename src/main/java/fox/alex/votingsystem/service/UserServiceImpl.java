@@ -6,6 +6,7 @@ import fox.alex.votingsystem.repository.UserRepository;
 import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.exception.ExceptionUtil;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
+import fox.alex.votingsystem.utils.exception.WrongPasswordException;
 import fox.alex.votingsystem.utils.transfers.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
@@ -71,7 +72,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @CacheEvict(value = "users", allEntries = true)
     @Override
-    public void update(UserTo userTo) {
+    public void update(UserTo userTo) throws WrongPasswordException {
         User user = get(userTo.getId());
         UserUtil.updateFromTo(user, userTo);
         repository.save(UserUtil.prepareToSave(user));

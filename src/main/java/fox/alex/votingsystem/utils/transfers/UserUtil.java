@@ -4,6 +4,7 @@ import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.PasswordUtil;
+import fox.alex.votingsystem.utils.exception.WrongPasswordException;
 
 /**
  * Created by fox on 05.09.16.
@@ -17,11 +18,17 @@ public class UserUtil {
         return new UserTo(user.getId(), user.getName(), user.getPassword(), user.getEmail());
     }
 
-    public static void updateFromTo(User user, UserTo userTo) {
-        user.setName(userTo.getName());
-        user.setEmail(userTo.getEmail());
+    public static void updateFromTo(User user, UserTo userTo) throws WrongPasswordException {
         String pass = userTo.getPassword();
-        if (pass != null) user.setPassword(pass);
+        if (pass != null && PasswordUtil.isMatch(pass, user.getPassword())) {
+            user.setName(userTo.getName());
+            user.setEmail(userTo.getEmail());
+            String updpass = userTo.getNewpass();
+            if (updpass != null) user.setPassword(updpass);
+        } else {
+            throw new WrongPasswordException("Wrong password");
+        }
+
     }
 
     public static User prepareToSave(User user) {

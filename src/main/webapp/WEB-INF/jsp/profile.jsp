@@ -43,19 +43,27 @@
                             <div class="form-group">
                                 <label for="email"><spring:message code="users.email"/></label>
                                 <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                <c:if test="${errmail != null}">
+                                    <span class="text-danger"><spring:message code="exception.demail"/></span>
+                                </c:if>
                             </div>
                             <div class="form-group">
                                 <label for="password"><spring:message code="users.pass"/></label>
                                 <input type="password" class="form-control" id="password" name="password" placeholder="">
+                                <c:if test="${errpass != null}">
+                                    <span class="text-danger"><spring:message code="exception.dpass"/></span>
+                                </c:if>
                             </div>
-                            <div class="form-group">
-                                <label for="newpass"><spring:message code="users.newpass"/></label>
-                                <input type="password" class="form-control" id="newpass" name="newpass" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="confirmpass"><spring:message code="users.confirm"/></label>
-                                <input type="password" class="form-control" id="confirmpass" name="confirmpass" placeholder="">
-                            </div>
+                            <c:if test="${!reg}">
+                                <div class="form-group">
+                                    <label for="newpass"><spring:message code="users.newpass"/></label>
+                                    <input type="password" class="form-control" id="newpass" name="newpass" placeholder="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmpass"><spring:message code="users.confirm"/></label>
+                                    <input type="password" class="form-control" id="confirmpass" name="confirmpass" placeholder="">
+                                </div>
+                            </c:if>
                             <button type="button" class="btn btn-primary" onclick="sendData(${reg})">
                                 <c:if test="${reg}">
                                     <spring:message code="app.register"/>
@@ -69,6 +77,11 @@
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
+                <c:if test="${result != null}">
+                    <c:forEach items="${result}" var="e">
+                        ${e}
+                    </c:forEach>
+                </c:if>
                 <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
             </div>
         </div>

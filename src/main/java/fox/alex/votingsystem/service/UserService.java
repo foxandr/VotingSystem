@@ -3,6 +3,7 @@ package fox.alex.votingsystem.service;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
+import fox.alex.votingsystem.utils.exception.WrongPasswordException;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface UserService {
 
     User getByEmail(String email) throws NotFoundException;
 
-    void update(UserTo userTo);
+    void update(UserTo userTo) throws WrongPasswordException;
 
     List<User> getAll();
 

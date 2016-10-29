@@ -45,12 +45,12 @@
                     <div class="col-sm-5 col-md-5">
                         <c:if test="${error}">
                             <div class="error">
-                                ${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+                                <span class="text-danger">${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}</span>
                             </div>
                         </c:if>
                         <c:if test="${not empty message}">
                             <div class="has-error">
-                                <spring:message code="${message}"/>
+                                <span class="text-danger"><spring:message code="${message}"/></span>
                             </div>
                         </c:if>
                     </div>

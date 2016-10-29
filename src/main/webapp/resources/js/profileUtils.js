@@ -16,12 +16,16 @@ function sendData(reg) {
     var link = 'profile';
     if (reg) link = 'register';
     if (checkPass()) {
+        if (!reg) {
+            $('#confirmpass').prop('disabled', true);
+            if ($('#newpass').val() == null || $('#newpass').val() == '') $('#newpass').prop('disabled', true);
+        }
         form.submit(function () {
             $.ajax({
                 type: "POST",
                 url: link,
                 data: form.serialize(),
-                success: successNoty('Saved')
+                success: successNoty('Form was sent')
             });
         });
         form.submit();
