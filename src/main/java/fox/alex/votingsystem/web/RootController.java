@@ -15,6 +15,8 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +24,9 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by fox on 30.08.16.
@@ -93,7 +98,15 @@ public class RootController extends AbstractUserController {
                 model.addAttribute("errpass", "exception.dpass");
             }
         }
-        model.addAttribute("result", bindingResult.getAllErrors());
+
+        List<String> codes = bindingResult
+                .getAllErrors()
+                .stream()
+                .map(e -> e.getDefaultMessage())
+                .collect(Collectors.toList());
+
+        if (codes.contains("password")) model.addAttribute("errpass", "exception.dpass");
+        if (codes.contains("newpass")) model.addAttribute("errnewpass", "exception.dnewpass");
         return "profile";
     }
 

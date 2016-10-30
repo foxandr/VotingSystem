@@ -24,6 +24,8 @@ public interface UserService {
 
     void update(UserTo userTo) throws WrongPasswordException;
 
+    void updateByAdmin(UserTo userTo);
+
     List<User> getAll();
 
     void update(User user);

@@ -29,7 +29,7 @@ public class AdminAjaxController extends AbstractUserController {
             if (userTo.isNew()){
                 super.create(UserUtil.createNewFromTo(userTo));
             } else {
-                super.update(userTo);
+                super.updateByAdmin(userTo);
             }
         } catch (DataIntegrityViolationException e){
             throw new DataIntegrityViolationException(messageSource.getMessage("exception.demail", null, LocaleContextHolder.getLocale()));

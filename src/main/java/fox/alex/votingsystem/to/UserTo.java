@@ -13,14 +13,14 @@ import javax.validation.constraints.Size;
 public class UserTo extends BaseTo {
 
     @NotEmpty
-    @Size(min = 6, max = 64, message = "must between 6 and 64 symbols")
+    @Size(min = 6, max = 64, message = "password")
     private String password;
 
     @NotEmpty
     @Email
     private String email;
 
-    @Size(min = 6, max = 64, message = "must between 6 and 64 symbols")
+    @Size(min = 6, max = 64, message = "newpass")
     private String newpass;
 
     public UserTo() {
@@ -36,7 +36,7 @@ public class UserTo extends BaseTo {
         super(id, name);
         this.password = password;
         this.email = email;
-        this.newpass = password;
+        this.newpass = newpass;
     }
 
     public String getPassword() {

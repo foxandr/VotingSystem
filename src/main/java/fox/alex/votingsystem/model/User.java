@@ -45,7 +45,7 @@ public class User extends BaseEntity {
 
     @Column(name = "password", nullable = false)
     @NotEmpty
-    @Length(min = 6)
+    @Length(min = 6, max = 64)
     private String password;
 
     @Column(name = "registred", columnDefinition = "timestamp default now()")

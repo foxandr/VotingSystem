@@ -62,6 +62,11 @@ public abstract class AbstractUserController {
         service.update(userTo);
     };
 
+    public void updateByAdmin(UserTo userTo){
+        log.info("update " + userTo);
+        service.updateByAdmin(userTo);
+    }
+
     public User getWithVoices(int id){
         log.info("get with voices " + id);
         return service.getWithVoices(id);

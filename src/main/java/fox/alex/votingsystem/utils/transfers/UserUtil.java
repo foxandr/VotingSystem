@@ -28,7 +28,12 @@ public class UserUtil {
         } else {
             throw new WrongPasswordException("Wrong password");
         }
+    }
 
+    public static void updateFromToByAdmin(User user, UserTo userTo){
+        user.setName(userTo.getName());
+        user.setEmail(userTo.getEmail());
+        user.setPassword(userTo.getPassword());
     }
 
     public static User prepareToSave(User user) {

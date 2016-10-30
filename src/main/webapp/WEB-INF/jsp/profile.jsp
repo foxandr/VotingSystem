@@ -58,6 +58,9 @@
                                 <div class="form-group">
                                     <label for="newpass"><spring:message code="users.newpass"/></label>
                                     <input type="password" class="form-control" id="newpass" name="newpass" placeholder="">
+                                    <c:if test="${errnewpass != null}">
+                                        <span class="text-danger"><spring:message code="exception.dnewpass"/></span>
+                                    </c:if>
                                 </div>
                                 <div class="form-group">
                                     <label for="confirmpass"><spring:message code="users.confirm"/></label>
@@ -72,16 +75,16 @@
                                     <spring:message code="common.update"/>
                                 </c:if>
                             </button>
+                            <c:if test="${reg}">
+                                <button type="button" class="btn btn-danger" onclick="javascript:history.back()">
+                                    <spring:message code="common.back"/>
+                                </button>
+                            </c:if>
                         </form:form>
                     </div>
                 </div>
             </div>
             <div class="col-sm-6 col-md-6">
-                <c:if test="${result != null}">
-                    <c:forEach items="${result}" var="e">
-                        ${e}
-                    </c:forEach>
-                </c:if>
                 <img class="img-responsive img-full" src="resources/img/slide-2.jpg" alt="">
             </div>
         </div>

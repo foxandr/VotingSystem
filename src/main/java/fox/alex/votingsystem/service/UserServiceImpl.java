@@ -1,6 +1,7 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.AuthorizedUser;
+import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.repository.UserRepository;
 import fox.alex.votingsystem.to.UserTo;
@@ -75,6 +76,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public void update(UserTo userTo) throws WrongPasswordException {
         User user = get(userTo.getId());
         UserUtil.updateFromTo(user, userTo);
+        repository.save(UserUtil.prepareToSave(user));
+    }
+
+    @CacheEvict(value = "users", allEntries = true)
+    @Override
+    public void updateByAdmin(UserTo userTo) {
+        User user = get(userTo.getId());
+        UserUtil.updateFromToByAdmin(user, userTo);
         repository.save(UserUtil.prepareToSave(user));
     }
 
