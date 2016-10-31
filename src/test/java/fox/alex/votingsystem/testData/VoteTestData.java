@@ -15,8 +15,6 @@ import static fox.alex.votingsystem.model.BaseEntity.START_INDEX;
  * Created by fox on 24.08.16.
  */
 public class VoteTestData {
-    private static final Logger LOG = LoggerFactory.getLogger(VoteTestData.class);
-
     public static final int VOTE_ID = START_INDEX + 17;
 
     public static final Vote VOTE1 = new Vote(VOTE_ID, 4);

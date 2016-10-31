@@ -16,8 +16,6 @@ import static fox.alex.votingsystem.model.BaseEntity.START_INDEX;
  */
 public class RestaurantTestData {
 
-    private static final Logger LOG = LoggerFactory.getLogger(RestaurantTestData.class);
-
     public static final int REST_ID1 = START_INDEX + 3;
     public static final int REST_ID2 = START_INDEX + 4;
     public static final int REST_ID3 = START_INDEX + 5;

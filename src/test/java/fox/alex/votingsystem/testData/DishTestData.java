@@ -13,7 +13,6 @@ import static fox.alex.votingsystem.model.BaseEntity.START_INDEX;
  * Created by fox on 24.08.16.
  */
 public class DishTestData {
-    private static final Logger LOG = LoggerFactory.getLogger(DishTestData.class);
 
     public static final int DISH_ID = START_INDEX + 6;
     
