@@ -60,7 +60,24 @@
                 <img class="img-responsive img-full" src="resources/img/slide-1.jpg" alt="">
             </div>
         </div>
-
+    </div>
+</div>
+<div class="container">
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-12">
+                <span class="text-left"><spring:message code="global.credentials"/></span>
+            </div>
+        </div>
+        <div class="row">
+            <hr/>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <span class="text-left"><spring:message code="global.description"/></span>
+            </div>
+        </div>
+    </div>
 </div>
 
 <jsp:include page="fragments/footer.jsp"/>

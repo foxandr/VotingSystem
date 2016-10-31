@@ -1,14 +1,11 @@
 package fox.alex.votingsystem.repository.datajpa;
 
 import fox.alex.votingsystem.model.User;
-import fox.alex.votingsystem.model.Vote;
 import fox.alex.votingsystem.repository.UserRepository;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
 
 /**

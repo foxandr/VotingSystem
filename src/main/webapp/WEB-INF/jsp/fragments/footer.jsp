@@ -11,8 +11,19 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 text-center">
-                <p><spring:message code="app.footer"/></p>
+            <div class="col-lg-8">
+                <p class="text-center">
+                    <spring:message code="app.footer"/>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <p class="text-center">
+                    <select class="btn-xs">
+                        <option disabled selected value> <spring:message code="common.lang"/> </option>
+                        <option onclick="show('en')">English</option>
+                        <option onclick="show('ru')">Русский</option>
+                    </select>
+                </p>
             </div>
         </div>
     </div>

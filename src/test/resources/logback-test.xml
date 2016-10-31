@@ -11,7 +11,6 @@
         </encoder>
     </appender>
 
-    <!--<logger name="org.springframework.jdbc" level="debug"/>-->
     <logger name="fox.alex.votingsystem" level="debug"/>
 
     <root level="WARN">

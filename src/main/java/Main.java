@@ -1,5 +1,3 @@
-import fox.alex.votingsystem.utils.PasswordUtil;
-
 /**
  * Created by fox on 11.08.16.
  */

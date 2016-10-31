@@ -10,7 +10,6 @@
 
     <bean class="fox.alex.votingsystem.utils.JacksonObjectMapper" id="objectMapper" factory-method="getMapper"/>
 
-    <!-- serve static resources (*.html, ...) from src/main/webapp/ -->
     <mvc:default-servlet-handler/>
 
     <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled"/>
@@ -24,7 +23,7 @@
                 <property name="supportedMediaTypes">
                     <list>
                         <value>text/plain;charset=UTF-8</value>
-                        <value>text/html;charset=UTF-8</value> <!--- Fix AbstractMessageConverterMethodProcessor#142 -->
+                        <value>text/html;charset=UTF-8</value>
                     </list>
                 </property>
             </bean>
@@ -42,11 +41,7 @@
 
     <context:component-scan base-package="fox.alex.votingsystem.**.web"/>
 
-    <!--  all resources inside folder src/main/webapp/resources are mapped so they can be referred to inside JSP files -->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
-
-    <!-- uses WebJars so Javascript and CSS libs can be declared as Maven dependencies (Bootstrap, jQuery...) -->
-    <!--<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>-->
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
@@ -62,15 +57,15 @@
             </list>
         </property>
     </bean>
-    <!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="defaultLocale" value="ru"/>
-    </bean> -->
+    </bean>
 
-    <!-- <mvc:interceptors>
-        <bean class="ru.javawebinar.topjava.web.interceptor.ModelInterceptor"/>
+    <mvc:interceptors>
+        <bean class="fox.alex.votingsystem.web.interceptor.ModelInterceptor"/>
 
         <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
             <property name="paramName" value="lang"/>
         </bean>
-    </mvc:interceptors> -->
+    </mvc:interceptors>
 </beans>

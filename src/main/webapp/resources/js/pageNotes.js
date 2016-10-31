@@ -34,3 +34,7 @@ function failNoty(event, jqXHR, options, jsExc) {
         layout: 'bottomRight'
     });
 }
+
+function show(lang) {
+    window.location.href = window.location.href.split('?')[0] + '?lang=' + lang;
+}

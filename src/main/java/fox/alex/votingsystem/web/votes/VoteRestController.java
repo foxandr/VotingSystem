@@ -1,7 +1,6 @@
 package fox.alex.votingsystem.web.votes;
 
 import fox.alex.votingsystem.model.Vote;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -33,7 +33,6 @@
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
           p:dataSource-ref="dataSource"
           p:packagesToScan="fox.alex.**.model">
-        <!--p:persistenceUnitName="persistenceUnit">-->
 
         <property name="jpaPropertyMap">
             <map>
@@ -55,7 +54,7 @@
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory"/>
 
-    <bean class="fox.alex.votingsystem.repository.JpaUtil"/>
+    <bean class="fox.alex.votingsystem.utils.JpaUtil"/>
 
     <context:component-scan base-package="fox.alex.**.repository.datajpa"/>
     <jpa:repositories base-package="fox.alex.**.repository.datajpa"/>

@@ -1,7 +1,6 @@
 package fox.alex.votingsystem.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -129,10 +128,6 @@ public class User extends BaseEntity {
     public Set<Vote> getVotes() {
         return votes;
     }
-
-    /*public void setVotes(Set<Vote> votes) {
-        this.votes = votes;
-    }*/
 
     @Override
     public String toString() {

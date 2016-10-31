@@ -1,6 +1,6 @@
 package fox.alex.votingsystem.service;
 
-import fox.alex.votingsystem.repository.JpaUtil;
+import fox.alex.votingsystem.utils.JpaUtil;
 import org.junit.After;
 import org.junit.Rule;
 import org.junit.rules.ExpectedException;
@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.concurrent.TimeUnit;
 
 /**
- * User: gkislin
+ * Created by fox on 24.08.16.
  */
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",

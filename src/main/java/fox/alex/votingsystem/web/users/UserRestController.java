@@ -3,7 +3,6 @@ package fox.alex.votingsystem.web.users;
 import fox.alex.votingsystem.AuthorizedUser;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
-import fox.alex.votingsystem.utils.transfers.UserUtil;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

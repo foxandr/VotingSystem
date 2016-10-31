@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import static fox.alex.votingsystem.TestUtil.userHttpBasic;
 import static fox.alex.votingsystem.testData.UserTestData.MATCHER;
 import static fox.alex.votingsystem.testData.UserTestData.USER1;
+import static fox.alex.votingsystem.testData.UserTestData.USER_ID;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -52,6 +53,7 @@ public class UserRestControllerTest extends AbstractControllerTest {
 
     @Test
     public void testUpdate() throws Exception {
+        User expected = userService.get(USER_ID);
         UserTo userTo = new UserTo(null, "UserUPD", "simpleuser", "user1@votes.by");
         mockMvc.perform(put(REST_URL)
                 .with(userHttpBasic(USER1))
@@ -59,7 +61,6 @@ public class UserRestControllerTest extends AbstractControllerTest {
                 .content(JsonUtil.writeValue(userTo)))
                 .andDo(print())
                 .andExpect(status().isOk());
-        User expected = new User(USER1);
         UserUtil.updateFromTo(expected, userTo);
         MATCHER.assertEquals(expected, userService.get(expected.getId()));
     }

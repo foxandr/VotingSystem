@@ -9,10 +9,6 @@ import org.springframework.test.web.servlet.request.RequestPostProcessor;
 
 import java.io.UnsupportedEncodingException;
 
-/**
- * GKislin
- * 05.01.2015.
- */
 public class TestUtil {
 
     public static ResultActions print(ResultActions action) throws UnsupportedEncodingException {

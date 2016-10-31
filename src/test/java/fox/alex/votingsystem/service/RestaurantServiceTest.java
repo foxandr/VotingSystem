@@ -1,7 +1,6 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Restaurant;
-import fox.alex.votingsystem.repository.JpaUtil;
 import fox.alex.votingsystem.testData.DishTestData;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
 import org.junit.After;

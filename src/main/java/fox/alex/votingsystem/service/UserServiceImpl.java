@@ -1,7 +1,6 @@
 package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.AuthorizedUser;
-import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.repository.UserRepository;
 import fox.alex.votingsystem.to.UserTo;

@@ -1,6 +1,6 @@
 package fox.alex.votingsystem.web;
 
-import fox.alex.votingsystem.repository.JpaUtil;
+import fox.alex.votingsystem.utils.JpaUtil;
 import fox.alex.votingsystem.service.UserService;
 import org.junit.Before;
 import org.junit.runner.RunWith;

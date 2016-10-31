@@ -55,7 +55,7 @@ public class DishServiceTest extends AbstractServiceTest {
 
     @Test(expected = NotFoundException.class)
     public void getNotFound(){
-        Dish dish = service.get(8, REST_ID3);
+        service.get(8, REST_ID3);
     }
 
     @Test

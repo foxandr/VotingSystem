@@ -1,4 +1,4 @@
-package fox.alex.votingsystem.repository;
+package fox.alex.votingsystem.utils;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

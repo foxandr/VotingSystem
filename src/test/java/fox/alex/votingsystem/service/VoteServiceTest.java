@@ -85,11 +85,6 @@ public class VoteServiceTest extends AbstractServiceTest {
         MATCHER.assertEquals(VOTE1, todayVote);
     }
 
-    @Test(expected = NotFoundException.class)
-    public void getByDateNotFound() {
-        service.getByDate(ADMIN_ID, LocalDateTime.now().plusDays(1l));
-    }
-
     @Test
     public void update() throws Exception {
         Vote updateVote = service.get(VOTE_ID, ADMIN_ID);

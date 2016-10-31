@@ -1,7 +1,6 @@
 package fox.alex.votingsystem.web.users;
 
 import fox.alex.votingsystem.TestUtil;
-import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
 import fox.alex.votingsystem.to.UserTo;
 import fox.alex.votingsystem.utils.JsonUtil;
@@ -10,9 +9,6 @@ import fox.alex.votingsystem.web.AbstractControllerTest;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.ResultActions;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static fox.alex.votingsystem.TestUtil.userHttpBasic;
 import static fox.alex.votingsystem.testData.UserTestData.*;

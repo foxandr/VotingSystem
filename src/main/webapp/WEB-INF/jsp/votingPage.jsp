@@ -62,6 +62,9 @@
                                 </c:forEach>
                             </table>
                         </c:if>
+                        <c:if test="${!canVote}">
+                            <span class="text-danger"><spring:message code="voting.cantvote"/></span>
+                        </c:if>
                     </div>
                 </div>
             </div>

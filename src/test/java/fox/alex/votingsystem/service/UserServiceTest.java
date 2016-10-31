@@ -2,7 +2,6 @@ package fox.alex.votingsystem.service;
 
 import fox.alex.votingsystem.model.Role;
 import fox.alex.votingsystem.model.User;
-import fox.alex.votingsystem.repository.JpaUtil;
 import fox.alex.votingsystem.testData.VoteTestData;
 import fox.alex.votingsystem.utils.exception.NotFoundException;
 import org.junit.After;
