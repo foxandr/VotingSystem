@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping(AdminRestController.REST_URL)
 public class AdminRestController extends AbstractUserController {
 
-    static final String REST_URL = "/rest/admin/users";
+    protected static final String REST_URL = "/rest/admin/users";
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<User> createWithLocation(@Valid @RequestBody UserTo userTo) {

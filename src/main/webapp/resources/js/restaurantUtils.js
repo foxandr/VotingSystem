@@ -1,18 +1,5 @@
 var form;
 
- function makeEditableRestaurant() {
-     form = $('#detailsRestForm');
-
-     form.submit(function () {
-         saveRestaurant();
-         return false;
-     });
-
-     $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-          failNoty(event, jqXHR, options, jsExc);
-     });
- }
-
 function addRestaurant(key) {
     form.find(":input").val("");
     $('#modalTitle').html(i18n[key]);
@@ -52,6 +39,19 @@ function saveRestaurant() {
             updateRestaurantTable();
             successNoty('Saved');
         }
+    });
+}
+
+function makeEditableRestaurant() {
+    form = $('#detailsRestForm');
+
+    form.submit(function () {
+        saveRestaurant();
+        return false;
+    });
+
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(event, jqXHR, options, jsExc);
     });
 }
 

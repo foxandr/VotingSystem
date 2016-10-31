@@ -12,6 +12,21 @@ $(function () {
     });
 })
 
+function checkPass() {
+    var password = $('#password').val();
+    var newpass = $('#newpass').val();
+    var confpass = $('#confirmpass').val();
+    if (password == null || password == "") {
+        alert(i18n['common.enpass']);
+        return false;
+    }
+    if (newpass != confpass) {
+        alert(i18n['common.confirm']);
+        return false;
+    }
+    return true;
+}
+
 function sendData(reg) {
     var link = 'profile';
     if (reg) link = 'register';
@@ -31,19 +46,4 @@ function sendData(reg) {
         form.submit();
     }
     return false;
-}
-
-function checkPass() {
-    var password = $('#password').val();
-    var newpass = $('#newpass').val();
-    var confpass = $('#confirmpass').val();
-    if (password == null || password == "") {
-        alert(i18n['common.enpass']);
-        return false;
-    }
-    if (newpass != confpass) {
-        alert(i18n['common.confirm']);
-        return false;
-    }
-    return true;
 }

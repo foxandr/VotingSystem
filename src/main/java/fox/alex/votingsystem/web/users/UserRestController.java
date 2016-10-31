@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequestMapping(UserRestController.REST_URL)
 public class UserRestController extends AbstractUserController {
 
-    static final String REST_URL = "/rest/profile";
+    protected static final String REST_URL = "/rest/profile";
 
     @RequestMapping(method = RequestMethod.DELETE)
     public void delete() {

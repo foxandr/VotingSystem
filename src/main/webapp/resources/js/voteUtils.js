@@ -3,18 +3,6 @@ function makeVoteEditable() {
         failNoty(event, jqXHR, options, jsExc);
     });
 }
-function makeVote(rest_id) {
-    $.ajax({
-        type: "POST",
-        url: ajaxUrl,
-        data: 'rest_id=' + rest_id,
-        success: function () {
-            changeVoteColor(rest_id);
-            successNoty('Saved');
-            updateTable();
-        }
-    });
-}
 
 function changeVoteColor(rest_id) {
     $('#voting tr').removeClass("success");
@@ -31,6 +19,19 @@ function updateTable() {
         type: 'POST',
         success: function (data) {
             updateTableByData(data);
+        }
+    });
+}
+
+function makeVote(rest_id) {
+    $.ajax({
+        type: "POST",
+        url: ajaxUrl,
+        data: 'rest_id=' + rest_id,
+        success: function () {
+            changeVoteColor(rest_id);
+            successNoty('Saved');
+            updateTable();
         }
     });
 }

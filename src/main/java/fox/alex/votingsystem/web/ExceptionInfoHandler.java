@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 @ControllerAdvice(annotations = RestController.class)
 public class ExceptionInfoHandler {
-    Logger LOG = LoggerFactory.getLogger(ExceptionInfoHandler.class);
+    private Logger LOG = LoggerFactory.getLogger(ExceptionInfoHandler.class);
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)

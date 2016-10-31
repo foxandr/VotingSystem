@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(DishRestController.REST_URL)
 public class DishRestController extends AbstractDishController {
 
-    static final String REST_URL = "/rest/admin/dishes";
+    protected static final String REST_URL = "/rest/admin/dishes";
 
     @RequestMapping(path = "/{rest_id}", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dish> createWithLocation(@Valid @RequestBody DishTo dishTo, @PathVariable("rest_id") int rest_id) {

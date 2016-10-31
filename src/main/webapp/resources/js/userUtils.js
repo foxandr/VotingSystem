@@ -4,19 +4,6 @@
 
 var form;
 
-function makeEditableUser() {
-    form = $('#detailsUserForm');
-
-    form.submit(function () {
-        saveUser();
-        return false;
-    });
-
-    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        failNoty(event, jqXHR, options, jsExc);
-    });
-}
-
 function addUser(key) {
     form.find(":input").val("");
     $('#modalTitle').html(i18n[key]);
@@ -69,6 +56,19 @@ function saveUser() {
             updateUserTable();
             successNoty('Saved');
         }
+    });
+}
+
+function makeEditableUser() {
+    form = $('#detailsUserForm');
+
+    form.submit(function () {
+        saveUser();
+        return false;
+    });
+
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(event, jqXHR, options, jsExc);
     });
 }
 

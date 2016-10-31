@@ -13,19 +13,6 @@ $(function () {
 
 var form;
 
-function makeDishEditable() {
-    form= $('#detailsDishForm');
-
-    form.submit(function () {
-        saveDish();
-        return false;
-    });
-
-    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
-        failNoty(event, jqXHR, options, jsExc);
-    });
-}
-
 function addDish(key) {
     form.find(":input").val("");
     form.find("input[name='rest_id_upd']").val($('#rest_id').val());
@@ -86,6 +73,19 @@ function saveDish() {
             getByDate();
             successNoty('Saved');
         }
+    });
+}
+
+function makeDishEditable() {
+    form= $('#detailsDishForm');
+
+    form.submit(function () {
+        saveDish();
+        return false;
+    });
+
+    $(document).ajaxError(function (event, jqXHR, options, jsExc) {
+        failNoty(event, jqXHR, options, jsExc);
     });
 }
 

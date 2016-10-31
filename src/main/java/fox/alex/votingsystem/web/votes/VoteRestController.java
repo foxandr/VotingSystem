@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping(VoteRestController.REST_URL)
 public class VoteRestController extends AbstractVoteController {
 
-    static final String REST_URL = "/rest/votes";
+    protected static final String REST_URL = "/rest/votes";
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Vote> createWithLocation(@RequestParam("rest_id") int rest_id) {
