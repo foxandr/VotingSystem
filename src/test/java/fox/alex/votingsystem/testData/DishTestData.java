@@ -2,8 +2,6 @@ package fox.alex.votingsystem.testData;
 
 import fox.alex.votingsystem.matcher.ModelMatcher;
 import fox.alex.votingsystem.model.Dish;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 
