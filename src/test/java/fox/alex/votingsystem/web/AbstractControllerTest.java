@@ -5,6 +5,7 @@ import fox.alex.votingsystem.service.UserService;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -16,6 +17,8 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 
 import javax.annotation.PostConstruct;
 
+import static fox.alex.votingsystem.Profiles.ACTIVE_DB;
+import static fox.alex.votingsystem.Profiles.DB_IMPLEMENTATION;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 
 /**
@@ -29,6 +32,7 @@ import static org.springframework.security.test.web.servlet.setup.SecurityMockMv
 @WebAppConfiguration
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
+@ActiveProfiles({ACTIVE_DB, DB_IMPLEMENTATION})
 abstract public class AbstractControllerTest {
 
     private static final CharacterEncodingFilter CHARACTER_ENCODING_FILTER = new CharacterEncodingFilter();
