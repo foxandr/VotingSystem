@@ -22,7 +22,7 @@
         <intercept-url pattern="/register" access="permitAll"/>
         <intercept-url pattern="**/admin/**" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/users" access="hasRole('ROLE_ADMIN')"/>
-        <intercept-url pattern="/dishes" access="hasRole('ROLE_ADMIN')"/>
+        <intercept-url pattern="/dishes" access="isAuthenticated()"/>
         <intercept-url pattern="/restaurants" access="hasRole('ROLE_ADMIN')"/>
         <intercept-url pattern="/**" access="isAuthenticated()"/>
         <csrf disabled="true"/>

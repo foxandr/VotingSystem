@@ -28,10 +28,10 @@
                     <li>
                         <a href="/restaurants"><h5><spring:message code="restaurants.title"/></h5></a>
                     </li>
-                    <li>
-                        <a href="/dishes"><h5><spring:message code="dishes.title"/></h5></a>
-                    </li>
                     </sec:authorize>
+                <li>
+                    <a href="/dishes"><h5><spring:message code="dishes.title"/></h5></a>
+                </li>
                 <li>
                     <a href="/profile"><h5><spring:message code="profile.title"/></h5></a>
                 </li>

@@ -66,7 +66,6 @@ public class RootController extends AbstractUserController {
         return "restaurantList";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @RequestMapping(value = "/dishes", method = RequestMethod.GET)
     public String dishList(ModelMap model){
         model.addAttribute("restNames", restaurantService.getAll());
