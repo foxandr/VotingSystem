@@ -21,7 +21,7 @@ $(function () {
             {
                 "data": "email",
                 "render": function (data, type, row) {
-                    if (type == "display") {
+                    if (type === "display") {
                         return "<a href=\"mailto:" + data + "\">" + data + "</a>";
                     }
                     return data;

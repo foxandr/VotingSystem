@@ -1,8 +1,8 @@
-var ajaxUrl = 'ajax/votes/';
+var ajaxUrl = "ajax/votes/";
 var datatableApi;
 
 $(function () {
-    datatableApi = $('#datatable').DataTable({
+    datatableApi = $("#datatable").DataTable({
         "ajax": {
             "url": ajaxUrl + 'getVoteResults',
             "type": "POST",

@@ -28,8 +28,11 @@ function checkPass() {
 }
 
 function sendData(reg) {
-    var link = "profile";
-    if (reg) link = "register";
+    if (reg) {
+        var link = "register";
+    } else {
+        var link = "profile";
+    }
     if (checkPass()) {
         if (!reg) {
             $("#confirmpass").prop("disabled", true);

@@ -73,19 +73,19 @@ function makeEditableUser() {
 }
 
 function renderEditUserBtn(type, row, key) {
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-xs btn-primary\" onclick=\"updateUserRow(" + row.id + ",'" + key + "');\">" + i18n["common.edit"] + "</a>";
     }
 }
 
 function renderDeleteUserBtn(data, type, row) {
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-xs btn-danger\" onclick=\"deleteUserRow(" + row.id + ");\">" + i18n["common.delete"] + "</a>";
     }
 }
 
 function renderRecoverUserBtn(data, type, row) {
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-xs btn-warning\" onclick=\"recoverUserRow(" + row.id + ");\">" + i18n["common.recover"] + "</a>";
     }
 }
