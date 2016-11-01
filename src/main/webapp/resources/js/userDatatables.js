@@ -1,4 +1,4 @@
-var ajaxUrl = 'ajax/admin/users/';
+var ajaxUrl = "ajax/admin/users/";
 var datatableApi;
 
 function updateUserTable() {
@@ -6,7 +6,7 @@ function updateUserTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable({
+    datatableApi = $("#datatable").DataTable({
         "ajax": {
             "url": ajaxUrl,
             "dataSrc": ""
@@ -21,8 +21,8 @@ $(function () {
             {
                 "data": "email",
                 "render": function (data, type, row) {
-                    if (type == 'display') {
-                        return '<a href="mailto:' + data + '">' + data + '</a>';
+                    if (type == "display") {
+                        return "<a href=\"mailto:" + data + "\">" + data + "</a>";
                     }
                     return data;
                 }
@@ -33,8 +33,8 @@ $(function () {
             {
                 "data": "registred",
                 "render": function (date, type, row) {
-                    if (type == 'display') {
-                        return '<span>' + date.substring(0, 10) + '</span>';
+                    if (type === "display") {
+                        return "<span>" + date.substring(0, 10) + "</span>";
                     }
                     return date;
                 }
@@ -46,7 +46,7 @@ $(function () {
                     if (!row.active) {
                         return "";
                     }
-                    return renderEditUserBtn(type, row, 'users.edit');
+                    return renderEditUserBtn(type, row, "users.edit");
                 }
             },
             {

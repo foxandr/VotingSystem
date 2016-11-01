@@ -77,7 +77,7 @@ function saveDish() {
 }
 
 function makeDishEditable() {
-    form= $("#detailsDishForm");
+    form = $("#detailsDishForm");
 
     form.submit(function () {
         saveDish();
@@ -91,14 +91,14 @@ function makeDishEditable() {
 
 function renderDeleteDishBtn(data, type, row) {
     var rest_id = $("#rest_id").val();
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-xs btn-danger\" onclick=\"deleteDishRow(" + row.id + ", " + rest_id + ");\">" + i18n["common.delete"] + "</a>";
     }
 }
 
 function renderEditDishBtn(type, row, key) {
     var rest_id = $("#rest_id").val();
-    if (type == "display") {
+    if (type === "display") {
         return "<a class=\"btn btn-xs btn-primary\" onclick=\"updateDishRow(" + row.id + ", " + rest_id + ",'" + key + "');\">" + i18n["common.edit"] + "</a>";
     }
 }

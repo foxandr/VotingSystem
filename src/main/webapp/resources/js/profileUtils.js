@@ -1,11 +1,11 @@
 /**
  * Created by fox on 29.09.16.
  */
-var ajaxUrl = 'ajax/profile/';
-var form = $('#detailsUserForm');
+var ajaxUrl = "ajax/profile/";
+var form = $("#detailsUserForm");
 
 $(function () {
-    $.get(ajaxUrl + 'get', function (data) {
+    $.get(ajaxUrl + "get", function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(value);
         });
@@ -13,34 +13,34 @@ $(function () {
 })
 
 function checkPass() {
-    var password = $('#password').val();
-    var newpass = $('#newpass').val();
-    var confpass = $('#confirmpass').val();
-    if (password == null || password == "") {
-        alert(i18n['common.enpass']);
+    var password = $("#password").val();
+    var newpass = $("#newpass").val();
+    var confpass = $("#confirmpass").val();
+    if (password === null || password === "") {
+        alert(i18n["common.enpass"]);
         return false;
     }
-    if (newpass != confpass) {
-        alert(i18n['common.confirm']);
+    if (newpass !== confpass) {
+        alert(i18n["common.confirm"]);
         return false;
     }
     return true;
 }
 
 function sendData(reg) {
-    var link = 'profile';
-    if (reg) link = 'register';
+    var link = "profile";
+    if (reg) link = "register";
     if (checkPass()) {
         if (!reg) {
-            $('#confirmpass').prop('disabled', true);
-            if ($('#newpass').val() == null || $('#newpass').val() == '') $('#newpass').prop('disabled', true);
+            $("#confirmpass").prop("disabled", true);
+            if ($("#newpass").val() === null || $("#newpass").val() === "") $("#newpass").prop("disabled", true);
         }
         form.submit(function () {
             $.ajax({
                 type: "POST",
                 url: link,
                 data: form.serialize(),
-                success: successNoty('Form was sent')
+                success: successNoty("Form was sent")
             });
         });
         form.submit();

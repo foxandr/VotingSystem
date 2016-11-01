@@ -1,4 +1,4 @@
-var ajaxUrl = 'ajax/admin/restaurants/';
+var ajaxUrl = "ajax/admin/restaurants/";
 var datatableApi;
 
 function updateRestaurantTable() {
@@ -6,7 +6,7 @@ function updateRestaurantTable() {
 }
 
 $(function () {
-    datatableApi = $('#datatable').DataTable({
+    datatableApi = $("#datatable").DataTable({
         "ajax": {
             "url": ajaxUrl,
             "dataSrc": ""
@@ -24,8 +24,8 @@ $(function () {
             {
                 "data": "registred",
                 "render": function (date, type, row) {
-                    if (type == 'display') {
-                        return '<span>' + date.substring(0, 10) + '</span>';
+                    if (type === "display") {
+                        return "<span>" + date.substring(0, 10) + "</span>";
                     }
                     return date;
                 }
@@ -34,7 +34,7 @@ $(function () {
                 "orderable": false,
                 "defaultContent": "",
                 "render": function (date, type, row) {
-                    return renderEditRestaurantBtn(type, row, 'restaurants.edit');
+                    return renderEditRestaurantBtn(type, row, "restaurants.edit");
                 }
             },
             {

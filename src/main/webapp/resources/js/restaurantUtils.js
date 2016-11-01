@@ -2,29 +2,29 @@ var form;
 
 function addRestaurant(key) {
     form.find(":input").val("");
-    $('#modalTitle').html(i18n[key]);
-    $('#editRow').modal();
+    $("#modalTitle").html(i18n[key]);
+    $("#editRow").modal();
 }
 
 function updateRestaurantRow(id, key) {
-    $('#modalTitle').html(i18n[key]);
+    $("#modalTitle").html(i18n[key]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(
-                key === "dateTime" ? value.replace('T', ' ').substr(0, 16) : value
+                key === "dateTime" ? value.replace("T", " ").substr(0, 16) : value
             );
         });
-        $('#editRow').modal();
+        $("#editRow").modal();
     });
 }
 
 function deleteRestaurantRow(id) {
     $.ajax({
         url: ajaxUrl + id,
-        type: 'DELETE',
+        type: "DELETE",
         success: function () {
             updateRestaurantTable();
-            successNoty('Deleted');
+            successNoty("Deleted");
         }
     });
 }
@@ -35,15 +35,15 @@ function saveRestaurant() {
         url: ajaxUrl,
         data: form.serialize(),
         success: function () {
-            $('#editRow').modal('hide');
+            $("#editRow").modal("hide");
             updateRestaurantTable();
-            successNoty('Saved');
+            successNoty("Saved");
         }
     });
 }
 
 function makeEditableRestaurant() {
-    form = $('#detailsRestForm');
+    form = $("#detailsRestForm");
 
     form.submit(function () {
         saveRestaurant();
@@ -56,13 +56,13 @@ function makeEditableRestaurant() {
 }
 
 function renderEditRestaurantBtn(type, row, key) {
-    if (type == 'display') {
-        return '<a class="btn btn-xs btn-primary" onclick="updateRestaurantRow(' + row.id + ',\'' + key + '\');">' + i18n['common.edit'] + '</a>';
+    if (type === "display") {
+        return "<a class=\"btn btn-xs btn-primary\" onclick=\"updateRestaurantRow(" + row.id + ",'" + key + "');\">" + i18n["common.edit"] + "</a>";
     }
 }
 
 function renderDeleteRestaurantBtn(data, type, row) {
-    if (type == 'display') {
-        return '<a class="btn btn-xs btn-danger" onclick="deleteRestaurantRow(' + row.id + ');">' + i18n['common.delete'] + '</a>';
+    if (type === "display") {
+        return "<a class=\"btn btn-xs btn-danger\" onclick=\"deleteRestaurantRow(" + row.id + ");\">" + i18n["common.delete"] + "</a>";
     }
 }

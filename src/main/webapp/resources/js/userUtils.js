@@ -6,42 +6,42 @@ var form;
 
 function addUser(key) {
     form.find(":input").val("");
-    $('#modalTitle').html(i18n[key]);
-    $('#editRow').modal();
+    $("#modalTitle").html(i18n[key]);
+    $("#editRow").modal();
 }
 
 function updateUserRow(id, key) {
-    $('#modalTitle').html(i18n[key]);
+    $("#modalTitle").html(i18n[key]);
     $.get(ajaxUrl + id, function (data) {
         $.each(data, function (key, value) {
             form.find("input[name='" + key + "']").val(
-                key === "dateTime" ? value.replace('T', ' ').substr(0, 16) : value
+                key === "dateTime" ? value.replace("T", " ").substr(0, 16) : value
             );
         });
-        $('#editRow').modal();
+        $("#editRow").modal();
     });
 }
 
 function deleteUserRow(id) {
     $.ajax({
-        url: ajaxUrl + '/delete',
-        type: 'POST',
-        data: 'id=' + id,
+        url: ajaxUrl + "/delete",
+        type: "POST",
+        data: "id=" + id,
         success: function () {
             updateUserTable();
-            successNoty('Deleted');
+            successNoty("Deleted");
         }
     });
 }
 
 function recoverUserRow(id) {
     $.ajax({
-        url: ajaxUrl + '/recover',
-        type: 'POST',
-        data: 'id=' + id,
+        url: ajaxUrl + "/recover",
+        type: "POST",
+        data: "id=" + id,
         success: function () {
             updateUserTable();
-            successNoty('Recovered');
+            successNoty("Recovered");
         }
     });
 }
@@ -52,15 +52,15 @@ function saveUser() {
         url: ajaxUrl,
         data: form.serialize(),
         success: function () {
-            $('#editRow').modal('hide');
+            $("#editRow").modal("hide");
             updateUserTable();
-            successNoty('Saved');
+            successNoty("Saved");
         }
     });
 }
 
 function makeEditableUser() {
-    form = $('#detailsUserForm');
+    form = $("#detailsUserForm");
 
     form.submit(function () {
         saveUser();
@@ -73,19 +73,19 @@ function makeEditableUser() {
 }
 
 function renderEditUserBtn(type, row, key) {
-    if (type == 'display') {
-        return '<a class="btn btn-xs btn-primary" onclick="updateUserRow(' + row.id + ',\'' + key + '\');">' + i18n['common.edit'] + '</a>';
+    if (type == "display") {
+        return "<a class=\"btn btn-xs btn-primary\" onclick=\"updateUserRow(" + row.id + ",'" + key + "');\">" + i18n["common.edit"] + "</a>";
     }
 }
 
 function renderDeleteUserBtn(data, type, row) {
-    if (type == 'display') {
-        return '<a class="btn btn-xs btn-danger" onclick="deleteUserRow(' + row.id + ');">' + i18n['common.delete'] + '</a>';
+    if (type == "display") {
+        return "<a class=\"btn btn-xs btn-danger\" onclick=\"deleteUserRow(" + row.id + ");\">" + i18n["common.delete"] + "</a>";
     }
 }
 
 function renderRecoverUserBtn(data, type, row) {
-    if (type == 'display') {
-        return '<a class="btn btn-xs btn-warning" onclick="recoverUserRow(' + row.id + ');">' + i18n['common.recover'] + '</a>';
+    if (type == "display") {
+        return "<a class=\"btn btn-xs btn-warning\" onclick=\"recoverUserRow(" + row.id + ");\">" + i18n["common.recover"] + "</a>";
     }
 }
