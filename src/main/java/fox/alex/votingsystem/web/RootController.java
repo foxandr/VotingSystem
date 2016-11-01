@@ -122,6 +122,7 @@ public class RootController extends AbstractUserController {
                 return "redirect:login";
             } catch (DataIntegrityViolationException e){
                 bindingResult.rejectValue("email", "exception.demail");
+                model.addAttribute("errmail", "exception.demail");
             }
         }
         model.addAttribute("reg", true);
