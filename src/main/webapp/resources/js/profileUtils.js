@@ -28,10 +28,11 @@ function checkPass() {
 }
 
 function sendData(reg) {
+    var link = "";
     if (reg) {
-        var link = "register";
+        link = "register";
     } else {
-        var link = "profile";
+        link = "profile";
     }
     if (checkPass()) {
         if (!reg) {
