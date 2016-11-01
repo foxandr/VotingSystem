@@ -4,7 +4,7 @@ var datatableApi;
 $(function () {
     datatableApi = $("#datatable").DataTable({
         "ajax": {
-            "url": ajaxUrl + 'getVoteResults',
+            "url": ajaxUrl + "getVoteResults",
             "type": "POST",
             "dataSrc": ""
         },
