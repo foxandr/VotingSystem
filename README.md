@@ -13,3 +13,5 @@ Build a voting system for deciding where to have lunch.
         - If it is before 11:00 we asume that he changed his mind.
         - If it is after 11:00 then it is too late, vote can't be changed.
     - Each restaurant provides new menu each day.
+    
+You can see my work here: http://vsystem.herokuapp.com
