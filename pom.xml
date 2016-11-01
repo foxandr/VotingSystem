@@ -6,6 +6,7 @@
 
     <groupId>VotingSystem</groupId>
     <artifactId>VotingSystem</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
 
     <name>Voting System</name>
