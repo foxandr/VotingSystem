@@ -18,10 +18,10 @@
             </div>
             <div class="col-lg-4">
                 <p class="text-center">
-                    <select class="btn-xs">
+                    <select class="btn-xs" id="chLang" onchange="show()">
                         <option disabled selected value> <spring:message code="common.lang"/> </option>
-                        <option onclick="show('en')">English</option>
-                        <option onclick="show('ru')">Русский</option>
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
                     </select>
                 </p>
             </div>

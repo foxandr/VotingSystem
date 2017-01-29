@@ -36,5 +36,5 @@ function failNoty(event, jqXHR, options, jsExc) {
 }
 
 function show(lang) {
-    window.location.href = window.location.href.split("?")[0] + "?lang=" + lang;
+    $(location).attr('href', window.location.href.split("?")[0] + "?lang=" + $("#chLang").val());
 }
